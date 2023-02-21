@@ -8,6 +8,7 @@ authors = ["SimaoQuintela <simaopedroquintela@hotmail.com>"]
 python = "^3.10"
 ortools = "^9.5.2237"
 PySMT = "^0.9.5"
+pandas = "^1.5.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
