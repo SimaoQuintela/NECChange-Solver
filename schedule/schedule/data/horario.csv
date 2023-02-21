@@ -1,0 +1,128 @@
+ano,semestre,código da uc,uc,tipo de aula,turno,dia,hora inicio,minutos inicio,hora fim,minutos fim
+1,1,8501Q5,Álgebra Linear CC,T,1,1,9,0,10,30
+1,1,8501Q5,Álgebra Linear CC,T,1,3,9,0,10,30
+1,1,8501Q5,Álgebra Linear CC,TP,1,4,9,0,12,0
+1,1,8501Q5,Álgebra Linear CC,TP,2,4,14,0,17,0
+1,1,8501Q6,Cálculo,TP,1,3,10,30,12,30
+1,1,8501Q6,Cálculo,TP,1,5,9,0,11,0
+1,1,8501Q6,Cálculo,TP,2,1,10,30,12,30
+1,1,8501Q6,Cálculo,TP,2,4,11,0,13,0
+1,1,8501Q8,Programação Funcional,T,1,1,11,0,13,0
+1,1,8501Q8,Programação Funcional,TP,1,1,11,0,13,0
+1,1,8501Q8,Programação Funcional,TP,2,2,11,0,13,0
+1,1,8501Q8,Programação Funcional,TP,3,5,9,0,11,0
+1,1,8501Q7,Tópicos de Matemática,T,1,1,14,0,16,0
+1,1,8501Q7,Tópicos de Matemática,TP,1,5,14,0,17,0
+1,1,8501Q7,Tópicos de Matemática,TP,2,4,8,0,11,0
+1,1,85U004,Matemática das Coisas,TP,1,2,18,0,20,0
+1,1,85U020,"Educação, Cidadania e Direitos Humanos",TP,1,2,18,0,20,0
+1,1,85U028,Inglês Académico,TP,1,2,18,0,20,0
+1,1,85U170,Cidadania Digital,TP,1,2,18,0,20,0
+1,1,85U171,"Sustentabilidade Ambiental, Social e Económica",TP,1,2,18,0,20,0
+1,1,85U238,Literacia Fotográfica da Física à Mensagem,TP,1,2,18,0,20,0
+1,1,85U239,Substâncias que Mudaram o Mundo,TP,1,2,18,0,20,0
+1,1,85U240,Tópicos de Astronomia e Cosmologia,TP,1,2,18,0,20,0
+1,1,85U253,Introdução à Língua e Cultura Russa,TP,1,2,18,0,20,0
+1,1,85U255,Bilinguismo,TP,1,2,18,0,20,0
+1,1,85U274,"Democracia Plena, Responsabilidade e Estado de Direito",TP,1,2,18,0,20,0
+1,1,85U275,Direito Laboral,TP,1,2,18,0,20,0
+1,1,85U278,Princípios de Gestão de Inventários,TP,1,2,18,0,20,0
+1,1,85U79H,Matemática das Coisas,TP,1,2,18,0,20,0
+1,1,85U79I,A China no Mundo,TP,1,2,18,0,20,0
+1,1,85U79J,Desporto e Saúde,TP,1,2,18,0,20,0
+1,2,8502N6,Sistemas de Computação,T,1,1,11,0,12,0
+1,2,8502N6,Sistemas de Computação,T,1,3,9,0,10,0
+1,2,8502N6,Sistemas de Computação,PL,1,1,9,0,11,0
+1,2,8502N6,Sistemas de Computação,PL,2,4,9,0,11,0
+1,2,8502N6,Sistemas de Computação,PL,3,1,9,0,11,0
+1,2,8502N6,Sistemas de Computação,PL,4,2,9,0,11,0
+1,2,8502T1,Análise,TP,1,2,9,0,11,0
+1,2,8502T1,Análise,TP,1,5,9,0,11,0
+1,2,8502T1,Análise,TP,2,4,9,0,11,0
+1,2,8502T1,Análise,TP,2,5,14,0,16,0
+1,2,8502T2,Geometria,T,1,2,11,0,12,0
+1,2,8502T2,Geometria,T,1,3,10,0,11,0
+1,2,8502T2,Geometria,TP,1,5,11,0,13,0
+1,2,8502T2,Geometria,TP,2,2,14,0,16,0
+1,2,8502T3,Matemática Discreta,T,1,4,11,0,13,0
+1,2,8502T3,Matemática Discreta,TP,1,2,14,0,16,0
+1,2,8502T3,Matemática Discreta,TP,2,5,11,0,13,0
+1,2,8502T4,Programação Imperativa,T,1,1,12,0,13,0
+1,2,8502T4,Programação Imperativa,T,1,2,16,0,17,0
+1,2,8502T4,Programação Imperativa,TP,1,3,11,0,13,0
+1,2,8502T4,Programação Imperativa,TP,2,1,9,0,11,0
+1,2,8502T4,Programação Imperativa,TP,3,3,11,0,13,0
+1,2,8502T5,Laboratório de Algoritmia I,PL,1,4,9,0,11,0
+1,2,8502T5,Laboratório de Algoritmia I,PL,2,3,11,0,13,0
+1,2,8502T5,Laboratório de Algoritmia I,PL,3,2,9,0,11,0
+2,1,8503N5,Lógica CC,T,1,5,14,0,16,0
+2,1,8503N5,Lógica CC,TP,1,1,16,0,18,0
+2,1,8503N5,Lógica CC,TP,2,4,13,30,15,30
+2,1,8503O6,Álgebra,T,1,1,14,0,16,0
+2,1,8503O6,Álgebra,T,1,3,14,0,15,0
+2,1,8503O6,Álgebra,TP,1,4,15,30,18,30
+2,1,8503O6,Álgebra,TP,2,2,16,0,19,0
+2,1,8503O7,Análise Numérica,TP,1,1,11,0,12,30
+2,1,8503O7,Análise Numérica,TP,1,4,14,0,15,30
+2,1,8503O7,Análise Numérica,TP,2,1,16,0,17,30
+2,1,8503O7,Análise Numérica,TP,2,4,15,30,17,0
+2,1,8503O7,Análise Numérica,PL,1,3,17,0,19,0
+2,1,8503O7,Análise Numérica,PL,2,5,16,0,18,0
+2,1,8503O8,Algoritmos e Complexidade,T,1,2,14,0,16,0
+2,1,8503O8,Algoritmos e Complexidade,TP,1,2,16,0,18,0
+2,1,8503O8,Algoritmos e Complexidade,TP,2,4,17,0,19,0
+2,1,8503O9,Sistemas de Comunicações e Redes,T,1,3,15,0,17,0
+2,1,8503O9,Sistemas de Comunicações e Redes,PL,1,5,16,0,18,0
+2,1,8503O9,Sistemas de Comunicações e Redes,PL,2,3,17,0,19,0
+2,2,8504P1,Laboratório de Algoritmia II,PL,1,1,14,0,16,0
+2,2,8504P1,Laboratório de Algoritmia II,PL,2,1,14,0,16,0
+2,2,8504P2,Autómatos e Linguagens Formais,T,1,4,11,0,13,0
+2,2,8504P2,Autómatos e Linguagens Formais,TP,1,5,14,0,16,0
+2,2,8504P3,Cálculo de Programas,T,1,1,16,0,18,0
+2,2,8504P3,Cálculo de Programas,TP,1,2,14,0,16,0
+2,2,8504P3,Cálculo de Programas,TP,2,2,16,0,18,0
+2,2,8504P4,Programação Orientada aos Objetos,T,1,3,9,0,11,0
+2,2,8504P4,Programação Orientada aos Objetos,PL,1,3,14,0,16,0
+2,2,8504P4,Programação Orientada aos Objetos,PL,2,4,14,0,16,0
+2,2,8504P5,Sistemas Operativos,T,1,4,16,0,18,0
+2,2,8504P5,Sistemas Operativos,PL,1,5,16,0,18,0
+2,2,8504P5,Sistemas Operativos,PL,2,5,16,0,18,0
+2,2,8504P5,Sistemas Operativos,PL,3,4,14,0,16,0
+2,2,8504P6,Álgebra Universal e Categorias,T,1,3,11,0,13,0
+2,2,8504P6,Álgebra Universal e Categorias,TP,1,2,16,0,18,0
+2,2,8504P6,Álgebra Universal e Categorias,TP,2,2,14,0,16,0
+2,2,8504P6,Álgebra Universal e Categorias,TP,3,3,14,0,16,0
+3,1,8505N6,Bases de Dados,T,1,1,11,0,13,0
+3,1,8505N6,Bases de Dados,PL,1,1,9,0,11,0
+3,1,8505N6,Bases de Dados,PL,2,2,9,0,11,0
+3,1,8505O4,Computabilidade e Complexidade,T,1,2,11,0,12,30
+3,1,8505O4,Computabilidade e Complexidade,T,1,3,10,30,12,30
+3,1,8505O4,Computabilidade e Complexidade,TP,1,5,14,0,16,0
+3,1,8505O5,Lógica Computacional,T,1,5,11,0,13,0
+3,1,8505O5,Lógica Computacional,TP,1,4,14,0,16,0
+3,1,8505O5,Lógica Computacional,TP,2,1,9,0,11,0
+3,1,8505O6,Probabilidades e Aplicações,T,1,2,14,0,15,0
+3,1,8505O6,Probabilidades e Aplicações,T,1,4,12,0,13,0
+3,1,8505O6,Probabilidades e Aplicações,TP,1,2,9,0,10,0
+3,1,8505O6,Probabilidades e Aplicações,TP,1,3,12,0,13,0
+3,1,8505O6,Probabilidades e Aplicações,TP,2,2,15,0,16,0
+3,1,8505O6,Probabilidades e Aplicações,TP,2,4,10,0,11,0
+3,1,8505O6,Probabilidades e Aplicações,PL,1,2,10,0,11,0
+3,1,8505O6,Probabilidades e Aplicações,PL,2,4,11,0,12,0
+3,1,8505O7,Processamento de Linguagens e Compiladores,TP,1,3,8,30,10,30
+3,1,8505O7,Processamento de Linguagens e Compiladores,T,1,5,9,0,11,0
+3,2,8506N7,Computação Gráfica,T,1,2,11,0,13,0
+3,2,8506N7,Computação Gráfica,PL,1,3,11,0,13,0
+3,2,8506N7,Computação Gráfica,PL,2,4,11,0,13,0
+3,2,8506N7,Computação Gráfica,PL,5,4,11,0,13,0
+3,2,8506O5,Teoria de Números Computacional,T,1,2,14,0,16,0
+3,2,8506O5,Teoria de Números Computacional,TP,1,5,9,0,11,0
+3,2,8506O5,Teoria de Números Computacional,TP,2,1,9,0,11,0
+3,2,8506O6,Programação Concorrente,T,1,4,9,0,11,0
+3,2,8506O6,Programação Concorrente,PL,1,1,9,0,11,0
+3,2,8506O6,Programação Concorrente,PL,2,5,9,0,11,0
+3,2,8506O7,Interação e Concorrência,T,1,5,11,0,13,0
+3,2,8506O7,Interação e Concorrência,TP,1,3,9,0,11,0
+3,2,8506O8,Semântica das Linguagens de Programação,T,1,2,9,0,11,0
+3,2,8506O8,Semântica das Linguagens de Programação,TP,1,1,11,0,13,0
+3,2,8506O9,Projeto,PL,1,3,14,0,16,0
