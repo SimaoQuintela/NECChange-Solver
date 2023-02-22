@@ -1,5 +1,5 @@
 from pprint import pprint
-from solver import parser_schedule, parser_students, student_alocation
+from schedule.solver import parser_schedule, parser_students, student_alocation
 from ortools.linear_solver import pywraplp
 
 import pandas as pd 
@@ -22,6 +22,6 @@ def main():
     
     pprint(S)
     #restriçoes
-'''
+
 if __name__ == "__main__":
     main()

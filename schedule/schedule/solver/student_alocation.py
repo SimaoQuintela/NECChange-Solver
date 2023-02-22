@@ -1,6 +1,6 @@
 
 
-def anos_por_aluno(student, students_data, schedule):
+def years_per_student(student, students_data, schedule):
     years = set()
 
     for uc in students_data[student]:
@@ -10,7 +10,7 @@ def anos_por_aluno(student, students_data, schedule):
 
     return years
 
-def semestre_por_uc(uc, schedule, year):
+def semester_per_uc(uc, schedule, year):
 
     for semestre in [1,2]:
         if uc in schedule[year][semestre]:
@@ -27,11 +27,11 @@ def generate_solver_matrix(students_data, schedule, students, solver):
 
     for student in students:
         s[student] = {}
-        for year in anos_por_aluno(student, students_data, schedule):
+        for year in years_per_student(student, students_data, schedule):
             s[student][year] = {}
             s[student][year][2] = {}
             for uc in students_data[student]:
-                if semestre_por_uc(uc, schedule, year) == 2:
+                if semester_per_uc(uc, schedule, year) == 2:
                     s[student][year][2][uc] = {}
                     for type_class in schedule[year][2][uc]:
                         s[student][year][2][uc][type_class] = {}    
