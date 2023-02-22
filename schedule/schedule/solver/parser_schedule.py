@@ -27,11 +27,9 @@ def read_schedule_csv(slots):
             start_hour = int(start_hour)
             end_hour = int(end_hour)
             for slot in slots:
-                in_class = 0
                 if slot[0] == day and start_hour <= slot[1][0] and slot[1][0] < end_hour:
-                    in_class = 1
-                
-                schedule[year][semester][uc][type_class][shift][slot] = in_class
+                    schedule[year][semester][uc][type_class][shift][slot] = 1
+                    
     return schedule
 
 def print_schedule(schedule_info):
