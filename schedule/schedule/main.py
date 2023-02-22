@@ -56,7 +56,7 @@ def read_schedule_csv(slots):
         schedule[year][semester][uc] = {}
         class_info = table.groupby(["tipo de aula","turno","dia","hora inicio","minutos inicio", "hora fim", "minutos fim"])
                 
-        for (type_class, shift, day, start_hour, start_min, end_hour, end_min), _ in class_info:
+        for (type_class, shift, day, start_hour, _, end_hour, _), _ in class_info:
             if type_class not in schedule[year][semester][uc]:
                 schedule[year][semester][uc][type_class] = {}
 
