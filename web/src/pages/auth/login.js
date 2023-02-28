@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import FooterComponent from "../components/footer";
+
 import styles from "@/styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,8 +26,11 @@ export default function Home() {
               height={50}
             />
           </div>
-          <div className="text-4xl text-center font-bold">Register</div>
-          <div className="py-4 text-center font-bold">Create your account</div>
+          <div className="text-4xl text-center font-bold">Welcome Back</div>
+          <div className="py-4 text-center font-bold">
+            {" "}
+            Login to your account
+          </div>
           <div className="">
             <form className="p-10 rounded-xl space-y-[2%]">
               <div className="flex flex-col space-y-[3%]">
@@ -55,7 +59,7 @@ export default function Home() {
                     placeholder="name@alunos.uminho.pt"
                   />
                 </div>
-                <div className="relative">
+                <div className="relative mb-6">
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -87,53 +91,36 @@ export default function Home() {
                     placeholder="Password"
                   />
                 </div>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#ffffff"
-                      strokeWidth="2"
-                      strokeLinecap="square"
-                      strokeLinejoin="round"
-                    >
-                      <rect
-                        x="3"
-                        y="11"
-                        width="18"
-                        height="11"
-                        rx="2"
-                        ry="2"
-                      ></rect>
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                    </svg>
-                  </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <div className="form-group form-check">
                   <input
-                    className="block w-full pl-10 py-2 rounded-full border border-white bg-transparent placeholder-slate-300"
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Confirm password"
+                    type="checkbox"
+                    className="rounded-md bg-transparent border-white"
+                    id="checkbox"
                   />
+                  <label className="p-1 text-sm" htmlFor="checkbox">
+                    Remember me{" "}
+                  </label>
                 </div>
+                <a href="./forgot" className="underline text-sm">
+                  Forgot Password?
+                </a>
               </div>
               <div className="flex pt-[5%] text-lg">
                 <button
                   type="submit"
                   className="block ml-auto mr-auto w-full py-2 rounded-full border border-[#1D4ED8] bg-[#1D4ED8] hover:bg-[#00248f]"
                 >
-                  REGISTER
+                  LOGIN
                 </button>
               </div>
               <div className="flex justify-center text-sm">
                 <div className="">
-                  Already have an account?{" "}
-                  <a href="./login" className="underline">
+                  Don't have an account?{" "}
+                  <a href="./signup" className="underline">
                     {" "}
-                    Login
+                    Sign Up
                   </a>
                 </div>
               </div>
