@@ -2,20 +2,6 @@ from schedule.solver import student_alocation
 from numpy import prod
 
 
-def nrslots_per_shift(year, uc, type_class, shifts, S):
-    res = []
-    
-    for shift in shifts:
-        nrslots = len(list(S[year][2][uc][type_class][shift].keys()))
-        res.append(nrslots)
-    
-    
-    tam = len(res)
-    for i in range(5-tam):   #4-1-2
-       res += [res[0]]             
-                        
-
-    return res
 
 def apply_restrictions_to_solver(solver, A, P, S, students_data, slots):
     """
@@ -51,7 +37,7 @@ def apply_restrictions_to_solver(solver, A, P, S, students_data, slots):
     
     
 
-    # definir matriz somatorio
+    #R03 - A student can only be alocated to one shift of each type of class
     for student in A:
         for year in A[student]:
             for uc in A[student][year][2]:
@@ -65,7 +51,7 @@ def apply_restrictions_to_solver(solver, A, P, S, students_data, slots):
                             )
 
 
-    #R03 - A student can only be alocated to one shift of each type of class
+    
     for student in P:
         for year in P[student]:
             for uc in P[student][year][2]:
