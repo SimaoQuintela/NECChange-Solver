@@ -23,7 +23,8 @@ def generate_solver_matrix(students_data, S, solver):
     """
     This function returns a matrix with solver variables assigned to the schedule of every student.
     """
-    A = {}
+    A = {} #alocar a turnos e slots
+    P = {} #alocar apenas aos turnos sem slots
     students_nr = set(students_data.keys())
 
     for student in students_nr:
@@ -40,6 +41,20 @@ def generate_solver_matrix(students_data, S, solver):
                             A[student][year][2][uc][type_class][shift] = {}
                             for slot in S[year][2][uc][type_class][shift]:
                                 A[student][year][2][uc][type_class][shift][slot] = solver.BoolVar(f'S[{student}][{year}][{2}][{uc}][{type_class}][{shift}][{slot}]')   
+    
+
+    for student in students_nr:
+        P[student] = {}
+        for year in years_per_student(student, students_data, S):
+            P[student][year] = {}
+            P[student][year][2] = {}
+            for uc in students_data[student]:
+                if semester_per_uc(uc, S, year) == 2:
+                    P[student][year][2][uc] = {}
+                    for type_class in S[year][2][uc]:
+                        P[student][year][2][uc][type_class] = {}    
+                        for shift in S[year][2][uc][type_class]:
+                            P[student][year][2][uc][type_class][shift] = solver.BoolVar(f'P[{student}][{year}][{2}][{uc}][{type_class}][{shift}]')
 
 
-    return A
+    return (A, P)

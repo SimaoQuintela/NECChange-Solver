@@ -11,9 +11,11 @@ def main():
     #pprint(S)
     
     solver = pywraplp.Solver.CreateSolver('SCIP')
-    A = student_alocation.generate_solver_matrix(students_data, S, solver)
+    tupl = (student_alocation.generate_solver_matrix(students_data, S, solver))
+    A = tupl[0]
+    P = tupl[1]
     
-    restrictions.apply_restrictions_to_solver(solver, A, S, students_data, slots)
+    restrictions.apply_restrictions_to_solver(solver, A, P, S, students_data, slots)
     status = solver.Solve()
     
     result = ""
@@ -39,6 +41,8 @@ def main():
                                         print("Alocado")
                                         break
             break
+
+        
             
             
 
