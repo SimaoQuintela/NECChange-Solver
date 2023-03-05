@@ -61,8 +61,9 @@ def generate_slots():
 
     for i in range(1,6):
         for j in range(8, 21):
-            slots.append( (i, (j,0)) )
-            slots.append((i, (j,30)) )
+            if j != 20:
+                slots.append( (i, (j,0)) )
+                slots.append((i, (j,30)) )
+        
 
-    slots.pop()
     return slots

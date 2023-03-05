@@ -11,18 +11,21 @@ def main():
     #pprint(S)
     
     solver = pywraplp.Solver.CreateSolver('SCIP')
-    tupl = (student_alocation.generate_solver_matrix(students_data, S, solver))
+    tupl = student_alocation.generate_solver_matrix(students_data, S, solver)
     A = tupl[0]
     P = tupl[1]
+
+    #pprint(A)
+    #pprint(S)
+    #pprint(P)
     
     restrictions.apply_restrictions_to_solver(solver, A, P, S, students_data, slots)
     status = solver.Solve()
     
-    result = ""
-    students_nr = set(students_data.keys())
     if status == pywraplp.Solver.OPTIMAL:
         for student in A:
-            student = "A94447"
+            pprint(student)
+            #student = "A94447"
             for year in A[student]:
                 for semester in A[student][year]:
                     for uc in A[student][year][semester]:
@@ -41,13 +44,9 @@ def main():
                                         print("Alocado")
                                         break
             break
-
-        
-            
-            
-
     else:
         print("No solution found")
+    
     
     
 
