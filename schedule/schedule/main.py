@@ -14,12 +14,13 @@ def main():
     tupl = student_alocation.generate_solver_matrix(students_data, S, solver)
     A = tupl[0]
     P = tupl[1]
+    M = tupl[2]
 
     #pprint(A)
     #pprint(S)
     #pprint(P)
     
-    restrictions.apply_restrictions_to_solver(solver, A, P, S, students_data, slots)
+    restrictions.apply_restrictions_to_solver(solver, A, P, M, S, students_data, slots)
     status = solver.Solve()
     
     if status == pywraplp.Solver.OPTIMAL:

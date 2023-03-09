@@ -10,6 +10,24 @@ def years_per_student(student, students_data, S):
 
     return years
 
+def slots_per_student(student, students_data, S):
+
+    slots = set()
+    for year in years_per_student(student, students_data, S):
+        for uc in S[year][2]:
+            if uc in students_data[student]:
+                for type_class in S[year][2][uc]:
+                    for shift in S[year][2][uc][type_class]:
+                        for slot in S[year][2][uc][type_class][shift]:
+                            slots.add(slot)
+
+    return slots
+
+
+
+
+
+
 def semester_per_uc(uc, S, year):
     """
     This function checks if a uc belongs to 1st or 2nd semester.
@@ -25,6 +43,8 @@ def generate_solver_matrix(students_data, S, solver):
     """
     A = {} #alocar a turnos e slots
     P = {} #alocar apenas aos turnos sem slots
+    M = {} #dado um aluno retorna o numero de aulas em cada slot
+
     students_nr = set(students_data.keys())
 
     for student in students_nr:
@@ -57,4 +77,11 @@ def generate_solver_matrix(students_data, S, solver):
                             P[student][year][2][uc][type_class][shift] = solver.BoolVar(f'P[{student}][{year}][{2}][{uc}][{type_class}][{shift}]')
 
 
-    return (A, P)
+    for student in students_nr:
+        M[student] = {}
+        for slot in slots_per_student(student, students_data, S):
+            M[student][slot] = solver.IntVar(0, solver.infinity(), f'M[{student}][{slot}]')
+
+
+
+    return (A, P, M)

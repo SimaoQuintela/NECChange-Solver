@@ -3,7 +3,7 @@ from numpy import prod
 
 
 
-def apply_restrictions_to_solver(solver, A, P, S, students_data, slots):
+def apply_restrictions_to_solver(solver, A, P, M, S, students_data, slots):
     """
     This function applies restrictions to solver
     """
@@ -47,9 +47,14 @@ def apply_restrictions_to_solver(solver, A, P, S, students_data, slots):
                             ==
                             1
                         )
+
+    #adicionar restriçao da matriz M (matriz a minimizar) basicamente preencher a matriz M com o numero de aulas nesse slot para um dado aluno M[student][slot] = nr aulas desse aluno nesse slot
                         
-
-
+    '''
+    for student in M:
+        for slot in M[student]:
+            solver.Minimize(M[student][slot])
+    '''
                        
 
     
