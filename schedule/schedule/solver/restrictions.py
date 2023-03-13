@@ -1,13 +1,7 @@
-from schedule.solver import student_alocation
-from numpy import prod
-
-
-
-def apply_restrictions_to_solver(solver, A, P, S, students_data, slots):
+def apply_restrictions_to_solver(model, A, P, S):
     """
     This function applies restrictions to solver
     """
-    students_nr = set(students_data.keys())
 
     # R01 - A student can only be alocated to a class if the class exists in a certain slot
     for student in A:
@@ -16,7 +10,7 @@ def apply_restrictions_to_solver(solver, A, P, S, students_data, slots):
                 for type_class in A[student][year][2][uc]:
                     for shift in A[student][year][2][uc][type_class]:
                         for slot in A[student][year][2][uc][type_class][shift]:
-                            solver.Add(
+                            model.Add(
                                 A[student][year][2][uc][type_class][shift][slot]
                                 <=
                                 S[year][2][uc][type_class][shift][slot]
@@ -30,7 +24,7 @@ def apply_restrictions_to_solver(solver, A, P, S, students_data, slots):
                 for type_class in A[student][year][2][uc]:
                     for shift in A[student][year][2][uc][type_class]:
                         for slot in A[student][year][2][uc][type_class][shift]:
-                            solver.Add(
+                            model.Add(
                                 P[student][year][2][uc][type_class][shift]
                                 ==
                                 A[student][year][2][uc][type_class][shift][slot]
@@ -42,15 +36,28 @@ def apply_restrictions_to_solver(solver, A, P, S, students_data, slots):
             for uc in P[student][year][2]:
                 for type_class in P[student][year][2][uc]:
                     shifts = P[student][year][2][uc][type_class]
-                    solver.Add(
+                    model.Add(
                         sum(P[student][year][2][uc][type_class][shift] for shift in shifts)
                             ==
                             1
                         )
-                        
-
-
-                       
 
     
+    # Min01 - Minimização do número de sobreposições
+    Aux = {}
+    for student in A:
+        Aux[student] = {}
+        for year in A[student]:
+            for uc in A[student][year][2]:
+                for type_class in A[student][year][2][uc]:
+                    for shift in A[student][year][2][uc][type_class]:
+                        for slot in A[student][year][2][uc][type_class][shift]:
+                            if slot not in Aux[student]:
+                                Aux[student][slot] = list()
+                            Aux[student][slot].append(A[student][year][2][uc][type_class][shift][slot])
 
+    for student in Aux:
+        for slot in Aux[student]:
+            model.Minimize(sum(Aux[student][slot]))
+    
+    

@@ -6,7 +6,7 @@
 - A alocação do aluno à aula depende da capacidade da sala (não implementar para já)
 
 ### Minimizações
-- Sobreposições de aulas
+- Min01 - Sobreposições de aulas
 
 ### Maximizações
 - Número de aulas a que um aluno é alocado

@@ -50,7 +50,7 @@ def print_schedule(S):
                             if S[year][semester][uc][type_class][shift][slot] == 1:
                                 slots_uc.append(slot)
                         print((uc, type_class, shift, slots_uc))
-        print("--------------------------------------------------")   
+        print("--------------------------------------------------")  
 
 def generate_slots():
     """
