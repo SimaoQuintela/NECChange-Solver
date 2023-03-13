@@ -23,11 +23,6 @@ def slots_per_student(student, students_data, S):
 
     return slots
 
-
-
-
-
-
 def semester_per_uc(uc, S, year):
     """
     This function checks if a uc belongs to 1st or 2nd semester.
@@ -37,13 +32,12 @@ def semester_per_uc(uc, S, year):
             return semestre
 
 
-def generate_solver_matrix(students_data, S, solver):
+def generate_solver_matrix(students_data, S, model):
     """
     This function returns a matrix with solver variables assigned to the schedule of every student.
     """
     A = {} #alocar a turnos e slots
     P = {} #alocar apenas aos turnos sem slots
-    M = {} #dado um aluno retorna o numero de aulas em cada slot
 
     students_nr = set(students_data.keys())
 
@@ -60,8 +54,7 @@ def generate_solver_matrix(students_data, S, solver):
                         for shift in S[year][2][uc][type_class]:
                             A[student][year][2][uc][type_class][shift] = {}
                             for slot in S[year][2][uc][type_class][shift]:
-                                A[student][year][2][uc][type_class][shift][slot] = solver.BoolVar(f'S[{student}][{year}][{2}][{uc}][{type_class}][{shift}][{slot}]')   
-    
+                                A[student][year][2][uc][type_class][shift][slot] = model.NewBoolVar(f'A[{student}][{year}][{2}][{uc}][{type_class}][{shift}][{slot}]')
 
     for student in students_nr:
         P[student] = {}
@@ -74,14 +67,6 @@ def generate_solver_matrix(students_data, S, solver):
                     for type_class in S[year][2][uc]:
                         P[student][year][2][uc][type_class] = {}    
                         for shift in S[year][2][uc][type_class]:
-                            P[student][year][2][uc][type_class][shift] = solver.BoolVar(f'P[{student}][{year}][{2}][{uc}][{type_class}][{shift}]')
+                            P[student][year][2][uc][type_class][shift] = model.NewBoolVar(f'P[{student}][{year}][{2}][{uc}][{type_class}][{shift}]')
 
-
-    for student in students_nr:
-        M[student] = {}
-        for slot in slots_per_student(student, students_data, S):
-            M[student][slot] = solver.IntVar(0, solver.infinity(), f'M[{student}][{slot}]')
-
-
-
-    return (A, P, M)
+    return (A, P)
