@@ -3,9 +3,10 @@ from ortools.sat.python import cp_model
 from schedule.solver import student_matrices
 from schedule.solver.restrictions import restrictions
 from schedule.parser import parser_schedule, parser_students
-from schedule.analytics import overlap, distribution
+from schedule.analytics import overlap, distribution, workload
 
 from pprint import pprint
+
 
 
 def main():
@@ -53,8 +54,10 @@ def main():
 
     overlap_student = overlap.calculate_overlap(solver, A, "A95361", semester)
     distr = distribution.distribution_per_uc(solver, A, "Álgebra Universal e Categorias", 2, 2)
+    workload_student = workload.workload_student(solver, A, "A95361", semester)
+    allocated_number = distribution.allocated_number_per_uc(students_data)
     #pprint(overlap_student)
-    pprint(distr)
+    pprint(allocated_number)
 
 if __name__ == "__main__":
     main()

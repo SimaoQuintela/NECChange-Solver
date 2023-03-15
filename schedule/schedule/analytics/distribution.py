@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from pprint import pprint
 import pandas as pd
 
@@ -25,3 +26,21 @@ def distribution_per_uc(solver, A, uc, year, semester):
                     distr[type_class][shift][slot] += solver.Value(A[student][year][semester][uc][type_class][shift][slot])
     
     return distr
+
+
+
+def allocated_number_per_uc(students_data):
+    #this function returns a dictionary with the number of students allocated for each uc (order desc)
+    allocated_number = {}
+    
+   
+    for student, ucs in students_data.items():
+        for uc in ucs:
+            if uc not in allocated_number:
+                allocated_number[uc] = 1
+            else:
+                allocated_number[uc] += 1
+
+    sorted_al_n = {k: v for k, v in sorted(allocated_number.items(), key = lambda tup: -tup[1])}
+    
+    return OrderedDict(sorted_al_n)
