@@ -1,40 +1,116 @@
+from pprint import pprint
 import pandas as pd
+import re
+from schedule.parser import parser_schedule
 
-def read_schedule_csv(slots):
+days = {
+    "Segunda" : 1,
+    "Terça" : 2,
+    "Quarta" : 3,
+    "Quinta" : 4,
+    "Sexta" : 5
+}
+
+
+# read the data that university sent us
+def read_schedule_uni(ucs_data, semester, slots):
     """
-    This functions reads the data from the horario.csv and returns a structure
-    that represents the schedule of the course.
+    This function reads the schedule of the course for a certain semester and returns the room assigned for each class.
+
+    Return:
+        - rooms is a dictionary with the rooms for each UC, for each Type of Class and for each Shift
+        - S is the dictionary that represents the schedule. It has the following structure:  Year -> Semester -> UcName -> Type Class -> Shift -> Slot -> 1/0
+        If the last value is set to 1 it means that there's a class at that slot.
+        An example can be: 3 -> 2 -> Computação Gráfica -> PL -> 2 -> (1, (10, 30)) -> 1
+        This means that on monday at 10.30am there's a class of Computação Gráfica assigned to PL2 
     """
+    slots = parser_schedule.generate_slots()
+    csv_read = pd.read_csv(filepath_or_buffer="data/uni_data/horario.csv", delimiter=';')
+    data_groupped = csv_read.groupby(["ModuleName", "ModuleAcronym", "ModuleCode"])
+
+    #uc_acronyms = {}
+    rooms = {}
     S = {}
-    csv_read = pd.read_csv("data/horario.csv")
-    data_groupped = csv_read.groupby(["ano","semestre","código da uc","uc"])
-    
-    for (year, semester, uc_code, uc), table in data_groupped: 
+
+    for (moduleName, moduleAcronym, _), table in data_groupped:
+        #uc_acronyms[moduleName] = moduleAcronym
+
+        year = ucs_data[moduleName] 
         if year not in S:
-            year = int(year)
-            S[year] = {} 
-        if semester not in S[year]:
-            semester = int(semester)
+            S[year] = {}
             S[year][semester] = {}
+        if moduleName not in S[year][semester]:
+            S[year][semester][moduleName] = {}
 
-        S[year][semester][uc] = {}
-        class_info = table.groupby(["tipo de aula","turno","dia","hora inicio","minutos inicio", "hora fim", "minutos fim"])
-                
-        for (type_class, shift, day, start_hour, _, end_hour, _), _ in class_info:
-            if type_class not in S[year][semester][uc]:
-                S[year][semester][uc][type_class] = {}
+        rooms[moduleName] = {}
+        uc_data = table.groupby(["Typology", "SectionName", "Classroom", "NumStudents" ,"WeekdayName", "StartTime", "EndTime"])
 
-            shift = int(shift)
-            if shift not in S[year][semester][uc][type_class]:
-                S[year][semester][uc][type_class][shift] = {}
+        for (type_class, shift, room, _, day, start, end) , _ in uc_data :
+            # rooms 
+            if type_class not in rooms[moduleName]:
+                rooms[moduleName][type_class] = {}
+            
+            shift = int(shift[-1])
+            if shift not in rooms[moduleName][type_class]:
+                rooms[moduleName][type_class][shift] = {}
+
+            room = re.findall('([0-9]+) \- ([0-9-]+\.[0-9]+)', room)[0]
+            if room not in rooms[moduleName][type_class][shift]:
+                rooms[moduleName][type_class][shift][room] = {}
+
+            rooms[moduleName][type_class][shift][room] = 0
+
+            # schedule
+            if type_class not in S[year][semester][moduleName]:
+                S[year][semester][moduleName][type_class] = {}
+
+            if shift not in S[year][semester][moduleName][type_class]: 
+                S[year][semester][moduleName][type_class][shift] = {}
+
+            time_regex = "([0-9]+)\:[0-9]+"
+            start_hour = re.findall(time_regex, start)[0]
+            end_hour = re.findall(time_regex, end)[0]
 
             start_hour = int(start_hour)
             end_hour = int(end_hour)
+
             for slot in slots:
-                if slot[0] == day and start_hour <= slot[1][0] and slot[1][0] < end_hour:
-                    S[year][semester][uc][type_class][shift][slot] = 1
+                if slot[0] == days[day] and start_hour <= slot[1][0] and slot[1][0] < end_hour:
+                    S[year][semester][moduleName][type_class][shift][slot] = 1
+    
+    return (S, rooms)
+
+
+def fill_rooms_capacity(rooms):
+    """
+    This function fills the rooms structure with the capacity of each room for classes
+    """
+    csv_read = pd.read_csv(filepath_or_buffer="data/uni_data/salas.csv", delimiter=';')
+    groupped_by_building = csv_read.groupby("Edificio")
+
+
+    aux_rooms = {}
+    for (building), table in groupped_by_building:
+        room_data = table.groupby(["Espaço", "Capacidade Aula"])
+        for (room_nr, capacity), _ in room_data:
+            room_nr = str(room_nr)
+            # pandas truncates 0.20 to 0.2
+            if room_nr[-2] == ".":
+                room_nr += "0"
+            aux_rooms[(str(building), room_nr)] = capacity
+
+
+    for uc in rooms:
+        for type_class in rooms[uc]:
+            for shift in rooms[uc][type_class]:
+                for room in rooms[uc][type_class][shift]:
+                    if room in aux_rooms:
+                        rooms[uc][type_class][shift][room] = aux_rooms[room]
                     
-    return S
+
+    return rooms
+
+
 
 def print_schedule(S):
     """
