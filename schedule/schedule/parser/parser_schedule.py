@@ -29,7 +29,7 @@ def read_schedule_uni(ucs_data, semester, slots):
     data_groupped = csv_read.groupby(["ModuleName", "ModuleAcronym", "ModuleCode"])
 
     #uc_acronyms = {}
-    rooms = {}
+    rooms_per_slot = {}
     S = {}
 
     for (moduleName, moduleAcronym, _), table in data_groupped:
@@ -42,23 +42,12 @@ def read_schedule_uni(ucs_data, semester, slots):
         if moduleName not in S[year][semester]:
             S[year][semester][moduleName] = {}
 
-        rooms[moduleName] = {}
         uc_data = table.groupby(["Typology", "SectionName", "Classroom", "NumStudents" ,"WeekdayName", "StartTime", "EndTime"])
 
         for (type_class, shift, room, _, day, start, end) , _ in uc_data :
-            # rooms 
-            if type_class not in rooms[moduleName]:
-                rooms[moduleName][type_class] = {}
-            
             shift = int(shift[-1])
-            if shift not in rooms[moduleName][type_class]:
-                rooms[moduleName][type_class][shift] = {}
 
             room = re.findall('([0-9]+) \- ([0-9-]+\.[0-9]+)', room)[0]
-            if room not in rooms[moduleName][type_class][shift]:
-                rooms[moduleName][type_class][shift][room] = {}
-
-            rooms[moduleName][type_class][shift][room] = 0
 
             # schedule
             if type_class not in S[year][semester][moduleName]:
@@ -77,19 +66,22 @@ def read_schedule_uni(ucs_data, semester, slots):
             for slot in slots:
                 if slot[0] == days[day] and start_hour <= slot[1][0] and slot[1][0] < end_hour:
                     S[year][semester][moduleName][type_class][shift][slot] = 1
+                    if slot not in rooms_per_slot:
+                        rooms_per_slot[slot] = list()
+                    rooms_per_slot[slot].append(room)
     
-    return (S, rooms)
+    return (S, rooms_per_slot)
 
 
-def fill_rooms_capacity(rooms):
+def rooms_capacity():
     """
-    This function fills the rooms structure with the capacity of each room for classes
+    This function creates a structure with the capacity of each room.
     """
     csv_read = pd.read_csv(filepath_or_buffer="data/uni_data/salas.csv", delimiter=';')
     groupped_by_building = csv_read.groupby("Edificio")
 
 
-    aux_rooms = {}
+    rooms_capacity = {}
     for (building), table in groupped_by_building:
         room_data = table.groupby(["Espaço", "Capacidade Aula"])
         for (room_nr, capacity), _ in room_data:
@@ -97,18 +89,13 @@ def fill_rooms_capacity(rooms):
             # pandas truncates 0.20 to 0.2
             if room_nr[-2] == ".":
                 room_nr += "0"
-            aux_rooms[(str(building), room_nr)] = capacity
+            rooms_capacity[(str(building), room_nr)] = capacity
 
 
-    for uc in rooms:
-        for type_class in rooms[uc]:
-            for shift in rooms[uc][type_class]:
-                for room in rooms[uc][type_class][shift]:
-                    if room in aux_rooms:
-                        rooms[uc][type_class][shift][room] = aux_rooms[room]
+    
                     
 
-    return rooms
+    return rooms_capacity
 
 
 

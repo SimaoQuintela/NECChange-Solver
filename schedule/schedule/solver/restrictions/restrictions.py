@@ -1,4 +1,4 @@
-def apply_restrictions_to_solver(model, A, P, S, semester):
+def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms_capacity):
     """
     This function applies restrictions to solver
     """
@@ -42,7 +42,20 @@ def apply_restrictions_to_solver(model, A, P, S, semester):
                             1
                         )
 
-    
+    # R03 - The nr of students alocated to a class must be less or equal than the room's capacity 
+    for student in A:
+        for year in A[student]:
+            for uc in A[student][year][semester]:
+                for type_class in A[student][year][semester][uc]:
+                    for shift in A[student][year][semester][uc][type_class]:
+                        for slot in A[student][year][semester][uc][type_class][shift]:
+                            x = 0
+
+
+
+
+
+
     # Min01 - Minimização do número de sobreposições
     Aux = {}
     for student in A:
