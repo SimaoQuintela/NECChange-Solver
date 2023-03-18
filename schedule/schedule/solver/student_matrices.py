@@ -10,13 +10,12 @@ def years_per_student(student, students_data, S, semester):
 
     return years
 
-def semester_per_uc(uc, S, year):
+def semester_per_uc(uc, S, year, semester):
     """
-    This function checks if a uc belongs to 1st or semesternd semester.
+    This function checks if a uc belongs to 1st or 2nd semester.
     """
-    for semester in [1,2]:
-        if uc in S[year][semester]:
-            return semester
+    if uc in S[year][semester]:
+        return semester
 
 
 def generate_solver_matrix(students_data, S, model, semester):
@@ -30,11 +29,12 @@ def generate_solver_matrix(students_data, S, model, semester):
 
     for student in students_nr:
         A[student] = {}
+
         for year in years_per_student(student, students_data, S, semester):
             A[student][year] = {}
             A[student][year][semester] = {}
             for uc in students_data[student]:
-                if semester_per_uc(uc, S, year) == semester:
+                if semester_per_uc(uc, S, year, semester) == semester:
                     A[student][year][semester][uc] = {}
                     for type_class in S[year][semester][uc]:
                         A[student][year][semester][uc][type_class] = {}    
@@ -49,7 +49,7 @@ def generate_solver_matrix(students_data, S, model, semester):
             P[student][year] = {}
             P[student][year][semester] = {}
             for uc in students_data[student]:
-                if semester_per_uc(uc, S, year) == semester:
+                if semester_per_uc(uc, S, year, semester) == semester:
                     P[student][year][semester][uc] = {}
                     for type_class in S[year][semester][uc]:
                         P[student][year][semester][uc][type_class] = {}    

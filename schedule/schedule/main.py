@@ -1,4 +1,4 @@
-from ortools.sat.python import cp_model
+import pandas as pd
 
 from schedule.solver import student_matrices
 from schedule.solver.restrictions import restrictions
@@ -6,16 +6,33 @@ from schedule.parser import parser_schedule, parser_students
 from schedule.analytics import overlap, distribution, workload
 
 from pprint import pprint
+from ortools.sat.python import cp_model
 
+# read the data that I wrote by hand 
+def read_ucs_data():
+    
+    csv_read = pd.read_csv(filepath_or_buffer="data/horario.csv", delimiter=',')
+    data_groupped = csv_read.groupby(["uc", "ano"])
 
+    uc_data = {}
+    for (uc, year) , _ in data_groupped:
+        uc_data[uc] = year
+
+    return uc_data
 
 def main():
     # Semester in which we are generating the schedule
+    #semester = int(input("Gerar horários para o semestre: "))
     semester = 2
 
     students_data = parser_students.read_students_info()
+    ucs_data = read_ucs_data()
     slots = parser_schedule.generate_slots()
-    S = parser_schedule.read_schedule_csv(slots)
+    (S, rooms) = parser_schedule.read_schedule_uni(ucs_data, semester, slots)
+    rooms = parser_schedule.fill_rooms_capacity(rooms)
+    pprint(rooms)
+    
+
     model = cp_model.CpModel()
     solver = cp_model.CpSolver()
 
@@ -52,9 +69,9 @@ def main():
         print("No solution found")
     
 
-    overlap_student = overlap.calculate_overlap(solver, A, "A95361", semester)
-    distr = distribution.distribution_per_uc(solver, A, "Álgebra Universal e Categorias", 2, 2)
-    workload_student = workload.workload_student(solver, A, "A95361", semester)
+    #overlap_student = overlap.calculate_overlap(solver, A, "A95361", semester)
+    #distr = distribution.distribution_per_uc(solver, A, "Álgebra Universal e Categorias", 2, 2)
+    #workload_student = workload.workload_student(solver, A, "A95361", semester)
     allocated_number = distribution.allocated_number_per_uc(students_data)
     #pprint(overlap_student)
     pprint(allocated_number)
