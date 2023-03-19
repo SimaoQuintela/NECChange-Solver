@@ -84,7 +84,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                         )
 
 
-    # R04 - The nr of students alocated to a class must be less or equal than the room's capacity 
+    # R04 - The nr of students alocated to a class must be less or equal than the room's capacity (30% tolerance)
     
     for slot in slots_generated:
         for year in S:
