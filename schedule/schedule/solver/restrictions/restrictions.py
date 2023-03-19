@@ -65,7 +65,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                             1
                         )
 
-    # R03 - A certain shift must have a minimum number of students allocated (total students allocated of uc / nr of shifts - 10(tolerance))
+    # R03 - A certain shift must have a minimum number of students allocated (total students allocated of uc / nr of shifts - 5(tolerance)
     for year in range(1,4):
         for uc in S[year][semester]:
             allocated_number_of_uc = allocated_number[uc]
