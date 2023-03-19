@@ -33,7 +33,7 @@ def main():
     #pprint(rooms_capacity)
     #pprint(rooms_per_slot)
     stats, allocated_number = distribution.allocated_number_per_uc(students_data)
-
+    #pprint(stats)
     model = cp_model.CpModel()
     solver = cp_model.CpSolver()
 

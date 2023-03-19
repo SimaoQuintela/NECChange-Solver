@@ -79,7 +79,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                                                                             and uc in students_data[student]
                                                                             and semester_per_uc(uc, S, year, semester) == semester
                                                                             )
-                                >= aux-10
+                                >= aux-5
                                 
                         )
 
@@ -104,7 +104,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                                                                                                             and semester_per_uc(uc, S, year, semester) == semester
                                                                                                             and slot in A[student][year][semester][uc][type_class][shift])
                                                     <= 
-                                                    rooms_capacity[room]+45
+                                                    rooms_capacity[room] + int(allocated_number[uc]*0.3)
                                                 )
 
                             
