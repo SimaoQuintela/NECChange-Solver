@@ -30,8 +30,8 @@ def main():
     slots = parser_schedule.generate_slots()
     (S, rooms_per_slot) = parser_schedule.read_schedule_uni(ucs_data, semester, slots)
     rooms_capacity = parser_schedule.rooms_capacity()
-    pprint(rooms_capacity)
-    #pprint(rooms_per_slot)
+    #pprint(rooms_capacity)
+    pprint(rooms_per_slot)
 
     model = cp_model.CpModel()
     solver = cp_model.CpSolver()

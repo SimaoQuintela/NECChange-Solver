@@ -66,9 +66,13 @@ def read_schedule_uni(ucs_data, semester, slots):
             for slot in slots:
                 if slot[0] == days[day] and start_hour <= slot[1][0] and slot[1][0] < end_hour:
                     S[year][semester][moduleName][type_class][shift][slot] = 1
+                    aux_room = {}
+                    aux_room[moduleName] = {}
+                    aux_room[moduleName][type_class] = {}
+                    aux_room[moduleName][type_class][shift] = room
                     if slot not in rooms_per_slot:
                         rooms_per_slot[slot] = list()
-                    rooms_per_slot[slot].append(room)
+                    rooms_per_slot[slot].append(aux_room)
     
     return (S, rooms_per_slot)
 
