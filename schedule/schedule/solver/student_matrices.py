@@ -56,4 +56,5 @@ def generate_solver_matrix(students_data, S, model, semester):
                         for shift in S[year][semester][uc][type_class]:
                             P[student][year][semester][uc][type_class][shift] = model.NewBoolVar(f'P[{student}][{year}][{semester}][{uc}][{type_class}][{shift}]')
 
+
     return (A, P)

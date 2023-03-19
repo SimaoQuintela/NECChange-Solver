@@ -31,7 +31,8 @@ def main():
     (S, rooms_per_slot) = parser_schedule.read_schedule_uni(ucs_data, semester, slots)
     rooms_capacity = parser_schedule.rooms_capacity()
     #pprint(rooms_capacity)
-    pprint(rooms_per_slot)
+    #pprint(rooms_per_slot)
+    stats, allocated_number = distribution.allocated_number_per_uc(students_data)
 
     model = cp_model.CpModel()
     solver = cp_model.CpSolver()
@@ -39,8 +40,9 @@ def main():
     model_matrices = student_matrices.generate_solver_matrix(students_data, S, model, semester)
     A = model_matrices[0]
     P = model_matrices[1]
-    
-    restrictions.apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms_capacity)
+
+    slots_generated = slots
+    restrictions.apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms_capacity, slots_generated, students_data, allocated_number)
     status = solver.Solve(model)
     
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
@@ -70,11 +72,10 @@ def main():
     
 
     #overlap_student = overlap.calculate_overlap(solver, A, "A95361", semester)
-    #distr = distribution.distribution_per_uc(solver, A, "Álgebra Universal e Categorias", 2, 2)
+    distr = distribution.distribution_per_uc(solver, A, "Programação Imperativa", 1, 2)
     #workload_student = workload.workload_student(solver, A, "A95361", semester)
-    #allocated_number = distribution.allocated_number_per_uc(students_data)
     #pprint(overlap_student)
-    #pprint(allocated_number)
+    pprint(distr)
 
 if __name__ == "__main__":
     main()

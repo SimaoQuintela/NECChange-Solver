@@ -41,4 +41,4 @@ def allocated_number_per_uc(students_data):
 
     stats = list(allocated_number.items())
     stats.sort(key = lambda x: (x[1]), reverse=True)
-    return stats
+    return (stats, allocated_number)

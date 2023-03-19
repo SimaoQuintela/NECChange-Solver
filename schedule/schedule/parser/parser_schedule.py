@@ -93,7 +93,7 @@ def rooms_capacity():
             # pandas truncates 0.20 to 0.2
             if room_nr[-2] == ".":
                 room_nr += "0"
-            rooms_capacity[(str(building), room_nr)] = capacity
+            rooms_capacity[(str(building), room_nr)] = int(capacity)
 
 
     
