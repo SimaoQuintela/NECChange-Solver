@@ -64,7 +64,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                             ==
                             1
                         )
-
+    '''
     # R03 - A certain shift must have a minimum number of students allocated (total students allocated of uc / nr of shifts - 5(tolerance)
     for year in range(1,4):
         for uc in S[year][semester]:
@@ -79,10 +79,27 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                                                                             and uc in students_data[student]
                                                                             and semester_per_uc(uc, S, year, semester) == semester
                                                                             )
-                                >= aux-5
+                                <= aux + int(aux*0.2)
                                 
                         )
-
+    '''
+    for year in range(1,4):
+        for uc in S[year][semester]:
+            allocated_number_of_uc = allocated_number[uc]
+            for type_class in S[year][semester][uc]:
+                shift_number = int(len(list(S[year][semester][uc][type_class].keys())))
+                for shift in S[year][semester][uc][type_class]:
+                    aux = int(allocated_number_of_uc / shift_number)
+                    model.Add(
+                        sum(P[student][year][semester][uc][type_class][shift] for student in students_nr
+                                                                            if year in years_per_student(student, students_data, S, semester)
+                                                                            and uc in students_data[student]
+                                                                            and semester_per_uc(uc, S, year, semester) == semester
+                                                                            )
+                                >= aux - int(aux*0.1)
+                                
+                        )
+    
 
     # R04 - The nr of students alocated to a class must be less or equal than the room's capacity (30% tolerance)
     

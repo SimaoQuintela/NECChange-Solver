@@ -47,7 +47,7 @@ def main():
     
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
         for student in A:
-            student = "A95361"
+            student = "A96396"#94447 #93646 #95361
             #pprint(student)
             for year in A[student]:
                 for semester in A[student][year]:
@@ -71,10 +71,10 @@ def main():
         print("No solution found")
     
 
-    #overlap_student = overlap.calculate_overlap(solver, A, "A95361", semester)
-    distr = distribution.distribution_per_uc(solver, A, "Programação Imperativa", 1, 2)
+    overlap_student = overlap.calculate_overlap(solver, A, "A96396", semester)
+    distr = distribution.distribution_per_uc(solver, A, "Álgebra Universal e Categorias", 2, 2)
     #workload_student = workload.workload_student(solver, A, "A95361", semester)
-    #pprint(overlap_student)
+    pprint(overlap_student)
     pprint(distr)
 
 if __name__ == "__main__":
