@@ -34,12 +34,12 @@ def read_schedule_uni(ucs_data, semester, slots):
 
     for (moduleName, moduleAcronym, _), table in data_groupped:
         #uc_acronyms[moduleName] = moduleAcronym
-
-        year = ucs_data[moduleName] 
+        if moduleName != "Projeto":
+            year = ucs_data[moduleName] 
         if year not in S:
             S[year] = {}
             S[year][semester] = {}
-        if moduleName not in S[year][semester]:
+        if moduleName not in S[year][semester] and moduleName != "Projeto":
             S[year][semester][moduleName] = {}
 
         uc_data = table.groupby(["Typology", "SectionName", "Classroom", "NumStudents" ,"WeekdayName", "StartTime", "EndTime"])
@@ -50,11 +50,12 @@ def read_schedule_uni(ucs_data, semester, slots):
             room = re.findall('([0-9]+) \- ([0-9-]+\.[0-9]+)', room)[0]
 
             # schedule
-            if type_class not in S[year][semester][moduleName]:
-                S[year][semester][moduleName][type_class] = {}
+            if moduleName != "Projeto":
+                if type_class not in S[year][semester][moduleName]:
+                    S[year][semester][moduleName][type_class] = {}
 
-            if shift not in S[year][semester][moduleName][type_class]: 
-                S[year][semester][moduleName][type_class][shift] = {}
+                if shift not in S[year][semester][moduleName][type_class]: 
+                    S[year][semester][moduleName][type_class][shift] = {}
 
             time_regex = "([0-9]+)\:[0-9]+"
             start_hour = re.findall(time_regex, start)[0]
@@ -63,16 +64,18 @@ def read_schedule_uni(ucs_data, semester, slots):
             start_hour = int(start_hour)
             end_hour = int(end_hour)
 
-            for slot in slots:
-                if slot[0] == days[day] and start_hour <= slot[1][0] and slot[1][0] < end_hour:
-                    S[year][semester][moduleName][type_class][shift][slot] = 1
-                    aux_room = {}
-                    aux_room[moduleName] = {}
-                    aux_room[moduleName][type_class] = {}
-                    aux_room[moduleName][type_class][shift] = room
-                    if slot not in rooms_per_slot:
-                        rooms_per_slot[slot] = list()
-                    rooms_per_slot[slot].append(aux_room)
+
+            if moduleName != "Projeto":
+                for slot in slots:
+                    if slot[0] == days[day] and start_hour <= slot[1][0] and slot[1][0] < end_hour:
+                        S[year][semester][moduleName][type_class][shift][slot] = 1
+                        aux_room = {}
+                        aux_room[moduleName] = {}
+                        aux_room[moduleName][type_class] = {}
+                        aux_room[moduleName][type_class][shift] = room
+                        if slot not in rooms_per_slot:
+                            rooms_per_slot[slot] = list()
+                        rooms_per_slot[slot].append(aux_room)
     
     return (S, rooms_per_slot)
 

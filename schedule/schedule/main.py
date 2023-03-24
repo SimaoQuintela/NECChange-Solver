@@ -40,14 +40,16 @@ def main():
     model_matrices = student_matrices.generate_solver_matrix(students_data, S, model, semester)
     A = model_matrices[0]
     P = model_matrices[1]
+    O = model_matrices[2]
+    
 
     slots_generated = slots
-    restrictions.apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms_capacity, slots_generated, students_data, allocated_number)
+    restrictions.apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms_capacity, slots_generated, students_data, allocated_number, O)
     status = solver.Solve(model)
     
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
-        for student in A:
-            student = "A96396"#94447 #93646 #95361
+        for student in A:#['A94447', 'A93646', 'A95361', 'A95847']:
+            #student = "A95847"#94447 #93646 #95361
             #pprint(student)
             for year in A[student]:
                 for semester in A[student][year]:
@@ -71,11 +73,23 @@ def main():
         print("No solution found")
     
 
-    overlap_student = overlap.calculate_overlap(solver, A, "A96396", semester)
+    overlap_student = overlap.calculate_overlap(solver, A, "A95361", semester)
     distr = distribution.distribution_per_uc(solver, A, "Álgebra Universal e Categorias", 2, 2)
     #workload_student = workload.workload_student(solver, A, "A95361", semester)
     pprint(overlap_student)
     pprint(distr)
+    '''
+    non_repeat = []
+    for student in A:
+        if len(list(A[student].keys())) == 1:
+            non_repeat.append(student)
+
+    for student in non_repeat:
+        print("....................................")
+        print(student)
+        pprint(overlap.calculate_overlap(solver, A, student, semester))
+    pprint(distr)
+    '''
 
 if __name__ == "__main__":
     main()
