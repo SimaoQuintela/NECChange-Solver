@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
@@ -8,6 +9,27 @@ import UploadButton from "@/components/UploadButton";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [selectedFiles, setSelectedFiles] = useState([]);
+
+  const saveFiles = async (files) => {
+    try {
+      await fs.ensureDir("./mike"); // Cria a pasta ./mike se ela não existir
+      files.forEach(async (file) => {
+        await fs.copy(file.path, `./mike/${file.name}`); // Copia o arquivo para a pasta ./mike
+      });
+      console.log("Arquivos salvos com sucesso!");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleFilesSelect = (files) => {
+    setSelectedFiles((prevSelectedFiles) => [...prevSelectedFiles, ...files]);
+  };
+
+  const handleGenerateClick = () => {
+    console.log(selectedFiles);
+  };
   return (
     <>
       <Head>
@@ -26,6 +48,7 @@ export default function Home() {
               <button
                 type="button"
                 className="inline-flex items-center px-4 py-2 text-sm mb-4 font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                onClick={handleGenerateClick}
               >
                 Generate
               </button>
@@ -34,7 +57,7 @@ export default function Home() {
 
           <div className="ml-auto mr-auto w-full p-4 border-2 border-black border-dashed rounded-lg dark:border-gray-700">
             <div className="flex items-center justify-center h-96 rounded bg-gray-50 dark:bg-gray-800">
-              <UploadButton />
+              <UploadButton onFilesSelect={handleFilesSelect} />
               {/*}
                 <svg
                   className="w-12 h-12 mx-auto text-gray-400"
