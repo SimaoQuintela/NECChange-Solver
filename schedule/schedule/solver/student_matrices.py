@@ -48,7 +48,7 @@ def generate_solver_matrix(students_data, S, model, semester):
             A[student][year] = {}
             A[student][year][semester] = {}
             for uc in students_data[student]:
-                if semester_per_uc(uc, S, year, semester) == semester and uc != "Projeto":
+                if semester_per_uc(uc, S, year, semester) == semester:
                     A[student][year][semester][uc] = {}
                     for type_class in S[year][semester][uc]:
                         A[student][year][semester][uc][type_class] = {}    
@@ -63,7 +63,7 @@ def generate_solver_matrix(students_data, S, model, semester):
             P[student][year] = {}
             P[student][year][semester] = {}
             for uc in students_data[student]:
-                if semester_per_uc(uc, S, year, semester) == semester and uc != "Projeto":
+                if semester_per_uc(uc, S, year, semester) == semester:
                     P[student][year][semester][uc] = {}
                     for type_class in S[year][semester][uc]:
                         P[student][year][semester][uc][type_class] = {}    

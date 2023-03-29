@@ -3,10 +3,14 @@ import pandas as pd
 from schedule.solver import student_matrices
 from schedule.solver.restrictions import restrictions
 from schedule.parser import parser_schedule, parser_students
-from schedule.analytics import overlap, distribution, workload
+from schedule.analytics import overlap, distribution, workload, roomsocupation
+
 
 from pprint import pprint
 from ortools.sat.python import cp_model
+
+
+
 
 # read the data that I wrote by hand 
 def read_ucs_data():
@@ -17,6 +21,7 @@ def read_ucs_data():
     uc_data = {}
     for (uc, year) , _ in data_groupped:
         uc_data[uc] = year
+
 
     return uc_data
 
@@ -74,10 +79,15 @@ def main():
     
 
     overlap_student = overlap.calculate_overlap(solver, A, "A95361", semester)
-    distr = distribution.distribution_per_uc(solver, A, "Álgebra Universal e Categorias", 2, 2)
-    #workload_student = workload.workload_student(solver, A, "A95361", semester)
-    pprint(overlap_student)
-    pprint(distr)
+    distr = distribution.distribution_per_uc(solver, A, "Computação Gráfica", 3, 2)
+    workload_student = workload.workload_student(solver, A, "A95361", semester)
+    probs = distribution.distribution_probabilities(solver, A, students_data, "Programação Imperativa", 1, 2)
+    rooms_ocupation = roomsocupation.rooms_ocupation(solver, S, A, rooms_per_slot, rooms_capacity, students_data, semester)
+    #pprint(workload_student)
+    #pprint(overlap_student)
+    pprint(rooms_ocupation)
+    #pprint(probs)
+    
     '''
     non_repeat = []
     for student in A:
@@ -90,6 +100,6 @@ def main():
         pprint(overlap.calculate_overlap(solver, A, student, semester))
     pprint(distr)
     '''
-
+    
 if __name__ == "__main__":
     main()

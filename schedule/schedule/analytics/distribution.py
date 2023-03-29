@@ -1,6 +1,8 @@
 from pprint import pprint
 import pandas as pd
 
+
+
 def distribution_per_uc(solver, A, uc, year, semester):
     distr = {}
     students = []
@@ -42,3 +44,22 @@ def allocated_number_per_uc(students_data):
     stats = list(allocated_number.items())
     stats.sort(key = lambda x: (x[1]), reverse=True)
     return (stats, allocated_number)
+
+
+def distribution_probabilities(solver, A, students_data, uc, year, semester):
+    distr = distribution_per_uc(solver, A, uc, year, semester)
+    tup = allocated_number_per_uc(students_data)
+    aloc_number_info = tup[1]
+    res = {}
+
+
+    for type_class in distr:
+        res[type_class] = {}
+        for shift in distr[type_class]:
+            res[type_class][shift] = {}
+            for slot in distr[type_class][shift]:
+                res[type_class][shift][slot] = str(round((distr[type_class][shift][slot]/aloc_number_info[uc])*100, 2))
+                res[type_class][shift][slot]+="%"
+
+
+    return res

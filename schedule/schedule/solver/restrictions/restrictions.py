@@ -91,8 +91,9 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                             ==
                             1
                         )
-    '''
-    # R03 - A certain shift must have a minimum number of students allocated (total students allocated of uc / nr of shifts - 5(tolerance)
+    
+
+    #R03 - We have a minimum number of students allocated for each shift
     for year in range(1,4):
         for uc in S[year][semester]:
             allocated_number_of_uc = allocated_number[uc]
@@ -106,29 +107,11 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                                                                             and uc in students_data[student]
                                                                             and semester_per_uc(uc, S, year, semester) == semester
                                                                             )
-                                <= aux + int(aux*0.2)
-                                
-                        )
-    '''
-    for year in range(1,4):
-        for uc in S[year][semester]:
-            allocated_number_of_uc = allocated_number[uc]
-            for type_class in S[year][semester][uc]:
-                shift_number = int(len(list(S[year][semester][uc][type_class].keys())))
-                for shift in S[year][semester][uc][type_class]:
-                    aux = int(allocated_number_of_uc / shift_number)
-                    model.Add(
-                        sum(P[student][year][semester][uc][type_class][shift] for student in students_nr
-                                                                            if year in years_per_student(student, students_data, S, semester)
-                                                                            and uc in students_data[student] and uc != "Projeto"
-                                                                            and semester_per_uc(uc, S, year, semester) == semester
-                                                                            )
-                                >= aux - 10
-                                
+                                >= aux - int(allocated_number_of_uc*0.1)
                         )
     
 
-    # R04 - The nr of students alocated to a class must be less or equal than the room's capacity (30% tolerance)
+    # R04 - The nr of students alocated to a class must be less or equal than the room's capacity (35% tolerance)
     
     for slot in slots_generated:
         for year in S:
@@ -142,37 +125,53 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                                         if shift in dic[uc][type_class]:
                                             room = dic[uc][type_class][shift]
                                             model.Add(
-                                                sum(A[student][year][semester][uc][type_class][shift][slot] for student in students_nr
+                                                    sum(A[student][year][semester][uc][type_class][shift][slot] for student in students_nr
                                                                                                             if year in years_per_student(student, students_data, S, semester)
-                                                                                                            and uc in students_data[student] and uc != "Projeto"
+                                                                                                            and uc in students_data[student]
                                                                                                             and semester_per_uc(uc, S, year, semester) == semester
                                                                                                             and slot in A[student][year][semester][uc][type_class][shift])
                                                     <= 
-                                                    rooms_capacity[room] + int(allocated_number[uc])
+                                                    int(rooms_capacity[room]/0.7)
                                                 )
     
-
+    # R06 - O[student][slot] = | classes number in slot - 1 |
     for student in O:
             for slot in O[student]:
                 model.AddAbsEquality(O[student][slot],
                     (sum([ A[student][year][semester][uc][type_class][shift][slot] for year in years_per_student(student, students_data, S, semester)
-                                                                                for uc in students_data[student]
-                                                                                if uc in S[year][semester]
+                                                                                for uc in students_data[student] 
+                                                                                if uc in S[year][semester] and uc != "Projeto"
                                                                                 for type_class in A[student][year][semester][uc]
                                                                                 for shift in A[student][year][semester][uc][type_class]
                                                                                 if slot in S[year][semester][uc][type_class][shift]
                     ])-1)
                     )
 
-
+    
+    #R07 - Students with ucs of only one year, must not overlap
     for student in O:
         if ucs_from_only_one_year(student, students_data, S, semester):
+            for slot in O[student]:
+                model.Add(
+                    sum([ A[student][year][semester][uc][type_class][shift][slot] for year in years_per_student(student, students_data, S, semester)
+                                                                                for uc in students_data[student] 
+                                                                                if uc in S[year][semester] and uc != "Projeto"
+                                                                                for type_class in A[student][year][semester][uc]
+                                                                                for shift in A[student][year][semester][uc][type_class]
+                                                                                if slot in S[year][semester][uc][type_class][shift]
+                    ])
+                    <=
+                    1
+                    )
+
+    
+    #R08 - In the worst case, we have an overlap of 2 ucs in a determinated slot.
+    for student in O:
             for slot in O[student]:
                     model.Add(O[student][slot]
                     <=
                     1
                     )
-
     
     
 
@@ -182,6 +181,8 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
         for slot in O[student]:
             model.Minimize(O[student][slot])
 
+
+    
 
     '''
     Aux = {}

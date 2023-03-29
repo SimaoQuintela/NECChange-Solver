@@ -3,13 +3,14 @@ import pandas as pd
 import re
 from schedule.parser import parser_schedule
 
+
 days = {
-    "Segunda" : 1,
-    "Terça" : 2,
-    "Quarta" : 3,
-    "Quinta" : 4,
-    "Sexta" : 5
-}
+       "Segunda": 1,
+       "Terça": 2,
+       "Quarta": 3,
+       "Quinta": 4,
+       "Sexta": 5
+        }
 
 
 # read the data that university sent us
@@ -32,40 +33,40 @@ def read_schedule_uni(ucs_data, semester, slots):
     rooms_per_slot = {}
     S = {}
 
+
     for (moduleName, moduleAcronym, _), table in data_groupped:
         #uc_acronyms[moduleName] = moduleAcronym
-        if moduleName != "Projeto":
             year = ucs_data[moduleName] 
-        if year not in S:
-            S[year] = {}
-            S[year][semester] = {}
-        if moduleName not in S[year][semester] and moduleName != "Projeto":
-            S[year][semester][moduleName] = {}
+            if year not in S:
+                S[year] = {}
+                S[year][semester] = {}
+            if moduleName not in S[year][semester]:
+                S[year][semester][moduleName] = {}
 
-        uc_data = table.groupby(["Typology", "SectionName", "Classroom", "NumStudents" ,"WeekdayName", "StartTime", "EndTime"])
+            uc_data = table.groupby(["Typology", "SectionName", "Classroom", "NumStudents" ,"WeekdayName", "StartTime", "EndTime"])
 
-        for (type_class, shift, room, _, day, start, end) , _ in uc_data :
-            shift = int(shift[-1])
+            for (type_class, shift, room, _, day, start, end) , _ in uc_data :
+                shift = int(shift[-1])
 
-            room = re.findall('([0-9]+) \- ([0-9-]+\.[0-9]+)', room)[0]
+                room = re.findall('([0-9]+) \- ([0-9-]+\.[0-9]+)', room)[0]
 
-            # schedule
-            if moduleName != "Projeto":
+                # schedule
+                
                 if type_class not in S[year][semester][moduleName]:
                     S[year][semester][moduleName][type_class] = {}
 
                 if shift not in S[year][semester][moduleName][type_class]: 
                     S[year][semester][moduleName][type_class][shift] = {}
 
-            time_regex = "([0-9]+)\:[0-9]+"
-            start_hour = re.findall(time_regex, start)[0]
-            end_hour = re.findall(time_regex, end)[0]
+                time_regex = "([0-9]+)\:[0-9]+"
+                start_hour = re.findall(time_regex, start)[0]
+                end_hour = re.findall(time_regex, end)[0]
 
-            start_hour = int(start_hour)
-            end_hour = int(end_hour)
+                start_hour = int(start_hour)
+                end_hour = int(end_hour)
 
 
-            if moduleName != "Projeto":
+                
                 for slot in slots:
                     if slot[0] == days[day] and start_hour <= slot[1][0] and slot[1][0] < end_hour:
                         S[year][semester][moduleName][type_class][shift][slot] = 1
@@ -132,7 +133,7 @@ def generate_slots():
     for i in range(1,6):
         for j in range(8, 21):
             if j != 20:
-                slots.append( (i, (j,0)) )
+                slots.append((i, (j,0)) )
                 slots.append((i, (j,30)) )
         
 
