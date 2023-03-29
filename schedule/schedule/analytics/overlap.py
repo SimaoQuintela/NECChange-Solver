@@ -1,3 +1,4 @@
+
 def slots_per_student(A, student, semester):
     slots = []
 
@@ -23,11 +24,12 @@ def calculate_overlap(solver, A, student, semester):
             overlap[slot] = list()
         for year in A[student]:
             for uc in A[student][year][semester]:
-                for type_class in A[student][year][semester][uc]:
-                    for shift in A[student][year][semester][uc][type_class]:
-                        if slot in A[student][year][semester][uc][type_class][shift]:
-                            if(solver.Value(A[student][year][semester][uc][type_class][shift][slot]) == 1):
-                                overlap[slot].append((uc, type_class, shift))
+                if uc != "Projeto":
+                    for type_class in A[student][year][semester][uc]:
+                        for shift in A[student][year][semester][uc][type_class]:
+                            if slot in A[student][year][semester][uc][type_class][shift]:
+                                if(solver.Value(A[student][year][semester][uc][type_class][shift][slot]) == 1):
+                                    overlap[slot].append((uc, type_class, shift))
         
         if len(overlap[slot]) == 1:
             overlap[slot] = []

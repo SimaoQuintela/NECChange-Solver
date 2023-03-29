@@ -18,12 +18,26 @@ def semester_per_uc(uc, S, year, semester):
         return semester
 
 
+def slots_per_student(A, student, semester):
+    slots = []
+
+    for year in A[student]:
+        for uc in A[student][year][semester]:
+            for type_class in A[student][year][semester][uc]:
+                for shift in A[student][year][semester][uc][type_class]:
+                    for slot in A[student][year][semester][uc][type_class][shift]:
+                        if slot not in slots:
+                            slots.append(slot)
+    return slots
+
+
 def generate_solver_matrix(students_data, S, model, semester):
     """
     This function returns a matrix with solver variables assigned to the schedule of every student.
     """
     A = {} #alocar a turnos e slots
     P = {} #alocar apenas aos turnos sem slots
+    O = {}
 
     students_nr = set(students_data.keys())
 
@@ -56,4 +70,12 @@ def generate_solver_matrix(students_data, S, model, semester):
                         for shift in S[year][semester][uc][type_class]:
                             P[student][year][semester][uc][type_class][shift] = model.NewBoolVar(f'P[{student}][{year}][{semester}][{uc}][{type_class}][{shift}]')
 
-    return (A, P)
+    
+    for student in students_nr:
+        O[student] = {}
+        for slot in slots_per_student(A, student, semester):
+            O[student][slot] = model.NewIntVar(0, 100, f'O[{student}][{slot}]')
+       
+
+
+    return (A, P, O)
