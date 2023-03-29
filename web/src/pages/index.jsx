@@ -1,12 +1,36 @@
+import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import Sidebar from "@/components/Sidebar";
+import UploadButton from "@/components/UploadButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [selectedFiles, setSelectedFiles] = useState([]);
+
+  const saveFiles = async (files) => {
+    try {
+      await fs.ensureDir("./mike"); // Cria a pasta ./mike se ela não existir
+      files.forEach(async (file) => {
+        await fs.copy(file.path, `./mike/${file.name}`); // Copia o arquivo para a pasta ./mike
+      });
+      console.log("Arquivos salvos com sucesso!");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleFilesSelect = (files) => {
+    setSelectedFiles((prevSelectedFiles) => [...prevSelectedFiles, ...files]);
+  };
+
+  const handleGenerateClick = () => {
+    console.log(selectedFiles);
+  };
+  
   return (
     <>
       <Head>
@@ -17,52 +41,24 @@ export default function Home() {
       </Head>
       <main>
         <Sidebar />
-
-        <div className="p-4 sm:ml-64">
-          <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-            <div className="grid grid-cols-3 gap-4 mb-4">
-              <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+        <div className="flex flex-col-3 w-auto h-screen p-4 bg-slate-200 sm:ml-64">
+          <div className="ml-4 text-2xl font-bold">
+            <span className="items-start">Upload files</span>
+            <button
+                type="button"
+                className="float-right px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                onClick={handleGenerateClick}>
+                  Generate
+              </button>
+            <div className="flex flex-row h-64 border-2 bg-slate-200 rounded-lg dark:border-gray-700">
+              <div className="flex pr-4 pb-4 rounded dark:bg-gray-800">
+                <UploadButton onFilesSelect={handleFilesSelect} />
               </div>
-              <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+              <div className="flex pr-4 pb-4 rounded dark:bg-gray-800">
+                <UploadButton onFilesSelect={handleFilesSelect} />
               </div>
-              <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-              </div>
-            </div>
-            <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-              <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-            </div>
-            <div className="grid grid-cols-2 gap-4 mb-4">
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-              </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-              </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-              </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-              </div>
-            </div>
-            <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-              <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-              </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-              </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
-              </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+              <div className="flex pb-4 rounded dark:bg-gray-800">
+                <UploadButton onFilesSelect={handleFilesSelect} />
               </div>
             </div>
           </div>
