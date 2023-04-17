@@ -1,5 +1,8 @@
 
 def slots_per_student(A, student, semester):
+    """
+    This function returns all the slots of all ucs from a specific student.
+    """
     slots = []
 
     for year in A[student]:
@@ -14,7 +17,7 @@ def slots_per_student(A, student, semester):
 
 def calculate_overlap(solver, A, student, semester):
     """
-    This function returns the overlap that a student has in his schedule
+    This function returns the overlap that a student has in his schedule.
     """
 
     overlap = {}
@@ -36,3 +39,23 @@ def calculate_overlap(solver, A, student, semester):
     
 
     return overlap
+
+def student_has_conflict(student, overlap):
+    for l in overlap.values():
+        if l != []:
+            return True
+    return False
+            
+
+def calculate_number_of_conflicts(solver, A, students_data, semester):
+
+        r = 0
+        for student in students_data:
+            overlap = calculate_overlap(solver, A, student, semester)
+            if student_has_conflict(student, overlap):
+                r += 1
+        students_nr = len(list(students_data.keys()))
+        percentage = round((r/students_nr) * 100, 2)
+        return f"{r}/{students_nr} ({percentage}% dos alunos) possuem conflitos no seu horário."
+
+       

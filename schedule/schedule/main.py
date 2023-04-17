@@ -90,10 +90,12 @@ def main():
     workload_student = workload.workload_student(solver, A, "A95361", semester)
     probs = distribution.distribution_probabilities(solver, A, students_data, "Programação Imperativa", 1, 2)
     rooms_ocupation = roomsocupation.rooms_ocupation(solver, S, A, rooms_per_slot, rooms_capacity, students_data, semester)
+    conflicts = overlap.calculate_number_of_conflicts(solver, A, students_data, semester)
     #pprint(workload_student)
     #pprint(overlap_student)
-    pprint(rooms_ocupation)
+    #pprint(rooms_ocupation)
     #pprint(probs)
+    pprint(conflicts)
     
     '''
     non_repeat = []
