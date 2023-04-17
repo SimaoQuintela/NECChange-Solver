@@ -41,6 +41,9 @@ def calculate_overlap(solver, A, student, semester):
     return overlap
 
 def student_has_conflict(student, overlap):
+    """
+    This function returns True if a certain student has at least 1 overlap and False otherwise.
+    """
     for l in overlap.values():
         if l != []:
             return True
@@ -48,14 +51,16 @@ def student_has_conflict(student, overlap):
             
 
 def calculate_number_of_conflicts(solver, A, students_data, semester):
-
-        r = 0
-        for student in students_data:
-            overlap = calculate_overlap(solver, A, student, semester)
-            if student_has_conflict(student, overlap):
-                r += 1
-        students_nr = len(list(students_data.keys()))
-        percentage = round((r/students_nr) * 100, 2)
-        return f"{r}/{students_nr} ({percentage}% dos alunos) possuem conflitos no seu horário."
+    """
+    This functions calculates the number of students who have conflicts in their schedule.
+    """
+    r = 0
+    for student in students_data:
+        overlap = calculate_overlap(solver, A, student, semester)
+        if student_has_conflict(student, overlap):
+            r += 1
+    students_nr = len(list(students_data.keys()))
+    percentage = round((r/students_nr) * 100, 2)
+    return f"{r}/{students_nr} ({percentage}% dos alunos) possuem conflitos no seu horário."
 
        
