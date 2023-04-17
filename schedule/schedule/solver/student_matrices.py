@@ -19,6 +19,9 @@ def semester_per_uc(uc, S, year, semester):
 
 
 def slots_per_student(A, student, semester):
+    """
+    This function returns all the slots of all ucs from a specific student.
+    """
     slots = []
 
     for year in A[student]:
@@ -33,10 +36,14 @@ def slots_per_student(A, student, semester):
 
 def generate_solver_matrix(students_data, S, model, semester):
     """
-    This function returns a matrix with solver variables assigned to the schedule of every student.
+    This function returns 3 matrices with solver variables.
+    Matrix A:
+    A[student][year][semester][uc][type_class][shift][slot] = 1 if student is allocated to a class of a certain UC, 0 otherwise.
+    P[student][year][semester][uc][type_class][shift] = 1 if student is allocated to a certain shift of a certain UC, 0 otherwise.
+    O[student][slot] is used to control the overlap of each student in each slot.
     """
-    A = {} #alocar a turnos e slots
-    P = {} #alocar apenas aos turnos sem slots
+    A = {} 
+    P = {} 
     O = {}
 
     students_nr = set(students_data.keys())

@@ -12,8 +12,11 @@ from ortools.sat.python import cp_model
 
 
 
-# read the data that I wrote by hand 
+
 def read_ucs_data():
+    '''
+    This function reads the data in the csv file "horario.csv" and returns a structure with the year of each UC
+    '''
     
     csv_read = pd.read_csv(filepath_or_buffer="data/horario.csv", delimiter=',')
     data_groupped = csv_read.groupby(["uc", "ano"])
@@ -26,6 +29,10 @@ def read_ucs_data():
     return uc_data
 
 def main():
+    '''
+    That's the main function. Here we can get all the schedules generated and also some analyzes about them.
+    '''
+    
     # Semester in which we are generating the schedule
     #semester = int(input("Gerar horários para o semestre: "))
     semester = 2

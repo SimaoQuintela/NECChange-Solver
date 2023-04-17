@@ -1,4 +1,7 @@
 def slots_per_student(A, student, semester):
+	"""
+    This function returns all the slots of all ucs from a specific student.
+    """
 	slots = []
 
 	for year in A[student]:
@@ -11,7 +14,9 @@ def slots_per_student(A, student, semester):
 	return slots
 
 def workload_student(solver, A, student, semester):
-	#this function says how many hours of classes a student has in each day
+	'''
+	This function says how many hours of classes a student has in each day
+	'''
    
 
 	days = {1: "Segunda", 2: "Terça", 3: "Quarta", 4: "Quinta", 5: "Sexta"}
