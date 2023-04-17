@@ -4,6 +4,9 @@ import pandas as pd
 
 
 def distribution_per_uc(solver, A, uc, year, semester):
+    """
+    This function creates a structure with the distributio of each shift of a determinated uc.
+    """
     distr = {}
     students = []
 
@@ -31,7 +34,9 @@ def distribution_per_uc(solver, A, uc, year, semester):
 
 
 def allocated_number_per_uc(students_data):
-    #this function returns a dictionary with the number of students allocated for each uc (order desc)
+    '''
+    This function returns a dictionary with the number of students allocated for each UC (order desc).
+    '''
     allocated_number = {}
    
     for _, ucs in students_data.items():
@@ -47,6 +52,10 @@ def allocated_number_per_uc(students_data):
 
 
 def distribution_probabilities(solver, A, students_data, uc, year, semester):
+    '''
+    This function returns a structure with the percentage of students allocated for each shift in a determinated UC.
+    '''
+
     distr = distribution_per_uc(solver, A, uc, year, semester)
     tup = allocated_number_per_uc(students_data)
     aloc_number_info = tup[1]

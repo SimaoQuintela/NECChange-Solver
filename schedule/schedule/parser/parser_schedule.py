@@ -109,7 +109,7 @@ def rooms_capacity():
 
 def print_schedule(S):
     """
-    This function prints the schedule
+    This function prints the schedule of all classes.
     """
     for year in S:
         for semester in S[year]:

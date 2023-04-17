@@ -32,6 +32,9 @@ def ucs_from_only_one_year(student, students_data, S, semester):
 
 
 def slots_per_student(A, student, semester):
+    """
+    This function returns all the slots of all ucs from a specific student.
+    """
     slots = []
 
     for year in A[student]:
@@ -49,7 +52,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
     This function applies restrictions to solver
     """
 
-    # R01 - A student can only be alocated to a class if the class exists in a certain slot
+    # R01 - A student can only be alocated to a class if the class exists in a certain slot.
 
     students_nr = set(students_data.keys())
 
@@ -67,7 +70,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                             )
     
 
-    #R02 - A student can only be alocated to one shift of each type of class
+    # R02 - If a student is allocated to a class of a shift, he's allocated to that shift.
     for student in A:
         for year in A[student]:
             for uc in A[student][year][semester]:
@@ -80,7 +83,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                                 A[student][year][semester][uc][type_class][shift][slot]
                             )
 
-    
+    #R03 - A student can only be alocated to one shift of each type of class
     for student in P:
         for year in P[student]:
             for uc in P[student][year][semester]:
@@ -93,7 +96,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                         )
     
 
-    #R03 - We have a minimum number of students allocated for each shift
+    #R04 - We have a minimum number of students allocated for each shift
     for year in range(1,4):
         for uc in S[year][semester]:
             allocated_number_of_uc = allocated_number[uc]
@@ -111,7 +114,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                         )
     
 
-    # R04 - The nr of students alocated to a class must be less or equal than the room's capacity (35% tolerance)
+    # R05 - The number of students allocated to a class must be less or equal than the room's capacity (30% tolerance)
     
     for slot in slots_generated:
         for year in S:
@@ -175,7 +178,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
     
     
 
-    # Min01 - Minimização do número de sobreposições
+    # Min01 - Minimization of overlaps
    
     for student in O:
         for slot in O[student]:
