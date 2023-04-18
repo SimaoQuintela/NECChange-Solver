@@ -18,7 +18,12 @@ def semester_per_uc(uc, S, year, semester):
     if uc in S[year][semester]:
         return semester
 
+
+
 def ucs_from_only_one_year(student, students_data, S, semester):
+    """
+    This function returns True if a certain student has UC's of only one year and False otherwise.
+    """
     years = set()
     for uc in students_data[student]:
         for year in range(1,4):
@@ -49,7 +54,7 @@ def slots_per_student(A, student, semester):
 
 def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms_capacity, slots_generated, students_data, allocated_number, O):
     """
-    This function applies restrictions to solver
+    This function applies restrictions to solver.
     """
 
     # R01 - A student can only be alocated to a class if the class exists in a certain slot.
@@ -151,7 +156,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                     )
 
     
-    #R07 - Students with ucs of only one year, must not overlap
+    #R07 - Students with ucs of only one year, must not overlap.
     for student in O:
         if ucs_from_only_one_year(student, students_data, S, semester):
             for slot in O[student]:
@@ -178,31 +183,8 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
     
     
 
-    # Min01 - Minimization of overlaps
+    # Min01 - Minimization of overlaps.
    
     for student in O:
         for slot in O[student]:
             model.Minimize(O[student][slot])
-
-
-    
-
-    '''
-    Aux = {}
-    for student in A:
-        Aux[student] = {}
-        for year in A[student]:
-            for uc in A[student][year][semester]:
-                for type_class in A[student][year][semester][uc]:
-                    for shift in A[student][year][semester][uc][type_class]:
-                        for slot in A[student][year][semester][uc][type_class][shift]:
-                            if slot not in Aux[student]:
-                                Aux[student][slot] = list()
-                            Aux[student][slot].append(A[student][year][semester][uc][type_class][shift][slot])
-
-    for student in Aux:
-        for slot in Aux[student]:
-            model.Minimize(sum(Aux[student][slot]))
-    
-    
-    '''
