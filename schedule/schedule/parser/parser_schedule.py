@@ -20,10 +20,10 @@ def read_schedule_uni(ucs_data, semester, slots):
 
     Return:
         - rooms is a dictionary with the rooms for each UC, for each Type of Class and for each Shift
-        - S is the dictionary that represents the schedule. It has the following structure:  Year -> Semester -> UcName -> Type Class -> Shift -> Slot -> 1/0
+        - S is the dictionary that represents the schedule. It has the following structure:  Year -> Semester -> UcName -> Type Class -> Shift -> Slot -> 1/0.
         If the last value is set to 1 it means that there's a class at that slot.
-        An example can be: 3 -> 2 -> Computação Gráfica -> PL -> 2 -> (1, (10, 30)) -> 1
-        This means that on monday at 10.30am there's a class of Computação Gráfica assigned to PL2 
+        An example can be: 3 -> 2 -> Computação Gráfica -> PL -> 2 -> (1, (10, 30)) -> 1.
+        This means that on monday at 10.30am there's a class of Computação Gráfica assigned to PL2.
     """
     slots = parser_schedule.generate_slots()
     csv_read = pd.read_csv(filepath_or_buffer="data/uni_data/horario.csv", delimiter=';')
@@ -79,6 +79,81 @@ def read_schedule_uni(ucs_data, semester, slots):
                         rooms_per_slot[slot].append(aux_room)
     
     return (S, rooms_per_slot)
+
+
+def previous_slot(slot):
+    day, (hour, minutes) = slot
+
+    if minutes == 30:
+        return day, (hour, 0)
+    else:
+        return day, (hour-1, 30)
+
+
+def next_slot(slot):
+    day, (hour, minutes) = slot
+
+    if minutes == 30:
+        return day, (hour+1, 0)
+    else:
+        return day, (hour, 30)
+
+def convert_to_JSON(S):
+    tabbing = " " * 7
+    buffer = "[\n"
+
+    days = {
+            1: "Segunda",
+            2: "Terça",
+            3: "Quarta",
+            4: "Quinta",
+            5: "Sexta"
+    }
+
+    file = open("schedule.json", "w")
+
+    for year in S:
+        for semester in S[year]:
+            for uc in S[year][semester]:
+                for type_class in S[year][semester][uc]:
+                    for shift in S[year][semester][uc][type_class]:
+                        buffer += "   {\n"
+                        buffer += tabbing
+                        buffer += f"\"uc\" : \"{uc}\",\n"
+                        buffer += tabbing
+                        buffer += f"\"year\" : \"{year}\",\n"
+                        buffer += tabbing
+                        buffer += f"\"semester\" : \"{semester}\",\n"
+                        buffer += tabbing
+                        buffer += f"\"type_class\" : \"{type_class}\",\n"
+                        buffer += tabbing
+                        buffer += f"\"shift\" : \"{shift}\",\n"
+                        buffer += tabbing
+                        buffer += f"\"slots\" : ["
+                        slots_buffer = ""
+                        for slot in S[year][semester][uc][type_class][shift]:
+                            if(previous_slot(slot) not in S[year][semester][uc][type_class][shift]):
+                                slot_init = slot
+                                dayi, (houri, minutesi) = slot_init
+                                while(slot in S[year][semester][uc][type_class][shift]):
+                                    slot = next_slot(slot)
+                                final_slot = slot
+                                dayf, (hourf, minutesf) = final_slot
+                                slots_buffer += f"[\"{days[slot_init[0]]}\", \"{houri}\", \"{minutesi}\", \"{hourf}\", \"{minutesf}\"],"
+                        buffer += slots_buffer
+                        buffer = buffer[:-1]
+                        buffer += "]\n   },\n"
+
+
+    buffer = buffer[:-2]
+    buffer += "\n]"
+
+
+
+    file.write(buffer)
+    file.close()
+
+
 
 
 def rooms_capacity():

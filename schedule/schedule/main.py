@@ -41,6 +41,7 @@ def main():
     ucs_data = read_ucs_data()
     slots = parser_schedule.generate_slots()
     (S, rooms_per_slot) = parser_schedule.read_schedule_uni(ucs_data, semester, slots)
+    parser_schedule.convert_to_JSON(S)
     rooms_capacity = parser_schedule.rooms_capacity()
     #pprint(rooms_capacity)
     #pprint(rooms_per_slot)
@@ -95,7 +96,8 @@ def main():
     #pprint(overlap_student)
     #pprint(rooms_ocupation)
     #pprint(probs)
-    pprint(conflicts)
+    #pprint(distr)
+    #pprint(conflicts)
     
     '''
     non_repeat = []
