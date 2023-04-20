@@ -15,6 +15,9 @@ def years_per_student(student, students_data, S, semester):
 
 
 def year_of_uc(uc, S, semester):
+    """
+    This function returns the year of a specific uc.
+    """
 
     for year in S:
         if uc in S[year][semester]:
@@ -23,6 +26,10 @@ def year_of_uc(uc, S, semester):
 
 
 def rooms_ocupation(solver, S, A, rooms_per_slot, rooms_capacity, students_data, semester):
+    """
+    This function says, for each slot, the ocupation of all rooms numerically and in percentage.
+    """
+
     rooms_ocupation = {}
 
     for slot in rooms_per_slot:

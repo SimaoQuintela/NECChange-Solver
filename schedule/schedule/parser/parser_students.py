@@ -2,7 +2,7 @@ import pandas as pd
 
 def read_students_info():
     """
-    This function reads the info about the courses that students are attending from a csv file
+    This function reads the info about the courses that students are attending from a csv file.
     """
     csv_read = pd.read_csv("data/inscritos_anon.csv")
     students_data = {}

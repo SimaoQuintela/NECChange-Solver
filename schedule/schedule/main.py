@@ -57,6 +57,13 @@ def is_overlaped(slot_init, final_slot, overlap_student):
     return "false"
 
 
+def one_digit_convert(dig):
+    if len(str(dig)) == 1:
+        return "0"+str(dig)
+    return dig
+
+
+
 def convert_A_to_JSON(A, P, S, solver):
     tabbing_student = " " * 7
     tabbing_sec = " " * 10
@@ -108,7 +115,7 @@ def convert_A_to_JSON(A, P, S, solver):
                                                         slot = next_slot(slot)
                                                     final_slot = slot
                                                     dayf, (hourf, minutesf) = final_slot
-                                                    slots_buffer += f"[\"{days[slot_init[0]]}\", \"{houri}\", \"{minutesi}\", \"{hourf}\", \"{minutesf}\", {is_overlaped(slot_init, final_slot, overlap_student)}],"
+                                                    slots_buffer += f"[\"{days[slot_init[0]]}\", \"{one_digit_convert(houri)}\", \"{one_digit_convert(minutesi)}\", \"{one_digit_convert(hourf)}\", \"{one_digit_convert(minutesf)}\", {is_overlaped(slot_init, final_slot, overlap_student)}],"
                                         buffer += slots_buffer
                                         buffer = buffer[:-1]
                                         buffer += "]\n"
