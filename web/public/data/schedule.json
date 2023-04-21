@@ -1,0 +1,45 @@
+{
+    "a97444" : [
+        {
+            "uc" : "AUC",
+            "year" : 2,
+            "semester" : 2,
+            "type_class" : "PL",
+            "shift": 2,
+            "slots" : [["Monday", "10", "00", "12", "00", true], ["Friday", "14", "00", "16", "00", false]]
+        },
+        {
+            "uc" : "CG",
+            "year" : 3,
+            "semester" : 2,
+            "type_class" : "T",
+            "shift": 1,
+            "slots" : [["Monday", "10", "00", "12", "00", true]]
+        }
+    ],
+    
+    "a932813" : [
+        {
+            "uc" : "dsadsadasdas",
+            "year" : 2,
+            "semester" : 2,
+            "overlap": true,
+            "day" : "Monday",
+            "startHour" : 10,
+            "endHour" : 12,
+            "startMin" : 0,
+            "endMin" : 0
+        },
+        {
+            "uc" : "CG",
+            "year" : 3,
+            "semester" : 2,
+            "overlap": true,
+            "day" : "Monday",
+            "startHour" : 10,
+            "endHour" : 12,
+            "startMin" : 0,
+            "endMin" : 0
+        }
+    ]
+}
