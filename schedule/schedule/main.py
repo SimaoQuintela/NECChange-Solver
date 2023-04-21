@@ -5,13 +5,8 @@ from schedule.solver.restrictions import restrictions
 from schedule.parser import parser_schedule, parser_students
 from schedule.analytics import overlap, distribution, workload, roomsocupation
 
-
 from pprint import pprint
 from ortools.sat.python import cp_model
-
-
-
-
 
 def read_ucs_data():
     '''
@@ -69,7 +64,7 @@ def convert_A_to_JSON(A, P, S, solver):
     tabbing_sec = " " * 10
     tabbing_info = " " * 13
     buffer = "{\n"
-    file = open("allocation.json", "w")
+    file = open("../../web/public/data/alocation.json", "w")
 
     days = {
             1: "Segunda",
@@ -199,25 +194,7 @@ def main():
     probs = distribution.distribution_probabilities(solver, A, students_data, "Programação Imperativa", 1, 2)
     rooms_ocupation = roomsocupation.rooms_ocupation(solver, S, A, rooms_per_slot, rooms_capacity, students_data, semester)
     conflicts = overlap.calculate_number_of_conflicts(solver, A, students_data, semester)
-    #pprint(workload_student)
-    #pprint(overlap_student)
-    #pprint(rooms_ocupation)
-    #pprint(probs)
-    #pprint(distr)
-    #pprint(conflicts)
     
-    '''
-    non_repeat = []
-    for student in A:
-        if len(list(A[student].keys())) == 1:
-            non_repeat.append(student)
-
-    for student in non_repeat:
-        print("....................................")
-        print(student)
-        pprint(overlap.calculate_overlap(solver, A, student, semester))
-    pprint(distr)
-    '''
     
 if __name__ == "__main__":
     main()

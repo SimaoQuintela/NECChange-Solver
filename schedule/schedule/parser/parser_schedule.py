@@ -110,7 +110,7 @@ def convert_to_JSON(S):
             5: "Sexta"
     }
 
-    file = open("schedule.json", "w")
+    file = open("../../web/public/data/schedule.json", "w")
 
     for year in S:
         for semester in S[year]:

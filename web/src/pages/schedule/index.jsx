@@ -64,11 +64,11 @@ function getDates(slot){
   }
 
   let week = {
-    "Monday": 1,
-    "Tuesday": 2,
-    "Wednesday": 3,
-    "Thursday": 4,
-    "Friday": 5
+    "Segunda": 1,
+    "Terça": 2,
+    "Quarta": 3,
+    "Quinta": 4,
+    "Sexta": 5
   }
   // dia da aula = ( dia do mês + dia da aula - dia da semana atual ) % numero de dias do mês
   let days_in_month = new Date(year, month,0).getDate()
@@ -111,6 +111,7 @@ export default function BackofficeSchedule(){
     .then(response => {
       let evts = handleEvents(response.data);
       setEvt(evts);
+      console.log(evt)
       console.log({"200": "Ok"})
     })
     .catch((error) =>{
@@ -132,7 +133,6 @@ export default function BackofficeSchedule(){
                    onChange={(e) => setStudentNr(e.target.value)}
                    placeholder='Student number'
             />
-
             <button type=''
                     className='bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg'
                     onClick={getSchedule}>
