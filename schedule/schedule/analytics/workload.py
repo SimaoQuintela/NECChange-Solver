@@ -15,7 +15,7 @@ def slots_per_student(A, student, semester):
 
 def workload_student(solver, A, student, semester):
 	'''
-	This function says how many hours of classes a student has in each day
+	This function says how many hours of classes a student has in each day.
 	'''
    
 
