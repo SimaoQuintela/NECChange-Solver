@@ -35,8 +35,16 @@ def one_digit_convert(dig):
     return dig
 
 
+def search_room(uc, type_class, shift, aux):
+    for dic in aux:
+        if uc in dic:
+            if type_class in dic[uc]:
+                if shift in dic[uc][type_class]:
+                    return dic[uc][type_class][shift]
 
-def convert_A_to_JSON(A, P, S, solver):
+
+
+def convert_A_to_JSON(A, P, S, rooms_per_slot, solver):
     tabbing_student = " " * 7
     tabbing_sec = " " * 10
     tabbing_info = " " * 13
@@ -87,7 +95,10 @@ def convert_A_to_JSON(A, P, S, solver):
                                                         slot = next_slot(slot)
                                                     final_slot = slot
                                                     dayf, (hourf, minutesf) = final_slot
-                                                    slots_buffer += f"[\"{days[slot_init[0]]}\", \"{one_digit_convert(houri)}\", \"{one_digit_convert(minutesi)}\", \"{one_digit_convert(hourf)}\", \"{one_digit_convert(minutesf)}\", {is_overlaped(slot_init, final_slot, overlap_student)}],"
+                                                    aux = [dic for dic in rooms_per_slot[slot_init]]
+                                                    room = search_room(uc, type_class, shift, aux)
+                                                    room_str = f"Ed{room[0]}-{room[1]}"
+                                                    slots_buffer += f"[\"{days[slot_init[0]]}\", \"{one_digit_convert(houri)}\", \"{one_digit_convert(minutesi)}\", \"{one_digit_convert(hourf)}\", \"{one_digit_convert(minutesf)}\", \"{room_str}\", {is_overlaped(slot_init, final_slot, overlap_student)}],"
                                         buffer += slots_buffer
                                         buffer = buffer[:-1]
                                         buffer += "]\n"
