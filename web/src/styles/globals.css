@@ -6,6 +6,10 @@
   margin-right: 0px;
 }
 
+.rbc-time-content > div.rbc-day-slot > div.rbc-current-time-indicator{
+  z-index: -1;
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
