@@ -1,10 +1,12 @@
-import { useState } from 'react';
-//import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
+import {useReducer, useState} from 'react';
 import Modal from 'react-modal'
-import {IoIosArrowDown} from "react-icons/io";
+
+import UcEntry from './UcEntry';
 
 export default function Trades( {studentNr, events} ){
     const [isOpen, setIsOpen] = useState(false);
+    const [shiftTrade, setShiftTrade] = useState([]);
+    console.log(shiftTrade);
     const customStyles = {
         overlay: {
            backgroundColor: 'rgba(0, 0, 0, 0.6)'
@@ -23,7 +25,8 @@ export default function Trades( {studentNr, events} ){
             borderRadius: 15,
             borderColor: 'rgba(0,0,0,0.7)'
         }
-     }
+    }
+
     return(
         <>
             <button type=''
@@ -35,22 +38,23 @@ export default function Trades( {studentNr, events} ){
             <Modal style={customStyles} isOpen={isOpen} onRequestClose={() => setIsOpen(false)}>
                 <h1 className='text-2xl font-bold text-center mb-4'>Trades</h1>
                 {
-                    // take a look on this index, may cause bugs
                     events.map((e, index) => {
                         if(e.type_class !== "T") {
                             return (
-                                <div key={index} className='flex bg-blue-500 w-full h-auto mt-2 rounded-3xl'>
-                                    <div className='p-2 ml-1 top-1/2 left-1/2 w-5/6'>
-                                        <p className='font-semibold text-white'>{e.title}</p>
-                                    </div>
-                                    <button className='flex justify-end w-1/6 m-auto pr-4 '>
-                                        <IoIosArrowDown className='font-semibold text-white' />
-                                    </button>
-                                </div>
+                                <UcEntry key={index}
+                                         shift={e.shift}
+                                         uc={e.uc}
+                                         type_class={e.type_class}
+                                         setShiftTrade={setShiftTrade}/>
                             );
                         }
                     })
                 }
+                <div className='w-full h-auto mt-1 flex justify-center'>
+                    <button className='z-10 flex w-1/3 h-auto mt-3 pt-2 text-white font-bold pb-2 justify-center bg-blue-500 hover:bg-blue-600 hover:duration-300 rounded-3xl'>
+                        Submit
+                    </button>
+                </div>
             </Modal>
         </>
     );

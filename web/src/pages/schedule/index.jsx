@@ -45,8 +45,9 @@ function handleEvents(data) {
         "title" : lesson.uc + " - " + lesson.type_class + lesson.shift,
         "year": lesson.year,
         "semester": lesson.semester,
-        "shift": lesson.shift,
+        "uc": lesson.uc,
         "type_class": lesson.type_class,
+        "shift": lesson.shift,
         "allDay": false,
         "overlap": slot[5],
         "start": dates.start,
@@ -67,9 +68,10 @@ export default function BackofficeSchedule(){
   const getSchedule = () => {
     axios.get('api/get/'+studentNr)
     .then(response => {
+      //console.log(response.data)
       let evts = handleEvents(response.data);
       setEvt(evts);
-      console.log({"200": "Ok"})
+      //console.log({"200": "Ok"})
     })
     .catch((error) =>{
       setEvt([])
@@ -82,25 +84,24 @@ export default function BackofficeSchedule(){
 
   return(
       <main className='h-screen bg-white '>
-          <Sidebar />
-          <div className='ml-64 pt-8'>
-            <div className='w-full h-auto'>
-              <input type="text"
-                     className='rounded-lg'
-                     value={studentNr}
-                     onChange={(e) => setStudentNr(e.target.value)}
-                     placeholder='Student number'
-              />
-              <button type=''
-                      className='bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg'
-                      onClick={getSchedule}>
-                Search
-              </button>
-              
-              <Trades studentNr={studentNr} events={evt}/>
-            </div>
-            <Schedule events={evt} />
+        <Sidebar />
+        <div className='ml-64 pt-8'>
+          <div className='w-full h-auto'>
+            <input type="text"
+                   className='rounded-lg'
+                   value={studentNr}
+                   onChange={(e) => setStudentNr(e.target.value)}
+                   placeholder='Student number'
+            />
+            <button type=''
+                    className='bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg'
+                    onClick={getSchedule}>
+              Search
+            </button>
+            <Trades studentNr={studentNr} events={evt}/>
           </div>
+          <Schedule events={evt} />
+        </div>
       </main>
   );
 }
