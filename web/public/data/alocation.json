@@ -4480,15 +4480,15 @@
          "year": "3",
          "semester": "2",
          "type_class": "PL",
-         "shift": "1",
+         "shift": "2",
          "slots": [
             [
-               "Segunda",
+               "Sexta",
                "09",
                "00",
                "11",
                "00",
-               true
+               false
             ]
          ]
       },
