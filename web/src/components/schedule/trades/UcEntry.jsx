@@ -13,7 +13,12 @@ export default function UcEntry({shift, uc, type_class, setShiftTrade}){
         let params = {uc: uc, type_class: type_class};
 
         axios.get("api/get/shifts", {params: params})
-            .then( response => setShifts(response.data.shifts));
+            .then( response =>
+            {
+                setShifts(response.data.shifts);
+                console.log(response)
+            })
+            .catch(error => console.log(error));
     }, [axios, type_class, uc]);
 
     function handleClick(shift){
