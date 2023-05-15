@@ -35,6 +35,7 @@ export default function Trades( {studentNr, events} ){
         axios.put('api/put/updateJson', {params:params})
              .then(response => console.log(response))
              .catch(error => console.log(error));
+        setShiftTrade([])
     }
 
     return(
