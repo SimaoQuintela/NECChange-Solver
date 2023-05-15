@@ -63,6 +63,7 @@ def convert_A_to_JSON(A, P, S, rooms_per_slot, solver):
     '''
     This functions converts our allocation matrix into a JSON file
     '''
+    
     tabbing_student = " " * 7
     tabbing_sec = " " * 10
     tabbing_info = " " * 13
