@@ -58,6 +58,7 @@ def main():
     status = solver.Solve(model)
     
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
+        
         parser_to_json.convert_A_to_JSON(A, P, S, rooms_per_slot, solver)
         for student in A:#['A94447', 'A93646', 'A95361', 'A95847']:
             #student = "A95847"#94447 #93646 #95361
