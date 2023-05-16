@@ -42,7 +42,7 @@ function handleEvents(data) {
     lesson.slots.map((slot) => {
       let dates = getDates(slot) ;
       let event = {
-        "title" : lesson.uc + " - " + lesson.type_class + lesson.shift,
+        "title" : lesson.type_class + lesson.shift + " - " + lesson.uc,
         "year": lesson.year,
         "semester": lesson.semester,
         "uc": lesson.uc,
