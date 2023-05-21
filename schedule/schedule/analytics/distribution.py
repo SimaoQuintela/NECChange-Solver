@@ -1,6 +1,5 @@
-from pprint import pprint
+import os
 import pandas as pd
-
 
 
 def distribution_per_uc(solver, A, uc, year, semester):
@@ -9,8 +8,12 @@ def distribution_per_uc(solver, A, uc, year, semester):
     """
     distr = {}
     students = []
-
-    csv_read = pd.read_csv("data/inscritos_anon.csv")
+    if(os.path.relpath(__file__) == "analytics/distribution.py"):
+        path = "data/uni_data/inscritos_anon.csv"
+    else:
+        path = "./../schedule/schedule/data/uni_data/inscritos_anon.csv"
+    csv_read = pd.read_csv(path)
+    
     data_groupped = csv_read.groupby(["Unidade Curricular", "Nº Mecanográfico"])
 
     for uc_csv in data_groupped:
@@ -30,7 +33,6 @@ def distribution_per_uc(solver, A, uc, year, semester):
                     distr[type_class][shift][slot] += solver.Value(A[student][year][semester][uc][type_class][shift][slot])
     
     return distr
-
 
 
 def allocated_number_per_uc(students_data):

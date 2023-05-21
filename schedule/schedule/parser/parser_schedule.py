@@ -1,3 +1,4 @@
+import os
 from pprint import pprint
 import pandas as pd
 import re
@@ -25,17 +26,21 @@ def read_schedule_uni(ucs_data, semester, slots):
         An example can be: 3 -> 2 -> Computação Gráfica -> PL -> 2 -> (1, (10, 30)) -> 1.
         This means that on monday at 10.30am there's a class of Computação Gráfica assigned to PL2.
     """
+
     slots = parser_schedule.generate_slots()
-    csv_read = pd.read_csv(filepath_or_buffer="data/uni_data/horario.csv", delimiter=';')
+
+    if(os.path.relpath(__file__) == "parser/parser_schedule.py"):
+        path = "data/uni_data/horario.csv"
+    else:
+        path = "./../schedule/schedule/data/uni_data/horario.csv"
+    csv_read = pd.read_csv(filepath_or_buffer=path, delimiter=';')
     data_groupped = csv_read.groupby(["ModuleName", "ModuleAcronym", "ModuleCode"])
 
-    #uc_acronyms = {}
     rooms_per_slot = {}
     S = {}
 
 
     for (moduleName, moduleAcronym, _), table in data_groupped:
-        #uc_acronyms[moduleName] = moduleAcronym
             year = ucs_data[moduleName] 
             if year not in S:
                 S[year] = {}
@@ -49,8 +54,6 @@ def read_schedule_uni(ucs_data, semester, slots):
                 shift = int(shift[-1])
 
                 room = re.findall('([0-9]+) \- ([0-9-]+\.[0-9]+)', room)[0]
-
-                # schedule
                 
                 if type_class not in S[year][semester][moduleName]:
                     S[year][semester][moduleName][type_class] = {}
@@ -87,7 +90,12 @@ def rooms_capacity():
     """
     This function creates a structure with the capacity of each room.
     """
-    csv_read = pd.read_csv(filepath_or_buffer="data/uni_data/salas.csv", delimiter=';')
+    
+    if(os.path.relpath(__file__) == "parser/parser_schedule.py"):
+        path = "data/uni_data/salas.csv"
+    else:
+        path = "./../schedule/schedule/data/uni_data/salas.csv"
+    csv_read = pd.read_csv(filepath_or_buffer=path, delimiter=';')
     groupped_by_building = csv_read.groupby("Edificio")
 
 
