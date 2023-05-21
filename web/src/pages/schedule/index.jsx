@@ -2,7 +2,7 @@ import Sidebar from "@/components/Sidebar";
 import Schedule from '@/components/schedule/calendar/Schedule';
 import Trades from "@/components/schedule/trades/Trades";
 
-import { useState } from 'react';
+import {useState} from 'react';
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
