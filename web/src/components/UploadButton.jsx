@@ -1,6 +1,7 @@
+// UploadButton.jsx
 import React, { useRef, useState } from 'react';
 
-const UploadButton = ({ onFilesSelect }) => {
+const UploadButton = ({ label, onFilesSelect }) => {
   const inputRef = useRef(null);
   const [fileName, setFileName] = useState('Click to browse...');
   const [isFileSelected, setIsFileSelected] = useState(false);
@@ -29,8 +30,11 @@ const UploadButton = ({ onFilesSelect }) => {
           </>
         ) : (
           <>
-            <p className="mb-2 text-sm text-blue-500">Insira um ficheiro ...</p>
-            <p className="text-xs text-blue-500">CSV</p>
+            <p className="mb-2 text-gray-500 dark:text-gray-400">
+              Insert a file {''}
+              <span className="font-semibold text-gray-900 underline dark:text-white decoration-indigo-500"> {label}</span>
+            </p>
+            <p className="text-xs text-blue-500">Only accepts .CSV files</p>
           </>
         )}
       </div>
