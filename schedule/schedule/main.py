@@ -10,10 +10,10 @@ from ortools.sat.python import cp_model
 
 def read_ucs_data():
     '''
-    This function reads the data in the csv file "horario.csv" and returns a structure with the year of each UC
+    This function reads the data in the csv file "uc_years.csv" and returns a structure with the year of each UC
     '''
     
-    csv_read = pd.read_csv(filepath_or_buffer="data/horario.csv", delimiter=',')
+    csv_read = pd.read_csv(filepath_or_buffer="data/uc_years.csv", delimiter=',')
     data_groupped = csv_read.groupby(["uc", "ano"])
 
     uc_data = {}
@@ -103,7 +103,7 @@ def main():
     ucs_data = read_ucs_data()
     slots = parser_schedule.generate_slots()
     (S, rooms_per_slot) = parser_schedule.read_schedule_uni(ucs_data, semester, slots)
-    #parser_to_json.convert_S_to_JSON(S)
+    parser_to_json.convert_S_to_JSON(S)
     rooms_capacity = parser_schedule.rooms_capacity()
     _, allocated_number = distribution.allocated_number_per_uc(students_data)
     model = cp_model.CpModel()
