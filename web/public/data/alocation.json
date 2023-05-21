@@ -25658,6 +25658,15 @@
              "uc" : "Laboratório de Algoritmia I",
              "year" : "1",
              "semester" : "2",
+[2:28 PM]
+vou dar merge da minha branch
+[2:28 PM]
+e depois resolvo os conflitos na tua
+[2:28 PM]
+para dar merge e testar
+￼
+Message #general
+
              "type_class" : "PL",
              "shift" : "3",
              "slots" : [["Terça", "09", "00", "11", "00", "Ed1-1.16", false]]
@@ -25910,3 +25919,4 @@
           }
        ]
 }
+

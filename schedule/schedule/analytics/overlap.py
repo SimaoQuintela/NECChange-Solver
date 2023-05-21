@@ -55,12 +55,14 @@ def calculate_number_of_conflicts(solver, A, students_data, semester):
     This functions calculates the number of students who have conflicts in their schedule.
     """
     r = 0
+    L = []
     for student in students_data:
         overlap = calculate_overlap(solver, A, student, semester)
         if student_has_conflict(student, overlap):
+            L.append(student)
             r += 1
     students_nr = len(list(students_data.keys()))
     percentage = round((r/students_nr) * 100, 2)
-    return f"{r}/{students_nr} ({percentage}% dos alunos) possuem conflitos no seu horário."
+    return L, f"{r}/{students_nr} ({percentage}% dos alunos) possuem conflitos no seu horário."
 
        
