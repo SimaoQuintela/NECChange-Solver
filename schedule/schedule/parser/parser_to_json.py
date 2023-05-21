@@ -137,7 +137,7 @@ def convert_A_to_JSON(A, P, S, rooms_per_slot, solver):
 
 
 
-def convert_S_to_JSON(S):
+def convert_S_to_JSON(S, rooms_per_slot):
     '''
     This function returns a JSON file with the schedule information
     '''
@@ -181,7 +181,10 @@ def convert_S_to_JSON(S):
                                     slot = next_slot(slot)
                                 final_slot = slot
                                 dayf, (hourf, minutesf) = final_slot
-                                slots_buffer += f"[\"{days[slot_init[0]]}\", \"{houri}\", \"{minutesi}\", \"{hourf}\", \"{minutesf}\"],"
+                                aux = [dic for dic in rooms_per_slot[slot_init]]
+                                room = search_room(uc, type_class, shift, aux)
+                                room_str = f"Ed{room[0]}-{room[1]}"
+                                slots_buffer += f"[\"{days[slot_init[0]]}\", \"{one_digit_convert(houri)}\", \"{one_digit_convert(minutesi)}\", \"{one_digit_convert(hourf)}\", \"{one_digit_convert(minutesf)}\", \"{room_str}\"],"
                         buffer += slots_buffer
                         buffer = buffer[:-1]
                         buffer += "]\n   },\n"
