@@ -1,0 +1,49 @@
+ano,semestre,código da uc,uc
+1,1,8501Q5,Álgebra Linear CC
+1,1,8501Q6,Cálculo
+1,1,8501Q8,Programação Funcional
+1,1,8501Q7,Tópicos de Matemática
+1,1,85U004,Matemática das Coisas
+1,1,85U020,"Educação, Cidadania e Direitos Humanos"
+1,1,85U028,Inglês Académico
+1,1,85U170,Cidadania Digital
+1,1,85U171,"Sustentabilidade Ambiental, Social e Económica"
+1,1,85U238,Literacia Fotográfica da Física à Mensagem
+1,1,85U239,Substâncias que Mudaram o Mundo
+1,1,85U240,Tópicos de Astronomia e Cosmologia
+1,1,85U253,Introdução à Língua e Cultura Russa
+1,1,85U255,Bilinguismo
+1,1,85U274,"Democracia Plena, Responsabilidade e Estado de Direito"
+1,1,85U275,Direito Laboral
+1,1,85U278,Princípios de Gestão de Inventários
+1,1,85U79H,Matemática das Coisas
+1,1,85U79I,A China no Mundo
+1,1,85U79J,Desporto e Saúde
+1,2,8502N6,Sistemas de Computação
+1,2,8502T1,Análise
+1,2,8502T2,Geometria
+1,2,8502T3,Matemática Discreta
+1,2,8502T4,Programação Imperativa
+1,2,8502T5,Laboratório de Algoritmia I
+2,1,8503N5,Lógica CC
+2,1,8503O6,Álgebra
+2,1,8503O7,Análise Numérica
+2,1,8503O8,Algoritmos e Complexidade
+2,1,8503O9,Sistemas de Comunicações e Redes
+2,2,8504P1,Laboratório de Algoritmia II
+2,2,8504P2,Autómatos e Linguagens Formais
+2,2,8504P3,Cálculo de Programas
+2,2,8504P4,Programação Orientada aos Objetos
+2,2,8504P5,Sistemas Operativos
+2,2,8504P6,Álgebra Universal e Categorias
+3,1,8505N6,Bases de Dados
+3,1,8505O4,Computabilidade e Complexidade
+3,1,8505O5,Lógica Computacional
+3,1,8505O6,Probabilidades e Aplicações
+3,1,8505O7,Processamento de Linguagens e Compiladores
+3,2,8506N7,Computação Gráfica
+3,2,8506O5,Teoria de Números Computacional
+3,2,8506O6,Programação Concorrente
+3,2,8506O7,Interação e Concorrência
+3,2,8506O8,Semântica das Linguagens de Programação
+3,2,8506O9,Projeto
