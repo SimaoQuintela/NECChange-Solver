@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Sidebar from '@/components/Sidebar';
 import styles from '@/styles/Home.module.css';
 import UploadButton from '../components/UploadButton';
-import Loader from '@/components/loader';
+import Loader from '@/components/Loader';
 
 export default function Home() {
   const [selectedFiles1, setSelectedFiles1] = useState(null);
