@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Sidebar from '@/components/Sidebar';
 import styles from '@/styles/Home.module.css';
 import UploadButton from '../components/UploadButton';
+import Loader from '@/components/Loader';
 
 export default function Home() {
   const [selectedFiles1, setSelectedFiles1] = useState(null);
@@ -12,6 +13,9 @@ export default function Home() {
   const [showUploadNotification, setShowUploadNotification] = useState(false);
   const [showGenerateNotification, setShowGenerateNotification] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+
+  const [isLoadingGeneration, setIsLoadingGeneration] = useState(false);
+
 
   useEffect(() => {
     let timer;
@@ -26,14 +30,9 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [showUploadNotification, showGenerateNotification, errorMessage]);
 
-  const handleUpload = (setSelectedFiles) => (selectedFiles) => {
-    setSelectedFiles(selectedFiles);
-    console.log(selectedFiles); // log selected files
-  };
-
   const handleUploadClick = () => {
     console.log("Upload button clicked");
-    [selectedFiles1, selectedFiles2, selectedFiles3].forEach((selectedFiles, index) => {
+    [selectedFiles1, selectedFiles2, selectedFiles3].forEach((selectedFiles) => {
       if (selectedFiles) {
         const formData = new FormData();
         Array.from(selectedFiles).forEach((file) => {
@@ -62,8 +61,10 @@ export default function Home() {
 
   const handleGenerateClick = () => {
     console.log("Generate button clicked");
+    setIsLoadingGeneration(true);
     fetch('/api/generate-schedule', { method: 'POST' })
       .then((response) => {
+        setIsLoadingGeneration(false);
         if (response.status === 200) {
           console.log('main.py executed');
           setShowGenerateNotification(true);
@@ -72,6 +73,7 @@ export default function Home() {
         }
       })
       .catch(error => {
+        setIsLoadingGeneration(false);
         console.error(error);
         setErrorMessage("An error occurred during generation.");
       });
@@ -118,6 +120,8 @@ export default function Home() {
           </span>
         </button>
 
+        {isLoadingGeneration && <Loader />}
+
         {showUploadNotification && (
           <div className="fixed top-0 right-0 m-6 p-4 bg-green-500 text-white rounded shadow-lg">
             Upload successful!
@@ -134,7 +138,10 @@ export default function Home() {
             {errorMessage}
           </div>
         )}
+        
       </main>
     </div>
   );
 }
+
+
