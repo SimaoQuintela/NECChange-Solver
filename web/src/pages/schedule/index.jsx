@@ -1,6 +1,7 @@
 import Sidebar from "@/components/Sidebar";
 import Schedule from '@/components/schedule/calendar/Schedule';
 import Trades from "@/components/schedule/trades/Trades";
+import Head from "next/head";
 
 import {useState} from 'react';
 
@@ -83,6 +84,11 @@ export default function BackofficeSchedule(){
 
   return(
       <main className='h-screen bg-white '>
+        <Head>
+          <title>NECChange</title>
+          <link rel="icon" href="logos/necc-blue.svg" />
+
+        </Head>
         <Sidebar />
         <div className='ml-64 pt-8'>
           <div className='w-full h-auto'>
