@@ -67,7 +67,6 @@ export default function Home() {
         if (response.status === 200) {
           console.log('main.py executed');
           setShowGenerateNotification(true);
-          router.push('/schedule');
         } else {
           setErrorMessage("Generation failed!");
         }
@@ -99,8 +98,8 @@ export default function Home() {
             <UploadButton label="Schedule" onFilesSelect={setSelectedFiles1} />
           </div>
           <div>
-            <label className="block text-gray-700 font-bold mb-2">Registrations</label>
-            <UploadButton label="Registrations" onFilesSelect={setSelectedFiles2} />
+            <label className="block text-gray-700 font-bold mb-2">Students</label>
+            <UploadButton label="Students" onFilesSelect={setSelectedFiles2} />
           </div>
           <div>
             <label className="block text-gray-700 font-bold mb-2">Rooms</label>

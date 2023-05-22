@@ -15,9 +15,9 @@ def read_ucs_data():
     '''
     
     if(os.path.relpath(__file__) == "main.py"):
-        path = "data/horario.csv"
+        path = "data/uc_years.csv"
     else:
-        path = "./../schedule/schedule/data/horario.csv"
+        path = "./../schedule/schedule/data/uc_years.csv"
 
     csv_read = pd.read_csv(filepath_or_buffer=path, delimiter=',')
     
@@ -130,7 +130,7 @@ def main():
         
         parser_to_json.convert_A_to_JSON(A, P, S, rooms_per_slot, solver)
 
-        for student in A:#['A94447', 'A93646', 'A95361', 'A95847']:
+        for student in A:
             for year in A[student]:
                 for semester in A[student][year]:
                     for uc in A[student][year][semester]:
@@ -149,8 +149,8 @@ def main():
                                         #print("Alocado")
                                         break
             break
-
-        menu(solver, A, S, students_data, rooms_per_slot, rooms_capacity, semester)
+        if(os.path.relpath(__file__) == "main.py"):
+            menu(solver, A, S, students_data, rooms_per_slot, rooms_capacity, semester)
     else:
         print("No solution found")
     

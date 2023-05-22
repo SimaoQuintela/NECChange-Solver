@@ -1,14 +1,14 @@
 [
    {
-       "uc" : "An·lise",
+       "uc" : "An√°lise",
        "year" : "1",
        "semester" : "2",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["Sexta", "09", "00", "11", "00", "Ed1-0.17"],["TerÁa", "09", "00", "11", "00", "Ed1-2.27"]]
+       "slots" : [["Sexta", "09", "00", "11", "00", "Ed1-0.17"],["Ter√ßa", "09", "00", "11", "00", "Ed1-2.27"]]
    },
    {
-       "uc" : "An·lise",
+       "uc" : "An√°lise",
        "year" : "1",
        "semester" : "2",
        "type_class" : "TP",
@@ -21,7 +21,7 @@
        "semester" : "2",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Quarta", "10", "00", "11", "00", "Ed1-0.20"],["TerÁa", "11", "00", "12", "00", "Ed3-0.06"]]
+       "slots" : [["Quarta", "10", "00", "11", "00", "Ed1-0.20"],["Ter√ßa", "11", "00", "12", "00", "Ed3-0.06"]]
    },
    {
        "uc" : "Geometria",
@@ -37,10 +37,10 @@
        "semester" : "2",
        "type_class" : "TP",
        "shift" : "2",
-       "slots" : [["TerÁa", "14", "00", "16", "00", "Ed2-1.10"]]
+       "slots" : [["Ter√ßa", "14", "00", "16", "00", "Ed2-1.10"]]
    },
    {
-       "uc" : "LaboratÛrio de Algoritmia I",
+       "uc" : "Laborat√≥rio de Algoritmia I",
        "year" : "1",
        "semester" : "2",
        "type_class" : "PL",
@@ -48,7 +48,7 @@
        "slots" : [["Quinta", "09", "00", "11", "00", "Ed1-1.25"]]
    },
    {
-       "uc" : "LaboratÛrio de Algoritmia I",
+       "uc" : "Laborat√≥rio de Algoritmia I",
        "year" : "1",
        "semester" : "2",
        "type_class" : "PL",
@@ -56,15 +56,15 @@
        "slots" : [["Quarta", "11", "00", "13", "00", "Ed1-2.25"]]
    },
    {
-       "uc" : "LaboratÛrio de Algoritmia I",
+       "uc" : "Laborat√≥rio de Algoritmia I",
        "year" : "1",
        "semester" : "2",
        "type_class" : "PL",
        "shift" : "3",
-       "slots" : [["TerÁa", "09", "00", "11", "00", "Ed1-1.16"]]
+       "slots" : [["Ter√ßa", "09", "00", "11", "00", "Ed1-1.16"]]
    },
    {
-       "uc" : "Matem·tica Discreta",
+       "uc" : "Matem√°tica Discreta",
        "year" : "1",
        "semester" : "2",
        "type_class" : "T",
@@ -72,15 +72,15 @@
        "slots" : [["Quinta", "11", "00", "13", "00", "Ed1-0.20"]]
    },
    {
-       "uc" : "Matem·tica Discreta",
+       "uc" : "Matem√°tica Discreta",
        "year" : "1",
        "semester" : "2",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["TerÁa", "14", "00", "16", "00", "Ed1-2.07"]]
+       "slots" : [["Ter√ßa", "14", "00", "16", "00", "Ed1-2.07"]]
    },
    {
-       "uc" : "Matem·tica Discreta",
+       "uc" : "Matem√°tica Discreta",
        "year" : "1",
        "semester" : "2",
        "type_class" : "TP",
@@ -88,15 +88,15 @@
        "slots" : [["Sexta", "11", "00", "13", "00", "Ed1-2.05"]]
    },
    {
-       "uc" : "ProgramaÁ„o Imperativa",
+       "uc" : "Programa√ß√£o Imperativa",
        "year" : "1",
        "semester" : "2",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Segunda", "12", "00", "13", "00", "Ed1-0.20"],["TerÁa", "16", "00", "17", "00", "Ed2-0.03"]]
+       "slots" : [["Segunda", "12", "00", "13", "00", "Ed1-0.20"],["Ter√ßa", "16", "00", "17", "00", "Ed2-0.03"]]
    },
    {
-       "uc" : "ProgramaÁ„o Imperativa",
+       "uc" : "Programa√ß√£o Imperativa",
        "year" : "1",
        "semester" : "2",
        "type_class" : "TP",
@@ -104,7 +104,7 @@
        "slots" : [["Quarta", "11", "00", "13", "00", "Ed1-2.22"]]
    },
    {
-       "uc" : "ProgramaÁ„o Imperativa",
+       "uc" : "Programa√ß√£o Imperativa",
        "year" : "1",
        "semester" : "2",
        "type_class" : "TP",
@@ -112,7 +112,7 @@
        "slots" : [["Segunda", "09", "00", "11", "00", "Ed1-1.18"]]
    },
    {
-       "uc" : "ProgramaÁ„o Imperativa",
+       "uc" : "Programa√ß√£o Imperativa",
        "year" : "1",
        "semester" : "2",
        "type_class" : "TP",
@@ -120,7 +120,7 @@
        "slots" : [["Quarta", "11", "00", "13", "00", "Ed1-2.24"]]
    },
    {
-       "uc" : "Sistemas de ComputaÁ„o",
+       "uc" : "Sistemas de Computa√ß√£o",
        "year" : "1",
        "semester" : "2",
        "type_class" : "PL",
@@ -128,7 +128,7 @@
        "slots" : [["Segunda", "09", "00", "11", "00", "Ed1-1.27"]]
    },
    {
-       "uc" : "Sistemas de ComputaÁ„o",
+       "uc" : "Sistemas de Computa√ß√£o",
        "year" : "1",
        "semester" : "2",
        "type_class" : "PL",
@@ -136,7 +136,7 @@
        "slots" : [["Quinta", "09", "00", "11", "00", "Ed1-1.27"]]
    },
    {
-       "uc" : "Sistemas de ComputaÁ„o",
+       "uc" : "Sistemas de Computa√ß√£o",
        "year" : "1",
        "semester" : "2",
        "type_class" : "PL",
@@ -144,15 +144,15 @@
        "slots" : [["Segunda", "09", "00", "11", "00", "Ed3-2.01"]]
    },
    {
-       "uc" : "Sistemas de ComputaÁ„o",
+       "uc" : "Sistemas de Computa√ß√£o",
        "year" : "1",
        "semester" : "2",
        "type_class" : "PL",
        "shift" : "4",
-       "slots" : [["TerÁa", "09", "00", "11", "00", "Ed1-1.18"]]
+       "slots" : [["Ter√ßa", "09", "00", "11", "00", "Ed1-1.18"]]
    },
    {
-       "uc" : "Sistemas de ComputaÁ„o",
+       "uc" : "Sistemas de Computa√ß√£o",
        "year" : "1",
        "semester" : "2",
        "type_class" : "T",
@@ -160,7 +160,7 @@
        "slots" : [["Segunda", "11", "00", "12", "00", "Ed1-0.20"],["Quarta", "09", "00", "10", "00", "Ed2-0.01"]]
    },
    {
-       "uc" : "AutÛmatos e Linguagens Formais",
+       "uc" : "Aut√≥matos e Linguagens Formais",
        "year" : "2",
        "semester" : "2",
        "type_class" : "T",
@@ -168,7 +168,7 @@
        "slots" : [["Quinta", "11", "00", "13", "00", "Ed1-0.04"]]
    },
    {
-       "uc" : "AutÛmatos e Linguagens Formais",
+       "uc" : "Aut√≥matos e Linguagens Formais",
        "year" : "2",
        "semester" : "2",
        "type_class" : "TP",
@@ -176,7 +176,7 @@
        "slots" : [["Sexta", "14", "00", "16", "00", "Ed1-2.07"]]
    },
    {
-       "uc" : "C·lculo de Programas",
+       "uc" : "C√°lculo de Programas",
        "year" : "2",
        "semester" : "2",
        "type_class" : "T",
@@ -184,23 +184,23 @@
        "slots" : [["Segunda", "16", "00", "18", "00", "Ed2-0.03"]]
    },
    {
-       "uc" : "C·lculo de Programas",
+       "uc" : "C√°lculo de Programas",
        "year" : "2",
        "semester" : "2",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["TerÁa", "14", "00", "16", "00", "Ed3-2.04"]]
+       "slots" : [["Ter√ßa", "14", "00", "16", "00", "Ed3-2.04"]]
    },
    {
-       "uc" : "C·lculo de Programas",
+       "uc" : "C√°lculo de Programas",
        "year" : "2",
        "semester" : "2",
        "type_class" : "TP",
        "shift" : "2",
-       "slots" : [["TerÁa", "16", "00", "18", "00", "Ed1-2.27"]]
+       "slots" : [["Ter√ßa", "16", "00", "18", "00", "Ed1-2.27"]]
    },
    {
-       "uc" : "LaboratÛrio de Algoritmia II",
+       "uc" : "Laborat√≥rio de Algoritmia II",
        "year" : "2",
        "semester" : "2",
        "type_class" : "PL",
@@ -208,7 +208,7 @@
        "slots" : [["Segunda", "14", "00", "16", "00", "Ed7-0.08"]]
    },
    {
-       "uc" : "LaboratÛrio de Algoritmia II",
+       "uc" : "Laborat√≥rio de Algoritmia II",
        "year" : "2",
        "semester" : "2",
        "type_class" : "PL",
@@ -216,7 +216,7 @@
        "slots" : [["Segunda", "14", "00", "16", "00", "Ed7-0.07"]]
    },
    {
-       "uc" : "ProgramaÁ„o Orientada aos Objetos",
+       "uc" : "Programa√ß√£o Orientada aos Objetos",
        "year" : "2",
        "semester" : "2",
        "type_class" : "PL",
@@ -224,7 +224,7 @@
        "slots" : [["Quarta", "14", "00", "16", "00", "Ed2-1.15"]]
    },
    {
-       "uc" : "ProgramaÁ„o Orientada aos Objetos",
+       "uc" : "Programa√ß√£o Orientada aos Objetos",
        "year" : "2",
        "semester" : "2",
        "type_class" : "PL",
@@ -232,7 +232,7 @@
        "slots" : [["Quinta", "14", "00", "16", "00", "Ed2-2.03"]]
    },
    {
-       "uc" : "ProgramaÁ„o Orientada aos Objetos",
+       "uc" : "Programa√ß√£o Orientada aos Objetos",
        "year" : "2",
        "semester" : "2",
        "type_class" : "T",
@@ -272,7 +272,7 @@
        "slots" : [["Quinta", "16", "00", "18", "00", "Ed2-0.07"]]
    },
    {
-       "uc" : "¡lgebra Universal e Categorias",
+       "uc" : "√Ålgebra Universal e Categorias",
        "year" : "2",
        "semester" : "2",
        "type_class" : "T",
@@ -280,23 +280,23 @@
        "slots" : [["Quarta", "11", "00", "13", "00", "Ed1-0.20"]]
    },
    {
-       "uc" : "¡lgebra Universal e Categorias",
+       "uc" : "√Ålgebra Universal e Categorias",
        "year" : "2",
        "semester" : "2",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["TerÁa", "16", "00", "18", "00", "Ed1-1.16"]]
+       "slots" : [["Ter√ßa", "16", "00", "18", "00", "Ed1-1.16"]]
    },
    {
-       "uc" : "¡lgebra Universal e Categorias",
+       "uc" : "√Ålgebra Universal e Categorias",
        "year" : "2",
        "semester" : "2",
        "type_class" : "TP",
        "shift" : "2",
-       "slots" : [["TerÁa", "14", "00", "16", "00", "Ed3-1.03"]]
+       "slots" : [["Ter√ßa", "14", "00", "16", "00", "Ed3-1.03"]]
    },
    {
-       "uc" : "¡lgebra Universal e Categorias",
+       "uc" : "√Ålgebra Universal e Categorias",
        "year" : "2",
        "semester" : "2",
        "type_class" : "TP",
@@ -304,7 +304,7 @@
        "slots" : [["Quarta", "14", "00", "16", "00", "Ed1-1.22"]]
    },
    {
-       "uc" : "ComputaÁ„o Gr·fica",
+       "uc" : "Computa√ß√£o Gr√°fica",
        "year" : "3",
        "semester" : "2",
        "type_class" : "PL",
@@ -312,7 +312,7 @@
        "slots" : [["Quinta", "11", "00", "13", "00", "Ed1-1.24"]]
    },
    {
-       "uc" : "ComputaÁ„o Gr·fica",
+       "uc" : "Computa√ß√£o Gr√°fica",
        "year" : "3",
        "semester" : "2",
        "type_class" : "PL",
@@ -320,7 +320,7 @@
        "slots" : [["Quarta", "11", "00", "13", "00", "Ed1-1.05"]]
    },
    {
-       "uc" : "ComputaÁ„o Gr·fica",
+       "uc" : "Computa√ß√£o Gr√°fica",
        "year" : "3",
        "semester" : "2",
        "type_class" : "PL",
@@ -328,15 +328,15 @@
        "slots" : [["Quinta", "11", "00", "13", "00", "Ed1-2.14"]]
    },
    {
-       "uc" : "ComputaÁ„o Gr·fica",
+       "uc" : "Computa√ß√£o Gr√°fica",
        "year" : "3",
        "semester" : "2",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["TerÁa", "11", "00", "13", "00", "Ed1-2.27"]]
+       "slots" : [["Ter√ßa", "11", "00", "13", "00", "Ed1-2.27"]]
    },
    {
-       "uc" : "InteraÁ„o e ConcorrÍncia",
+       "uc" : "Intera√ß√£o e Concorr√™ncia",
        "year" : "3",
        "semester" : "2",
        "type_class" : "T",
@@ -344,7 +344,7 @@
        "slots" : [["Sexta", "11", "00", "13", "00", "Ed1-2.07"]]
    },
    {
-       "uc" : "InteraÁ„o e ConcorrÍncia",
+       "uc" : "Intera√ß√£o e Concorr√™ncia",
        "year" : "3",
        "semester" : "2",
        "type_class" : "TP",
@@ -352,7 +352,7 @@
        "slots" : [["Quarta", "09", "00", "11", "00", "Ed1-0.22"]]
    },
    {
-       "uc" : "ProgramaÁ„o Concorrente",
+       "uc" : "Programa√ß√£o Concorrente",
        "year" : "3",
        "semester" : "2",
        "type_class" : "PL",
@@ -360,7 +360,7 @@
        "slots" : [["Segunda", "09", "00", "11", "00", "Ed2-0.17"]]
    },
    {
-       "uc" : "ProgramaÁ„o Concorrente",
+       "uc" : "Programa√ß√£o Concorrente",
        "year" : "3",
        "semester" : "2",
        "type_class" : "PL",
@@ -368,7 +368,7 @@
        "slots" : [["Sexta", "09", "00", "11", "00", "Ed1-2.19"]]
    },
    {
-       "uc" : "ProgramaÁ„o Concorrente",
+       "uc" : "Programa√ß√£o Concorrente",
        "year" : "3",
        "semester" : "2",
        "type_class" : "T",
@@ -384,15 +384,15 @@
        "slots" : [["Quarta", "14", "00", "16", "00", "Ed6-3.02"]]
    },
    {
-       "uc" : "Sem‚ntica das Linguagens de ProgramaÁ„o",
+       "uc" : "Sem√¢ntica das Linguagens de Programa√ß√£o",
        "year" : "3",
        "semester" : "2",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["TerÁa", "09", "00", "11", "00", "Ed1-0.04"]]
+       "slots" : [["Ter√ßa", "09", "00", "11", "00", "Ed1-0.04"]]
    },
    {
-       "uc" : "Sem‚ntica das Linguagens de ProgramaÁ„o",
+       "uc" : "Sem√¢ntica das Linguagens de Programa√ß√£o",
        "year" : "3",
        "semester" : "2",
        "type_class" : "TP",
@@ -400,15 +400,15 @@
        "slots" : [["Segunda", "11", "00", "13", "00", "Ed1-2.25"]]
    },
    {
-       "uc" : "Teoria de N˙meros Computacional",
+       "uc" : "Teoria de N√∫meros Computacional",
        "year" : "3",
        "semester" : "2",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["TerÁa", "14", "00", "16", "00", "Ed1-0.22"]]
+       "slots" : [["Ter√ßa", "14", "00", "16", "00", "Ed1-0.22"]]
    },
    {
-       "uc" : "Teoria de N˙meros Computacional",
+       "uc" : "Teoria de N√∫meros Computacional",
        "year" : "3",
        "semester" : "2",
        "type_class" : "TP",
@@ -416,7 +416,7 @@
        "slots" : [["Sexta", "09", "00", "11", "00", "Ed6-3.71"]]
    },
    {
-       "uc" : "Teoria de N˙meros Computacional",
+       "uc" : "Teoria de N√∫meros Computacional",
        "year" : "3",
        "semester" : "2",
        "type_class" : "TP",
