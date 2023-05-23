@@ -2,7 +2,7 @@ import pandas as pd
 
 from schedule.solver import student_matrices
 from schedule.solver.restrictions import restrictions
-from schedule.parser import parser_schedule, parser_students, parser_to_json
+from schedule.parser import parser_schedule, parser_students, parser_to_json, parser_csv_ucs
 from schedule.analytics import overlap, distribution, workload, roomsocupation
 
 from pprint import pprint
@@ -122,6 +122,8 @@ def main():
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
         
         parser_to_json.convert_A_to_JSON(A, P, S, rooms_per_slot, solver)
+        parser_csv_ucs.parser_csv_ucs(solver, P)
+
         for student in A:#['A94447', 'A93646', 'A95361', 'A95847']:
             for year in A[student]:
                 for semester in A[student][year]:
