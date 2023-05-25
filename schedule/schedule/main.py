@@ -24,21 +24,20 @@ def read_ucs_data():
     return uc_data
 
 
-
+'''
 def parser(opt):
-    '''
+    
     This function removes the spaces from the number input and converts aXXXXX or only XXXXX to AXXXXX which is our dictionary key.
-    '''
+    
     res = (opt.replace(" ", "")).upper()
     if res[0] != 'A':
         res = "A" + res
     return res
 
-
 def menu(solver, A, S, students_data, rooms_per_slot, rooms_capacity, semester):
-    '''
+    
     This function show for the cliente a menu with our analytics functions
-    '''
+    
     
     print("\n\n\n\nDATA ANALYSIS MENU")
 
@@ -86,7 +85,7 @@ def menu(solver, A, S, students_data, rooms_per_slot, rooms_capacity, semester):
             pprint(overlap.calculate_number_of_conflicts(solver, A, students_data, semester))
         elif option == 7:
             pprint(distribution.allocated_number_per_uc(students_data)[0])
-
+'''
 
 
 
@@ -124,34 +123,13 @@ def main():
         parser_to_json.convert_A_to_JSON(A, P, S, rooms_per_slot, solver)
         parser_csv_ucs.parser_csv_ucs(solver, P)
 
-        for student in A:#['A94447', 'A93646', 'A95361', 'A95847']:
-            for year in A[student]:
-                for semester in A[student][year]:
-                    for uc in A[student][year][semester]:
-                        for type_class in A[student][year][semester][uc]:
-                            for shift in A[student][year][semester][uc][type_class]:
-                                for slot in A[student][year][semester][uc][type_class][shift]:
-                                    if ( solver.Value(A[student][year][semester][uc][type_class][shift][slot]) == 1):
-                                        slots_at_one = []
-                                        for slot in A[student][year][semester][uc][type_class][shift]:
-                                            if( solver.Value(A[student][year][semester][uc][type_class][shift][slot]) == 1):
-                                                slots_at_one.append(slot)
-                                        #print("Uc: ", uc)
-                                        #print("Tipo: ", type_class)
-                                        #print("Turno: ", shift)
-                                        #print("Slot:", slots_at_one)
-                                        #print("Alocado")
-                                        break
-            break
-
-        menu(solver, A, S, students_data, rooms_per_slot, rooms_capacity, semester)
+        #['A94447', 'A93646', 'A95361', 'A95847']:
+            
+        #menu(solver, A, S, students_data, rooms_per_slot, rooms_capacity, semester)
     else:
         print("No solution found")
     
     
-    
-
-
 
 if __name__ == "__main__":
     main()
