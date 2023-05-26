@@ -89,7 +89,8 @@ def shifts_distribution(info):
 			shift = dic['shift']
 			if f"{type_class}{shift}" not in res[uc_name]:
 				res[uc_name][f"{type_class}{shift}"] = 1
-			res[uc_name][f"{type_class}{shift}"] += 1
+			else:
+				res[uc_name][f"{type_class}{shift}"] += 1
 
 
 	pprint(res)
@@ -126,11 +127,6 @@ def menu():
 		json_data = f.read()
 
 	info = json.loads(json_data)
-
-
-	for student in info:
-		print(info[student])
-		print("\n")
 
 
 	print("\n\n\n\nDATA ANALYSIS MENU")
