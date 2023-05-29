@@ -3,11 +3,10 @@ import Modal from 'react-modal'
 
 import UcEntry from './UcEntry';
 
-export default function Trades( {studentNr, events} ){
+export default function Trades( {studentNr, events, getSchedule} ){
     const axios = require('axios');
     const [isOpen, setIsOpen] = useState(false);
     const [shiftTrade, setShiftTrade] = useState([]);
-    console.log(shiftTrade);
 
     const customStyles = {
         overlay: {
@@ -33,9 +32,10 @@ export default function Trades( {studentNr, events} ){
         let params = {studentNr: studentNr, trades:shiftTrade};
         console.log(shiftTrade)
         axios.put('api/put/updateJson', {params:params})
-             .then(response => console.log(response))
+             .then(response => {console.log(response); getSchedule();})
              .catch(error => console.log(error));
-        setShiftTrade([])
+        setShiftTrade([]);
+
     }
 
     return(
@@ -66,7 +66,7 @@ export default function Trades( {studentNr, events} ){
                 }
                 <div className='w-full h-auto mt-1 flex justify-center'>
                     <button className='z-10 flex w-1/3 h-auto mt-3 pt-2 text-white font-bold pb-2 justify-center bg-blue-500 hover:bg-blue-600 hover:duration-300 rounded-3xl'
-                            onClick={updateJson}>
+                            onClick={(e) => {updateJson()}}>
                         Submit
                     </button>
                 </div>

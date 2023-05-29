@@ -1,8 +1,9 @@
 import Sidebar from "@/components/Sidebar";
 import Schedule from '@/components/schedule/calendar/Schedule';
 import Trades from "@/components/schedule/trades/Trades";
+import Head from "next/head";
 
-import { useState } from 'react';
+import {useState} from 'react';
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
@@ -42,14 +43,14 @@ function handleEvents(data) {
     lesson.slots.map((slot) => {
       let dates = getDates(slot) ;
       let event = {
-        "title" : lesson.uc + " - " + lesson.type_class + lesson.shift,
+        "title" : lesson.type_class + lesson.shift + " - " + lesson.uc + " - " + slot[5],
         "year": lesson.year,
         "semester": lesson.semester,
         "uc": lesson.uc,
         "type_class": lesson.type_class,
         "shift": lesson.shift,
         "allDay": false,
-        "overlap": slot[5],
+        "overlap": slot[6],
         "start": dates.start,
         "end": dates.end
       };
@@ -68,10 +69,9 @@ export default function BackofficeSchedule(){
   const getSchedule = () => {
     axios.get('api/get/'+studentNr)
     .then(response => {
-      //console.log(response.data)
       let evts = handleEvents(response.data);
       setEvt(evts);
-      //console.log({"200": "Ok"})
+      console.log({"200": "Ok"})
     })
     .catch((error) =>{
       setEvt([])
@@ -84,6 +84,11 @@ export default function BackofficeSchedule(){
 
   return(
       <main className='h-screen bg-white '>
+        <Head>
+          <title>NECChange</title>
+          <link rel="icon" href="logos/necc-blue.svg" />
+
+        </Head>
         <Sidebar />
         <div className='ml-64 pt-8'>
           <div className='w-full h-auto'>
@@ -98,7 +103,7 @@ export default function BackofficeSchedule(){
                     onClick={getSchedule}>
               Search
             </button>
-            <Trades studentNr={studentNr} events={evt}/>
+            <Trades studentNr={studentNr} events={evt} getSchedule={getSchedule}/>
           </div>
           <Schedule events={evt} />
         </div>

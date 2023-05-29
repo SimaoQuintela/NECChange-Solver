@@ -1,3 +1,4 @@
+import os
 from schedule.analytics import overlap
 
 
@@ -68,7 +69,14 @@ def convert_A_to_JSON(A, P, S, rooms_per_slot, solver):
     tabbing_sec = " " * 10
     tabbing_info = " " * 13
     buffer = "{\n"
-    file = open("../../web/public/data/alocation.json", "w")
+
+    if(os.path.relpath(__file__) == "parser/parser_to_json.py"):
+        path = "../../web/public/data/alocation.json"
+    else:
+        path = "./public/data/alocation.json"
+        
+
+    file = open(path, "w")
 
     days = {
             1: "Segunda",
@@ -137,7 +145,7 @@ def convert_A_to_JSON(A, P, S, rooms_per_slot, solver):
 
 
 
-def convert_S_to_JSON(S):
+def convert_S_to_JSON(S, rooms_per_slot):
     '''
     This function returns a JSON file with the schedule information
     '''
@@ -152,7 +160,13 @@ def convert_S_to_JSON(S):
             5: "Sexta"
     }
 
-    file = open("../../web/public/data/schedule.json", "w")
+    if(os.path.relpath(__file__) == "parser/parser_to_json.py"):
+        path = "../../web/public/data/schedule.json"
+    else:
+        path = "./public/data/schedule.json"
+        
+
+    file = open(path, "w")
 
     for year in S:
         for semester in S[year]:
@@ -181,7 +195,10 @@ def convert_S_to_JSON(S):
                                     slot = next_slot(slot)
                                 final_slot = slot
                                 dayf, (hourf, minutesf) = final_slot
-                                slots_buffer += f"[\"{days[slot_init[0]]}\", \"{houri}\", \"{minutesi}\", \"{hourf}\", \"{minutesf}\"],"
+                                aux = [dic for dic in rooms_per_slot[slot_init]]
+                                room = search_room(uc, type_class, shift, aux)
+                                room_str = f"Ed{room[0]}-{room[1]}"
+                                slots_buffer += f"[\"{days[slot_init[0]]}\", \"{one_digit_convert(houri)}\", \"{one_digit_convert(minutesi)}\", \"{one_digit_convert(hourf)}\", \"{one_digit_convert(minutesf)}\", \"{room_str}\"],"
                         buffer += slots_buffer
                         buffer = buffer[:-1]
                         buffer += "]\n   },\n"
