@@ -27,13 +27,21 @@ export default function Schedule({ events }) {
         max={maxDate}
         events={events}
         eventPropGetter={(event) => {
-          let color=""
+          console.log(event)
+          let color="";
           if(event.overlap === true){
-            color = "#A0A0A0"
+              color = "#A0A0A0";
           } else {
-            if(event.year === "1") color = "#0066CC";
-            else if(event.year === "2") color = "#ff291d"
-            else color = "#4C9900";
+              if(event.year === "1"){
+                  if(event.type_class === "T") color = "#0066CC";
+                  else color = "#3f6bcc";
+              } else if(event.year === "2"){
+                  if(event.type_class === "T") color = "#ff291d";
+                  else color = "#ff540e";
+              } else if(event.year === "3"){
+                  if(event.type_class === "T") color = "#4C9900";
+                  else color = "#00990e";
+              }
           }
 
           const newStyle = {
