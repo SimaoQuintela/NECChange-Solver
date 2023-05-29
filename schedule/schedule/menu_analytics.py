@@ -44,37 +44,23 @@ def sort_aux(s):
 
 
 
-def overlaps_per_student(info):
+def overlaps_per_student(info, student):
 	res = {}
-	num = denom = 0
 
-	for student in info:
-		if int(student[1:]) not in res:
-			res[int(student[1:])] = []
-		for dic in info[student]:
-			uc_name = dic['uc']
-			type_class = dic['type_class']
-			shift = dic['shift']
-			slots = dic['slots']
-			for l in slots:
-				if True in l:
-					buf = f"{l[0]} / {l[1]}:{l[2]} - {l[3]}:{l[4]} / {uc_name} / {type_class}{shift}"
-					res[int(student[1:])].append(buf)
+	if int(student[1:]) not in res:
+		res[int(student[1:])] = []
+	for dic in info[student]:
+		uc_name = dic['uc']
+		type_class = dic['type_class']
+		shift = dic['shift']
+		slots = dic['slots']
+		for l in slots:
+			if True in l:
+				buf = f"{l[0]} / {l[1]}:{l[2]} - {l[3]}:{l[4]} / {uc_name} / {type_class}{shift}"
+				res[int(student[1:])].append(buf)
 
-	for student in res:
-		res[student].sort(key = sort_aux)
-
-		if res[student] != []:
-			num += 1
-		denom += 1
-	
-
-
-
+	res[int(student[1:])].sort(key = sort_aux)
 	pprint(res)
-	print(f"\n{num} de {denom} alunos ({round(num/denom * 100,2)}%) possuem conflitos no seu horário.\n")
-
-
 
 def shifts_distribution(info):
 
@@ -123,7 +109,7 @@ def allocated_number(info):
 
 def menu():
 
-	with open('..\\..\\web\\public\\data\\alocation.json') as f:
+	with open('../../web/public/data/alocation.json') as f:
 		json_data = f.read()
 
 	info = json.loads(json_data)
@@ -136,11 +122,12 @@ def menu():
 		print("2 - Shifts distribution.")
 		print("3 - Overlaps per shift.")
 		print("4 - Students allocated number per UC.")
-		print("9 - Leave Menu.\n\n") 
+		print("5 - Leave Menu.\n\n") 
 		option = int(input("Option: "))
 		if option >= 5 or option == 0: break
 		elif option == 1:
-			overlaps_per_student(info)
+			student_nr = input("Enter student number, e.g: A94447: ")
+			overlaps_per_student(info, student_nr)
 		elif option == 2:
 			shifts_distribution(info)
 		elif option == 3:
