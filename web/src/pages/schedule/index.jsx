@@ -1,6 +1,7 @@
 import Sidebar from "@/components/Sidebar";
 import Schedule from '@/components/schedule/calendar/Schedule';
 import Trades from "@/components/schedule/trades/Trades";
+import Head from "next/head";
 
 import {useState} from 'react';
 
@@ -10,9 +11,10 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 function getDates(slot){
   let date = new Date();
   date.toLocaleString('pt', { timeZone: 'Europe/Lisbon' });
+
   let year = date.getFullYear();
-  
   let month = date.getMonth()+1;
+
   if(month < 10){
     month = "0"+month;
   }
@@ -26,14 +28,34 @@ function getDates(slot){
   }
   // dia da aula = (dia do mês + dia da aula - dia da semana atual) % numero de dias do mês
   let days_in_month = new Date(year, month,0).getDate();
-  let day = (date.getDate()+ week[slot[0]] - date.getDay()) % days_in_month;
+  //let day = (date.getDate()+ week[slot[0]] - date.getDay()) % days_in_month;
+
+  let day = (date.getDate()+ week[slot[0]] - date.getDay())
+  if(day >= days_in_month){
+    day = (day%days_in_month);
+    if (day === 0){
+      day = days_in_month
+    } else {
+      if(day > 0){
+        month = date.getMonth() +2;
+        if(month < 10){
+          month = "0"+month;
+        }
+      }
+    }
+  }
+
   if(day < 10){
     day = "0"+day;
   }
+
+  console.log({"start": year+"-"+month+"-"+day + "T" + slot[1]+":"+ slot[2]});
+  console.log({"end" : year+"-"+month+"-"+day+"T"+slot[3]+":"+ slot[4]});
   let start = new Date(year+"-"+month+"-"+day + "T" + slot[1]+":"+ slot[2]);
   let end = new Date(year+"-"+month+"-"+day+"T"+slot[3]+":"+ slot[4]);
 
   return {"start": start, "end": end}
+
 }
 
 function handleEvents(data) {
@@ -41,6 +63,7 @@ function handleEvents(data) {
   Object.values(data.classes).map((lesson) => {
     lesson.slots.map((slot) => {
       let dates = getDates(slot) ;
+      console.log(dates)
       let event = {
         "title" : lesson.type_class + lesson.shift + " - " + lesson.uc + " - " + slot[5],
         "year": lesson.year,
@@ -83,6 +106,11 @@ export default function BackofficeSchedule(){
 
   return(
       <main className='h-screen bg-white '>
+        <Head>
+          <title>NECChange</title>
+          <link rel="icon" href="logos/necc-blue.svg" />
+
+        </Head>
         <Sidebar />
         <div className='ml-64 pt-8'>
           <div className='w-full h-auto'>

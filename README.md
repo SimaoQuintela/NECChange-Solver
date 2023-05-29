@@ -4,16 +4,13 @@ Projeto Final de curso
 
 ```
 Dependencies:
-
 ---- Backend ----
+Python
 Poetry
-pip install poetry
 
 ---- Frontend ----
-Nodejs and npm
-Arch Linux:
-~ sudo pacman -S nodejs npm
-Windows or MacOS:
-Download directly from the website
+Nodejs
 
+
+See Guião de Utilização at docs folder to setup this project.
 ```

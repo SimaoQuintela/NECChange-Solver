@@ -1,77 +1,45 @@
-import React, { useRef, useState } from "react";
+// UploadButton.jsx
+import React, { useRef, useState } from 'react';
 
-const UploadButton = ({ onFilesSelect }) => {
+const UploadButton = ({ label, onFilesSelect }) => {
   const inputRef = useRef(null);
-  const [files, setFiles] = useState([]);
+  const [fileName, setFileName] = useState('Click to browse...');
+  const [isFileSelected, setIsFileSelected] = useState(false);
 
   const handleFileSelect = (event) => {
     const selectedFiles = Array.from(event.target.files);
-    setFiles(selectedFiles);
-    onFilesSelect(selectedFiles); // call the callback with the selected files
-  };
-
-  const handleClick = () => {
-    inputRef.current.click();
+    onFilesSelect(selectedFiles);
+    if (selectedFiles.length > 0) {
+      setFileName(selectedFiles[0].name);
+      setIsFileSelected(true);
+    } else {
+      setIsFileSelected(false);
+    }
   };
 
   return (
-    <div className="w-full h-full bg-white rounded-lg">
-      <label
-        htmlFor="file-upload"
-        className="w-full h-full flex flex-col items-center justify-center cursor-pointer"
-      >
-        <svg
-          className="w-12 h-12 mx-auto text-gray-400"
-          stroke="currentColor"
-          fill="none"
-          viewBox="0 0 48 48"
-          aria-hidden="true"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 8v28a4 4 0 004 4h20a4 4 0 004-4V8a4 4 0 00-4-4H16a4 4 0 00-4 4z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M16 12h16m-16 4h16m-7 4h7m-7 4h7m-16 4h16"
-          />
+    <label className="w-96 h-80 border-2 border-blue-300 border-dashed rounded-lg flex flex-col items-center justify-center cursor-pointer bg-blue-50 hover:bg-blue-100">
+      <div className="flex flex-col items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-16 h-16 mb-4 text-blue-400">
+          <path d="M14 13v4H10v-4H7l5-5 5 5h-3zm-4 6v2H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2h1"></path>
         </svg>
-        {files.length > 0 ? (
-          <div className="mt-1">
-            {files.map((file) => (
-              <div key={file.name}>
-                <span>{file.name}</span>
-              </div>
-            ))}
-          </div>
+        {isFileSelected ? (
+          <>
+            <p className="mb-2 text-sm text-blue-500 font-semibold">{fileName}</p>
+            <p className="text-xs text-blue-500 opacity-0">CSV</p>
+          </>
         ) : (
-          <span className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            <button
-              type="button"
-              className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 focus:outline-none focus:underline transition ease-in-out duration-150"
-            >
-              Upload a file
-            </button>{" "}
-            (click to upload)
-          </span>
+          <>
+            <p className="mb-2 text-gray-500 dark:text-gray-400">
+              Insert a file {''}
+              <span className="font-semibold text-gray-900 underline dark:text-white decoration-indigo-500"> {label}</span>
+            </p>
+            <p className="text-xs text-blue-500">Only accepts .CSV files</p>
+          </>
         )}
-        <span className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-          All pdf, doc, csv, xlsx types are supported
-        </span>
-      </label>
-      <input
-        id="file-upload"
-        ref={inputRef}
-        type="file"
-        className="hidden"
-        multiple
-        onChange={handleFileSelect}
-      />
-    </div>
+      </div>
+      <input ref={inputRef} type="file" onChange={handleFileSelect} className="absolute inset-0 w-full h-full opacity-0" style={{ zIndex: -1 }} />
+    </label>
   );
 };
 

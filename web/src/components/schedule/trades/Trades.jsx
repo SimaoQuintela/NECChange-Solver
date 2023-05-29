@@ -7,7 +7,6 @@ export default function Trades( {studentNr, events, getSchedule} ){
     const axios = require('axios');
     const [isOpen, setIsOpen] = useState(false);
     const [shiftTrade, setShiftTrade] = useState([]);
-    console.log(shiftTrade);
 
     const customStyles = {
         overlay: {
@@ -33,10 +32,10 @@ export default function Trades( {studentNr, events, getSchedule} ){
         let params = {studentNr: studentNr, trades:shiftTrade};
         console.log(shiftTrade)
         axios.put('api/put/updateJson', {params:params})
-             .then(response => console.log(response))
+             .then(response => {console.log(response); getSchedule();})
              .catch(error => console.log(error));
-        setShiftTrade([])
-        getSchedule();
+        setShiftTrade([]);
+
     }
 
     return(
