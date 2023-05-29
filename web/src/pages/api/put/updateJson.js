@@ -26,34 +26,10 @@ function check_overlap(slots_class, slot, ){
     )
 }
 
-
-/*
-function trade_uc(trade, studentNr, ucToTrade, shiftNumberToTrade){
-
-
-    //    let slots_data_to = schedule.filter((uc) => uc.uc === ucToTrade.uc && uc.type_class === ucToTrade.type_class && uc.shift === shiftNumberToTrade);
-    let diff_classes = alocation[studentNr].filter((student_classes) => student_classes.uc !== trade.uc && student_classes.type_class !== trade.type_class);
-
-
-
-
-}
-*/
 export default function handler(req, res) {
     const {studentNr, trades} = req.body.params;
     const fs = require('fs');
     const fileName = './public/data/alocation.json'
-
-    /*
-    trades.map((trade) =>{
-        let shiftNumberToTrade = trade.shift.at(trade.shift.length -1);
-        let ucToTrade = alocation[studentNr].filter((alocatedClass) => alocatedClass.uc === trade.uc && alocatedClass.type_class === trade.type_class).at(0);
-
-        trade_uc(trade, studentNr, ucToTrade, shiftNumberToTrade);
-
-
-    })
-    */
 
     trades.map((trade)=>{
         // we are assuming that there is no more than 9 shifts per class
