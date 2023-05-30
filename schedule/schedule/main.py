@@ -63,7 +63,7 @@ def main():
     status = solver.Solve(model)
     
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
-        
+
         parser_to_json.convert_A_to_JSON(A, P, S, rooms_per_slot, solver)
         parser_csv_ucs.parser_csv_ucs(solver, P)
 
