@@ -4,8 +4,6 @@ from pprint import pprint
 
 def overlaps_per_shift(info):
 	res = {}
-
-
 	for student in info:
 		for dic in info[student]:
 			uc_name = dic['uc']
@@ -19,9 +17,6 @@ def overlaps_per_shift(info):
 			for l in slots:
 				if True in l:
 					res[uc_name][f"{type_class}{shift}"] += 1
-
-
-				
 	pprint(res)
 
 	n = input("\n\nGet students numbers (y/n): ")

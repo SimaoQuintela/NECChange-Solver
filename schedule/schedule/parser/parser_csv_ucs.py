@@ -1,3 +1,5 @@
+import os
+
 def file_name_converter(uc):
 	'''
 	This function converts all the spaces of a string into the following char: _
@@ -18,12 +20,14 @@ def fill_csv(uc, info):
 		for shift in info[uc][type_class]:
 				buffer += f"\"{uc}-{type_class}{shift}\",\"{uc}-{type_class}{shift}\",\"\",\"\",S,\"\",N,\"\",\"\",\"\",\"\",\"\"\n"
 
-	path_shifts = "OutputCsvUcs/" + file_name_converter(uc) + "_turnos.csv"
+	if(os.path.relpath(__file__) == "parser/parser_csv_ucs.py"):
+		path_shifts = "OutputCsvUcs/" + file_name_converter(uc) + "_turnos.csv"
+	else:
+		path_shifts = "../schedule/schedule/OutputCsvUcs/" + file_name_converter(uc) + "_turnos.csv"
+
 	file_shifts = open(path_shifts, "w")
 	file_shifts.write(buffer)
 	file_shifts.close()
-
-
 
 	buffer = ""
 	for type_class in info[uc]:
@@ -31,10 +35,13 @@ def fill_csv(uc, info):
 			for student in info[uc][type_class][shift]:
 				buffer += f"\"{uc}-{type_class}{shift}\",\"{student}\",\"{student}\",\"{student}\",\".\"\n"
 
-	path_students = "OutputCsvUcs/" + file_name_converter(uc) + "_alunos.csv"
+	
+	if(os.path.relpath(__file__) == "parser/parser_csv_ucs.py"):
+		path_students = "OutputCsvUcs/" + file_name_converter(uc) + "_alunos.csv"
+	else:
+		path_students = "../schedule/schedule/OutputCsvUcs/" + file_name_converter(uc) + "_alunos.csv"
+	
 	file_students = open(path_students, "w")
-	#if uc == "Computação Gráfica":
-		#print(buffer)
 	file_students.write(buffer)
 	file_students.close()
 
