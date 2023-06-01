@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
-import Sidebar from '@/components/Sidebar';
-import styles from '@/styles/Home.module.css';
-import UploadButton from '../components/UploadButton';
-import Loader from '@/components/Loader';
+import { useState, useEffect } from "react";
+import Head from "next/head";
+import Sidebar from "@/components/Sidebar";
+import styles from "@/styles/Home.module.css";
+import UploadButton from "../components/UploadButton";
+import Loader from "@/components/Loader";
 
 export default function Home() {
   const [selectedFiles1, setSelectedFiles1] = useState(null);
@@ -11,11 +11,11 @@ export default function Home() {
   const [selectedFiles3, setSelectedFiles3] = useState(null);
 
   const [showUploadNotification, setShowUploadNotification] = useState(false);
-  const [showGenerateNotification, setShowGenerateNotification] = useState(false);
+  const [showGenerateNotification, setShowGenerateNotification] =
+    useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const [isLoadingGeneration, setIsLoadingGeneration] = useState(false);
-
 
   useEffect(() => {
     let timer;
@@ -32,47 +32,49 @@ export default function Home() {
 
   const handleUploadClick = () => {
     console.log("Upload button clicked");
-    [selectedFiles1, selectedFiles2, selectedFiles3].forEach((selectedFiles) => {
-      if (selectedFiles) {
-        const formData = new FormData();
-        Array.from(selectedFiles).forEach((file) => {
-          formData.append('file', file);
-        });
-
-        fetch('/api/upload', {
-          method: 'POST',
-          body: formData,
-        })
-          .then((response) => {
-            if (response.status === 200) {
-              console.log('Files uploaded successfully');
-              setShowUploadNotification(true);
-            } else {
-              setErrorMessage("Upload failed!");
-            }
-          })
-          .catch(error => {
-            console.error(error);
-            setErrorMessage("An error occurred during upload.");
+    [selectedFiles1, selectedFiles2, selectedFiles3].forEach(
+      (selectedFiles) => {
+        if (selectedFiles) {
+          const formData = new FormData();
+          Array.from(selectedFiles).forEach((file) => {
+            formData.append("file", file);
           });
+
+          fetch("/api/upload", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => {
+              if (response.status === 200) {
+                console.log("Files uploaded successfully");
+                setShowUploadNotification(true);
+              } else {
+                setErrorMessage("Upload failed!");
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+              setErrorMessage("An error occurred during upload.");
+            });
+        }
       }
-    });
+    );
   };
 
   const handleGenerateClick = () => {
     console.log("Generate button clicked");
     setIsLoadingGeneration(true);
-    fetch('/api/generate-schedule', { method: 'POST' })
+    fetch("/api/generate-schedule", { method: "POST" })
       .then((response) => {
         setIsLoadingGeneration(false);
         if (response.status === 200) {
-          console.log('main.py executed');
+          console.log("main.py executed");
           setShowGenerateNotification(true);
         } else {
           setErrorMessage("Generation failed!");
         }
       })
-      .catch(error => {
+      .catch((error) => {
         setIsLoadingGeneration(false);
         console.error(error);
         setErrorMessage("An error occurred during generation.");
@@ -89,18 +91,26 @@ export default function Home() {
       <Sidebar />
       <main className="pl-64 flex-grow flex flex-col items-center justify-center pt-12 h-screen space-y-4">
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-          Upload <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Files</span>
+          Upload{" "}
+          <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">
+            Files
+          </span>
         </h1>
         <p className="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
-          Files should have the .csv extension and follow the specified format in the user guide.
+          Files should have the .csv extension and follow the specified format
+          in the user guide.
         </p>
         <div className="flex space-x-4">
           <div>
-            <label className="block text-gray-700 font-bold mb-2">Schedule</label>
+            <label className="block text-gray-700 font-bold mb-2">
+              Schedule
+            </label>
             <UploadButton label="Schedule" onFilesSelect={setSelectedFiles1} />
           </div>
           <div>
-            <label className="block text-gray-700 font-bold mb-2">Students</label>
+            <label className="block text-gray-700 font-bold mb-2">
+              Students
+            </label>
             <UploadButton label="Students" onFilesSelect={setSelectedFiles2} />
           </div>
           <div>
@@ -108,13 +118,19 @@ export default function Home() {
             <UploadButton label="Rooms" onFilesSelect={setSelectedFiles3} />
           </div>
         </div>
-        <button onClick={handleUploadClick} className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+        <button
+          onClick={handleUploadClick}
+          className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+        >
           <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
             Upload
           </span>
         </button>
 
-        <button onClick={handleGenerateClick} className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+        <button
+          onClick={handleGenerateClick}
+          className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+        >
           <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
             Generate
           </span>
@@ -138,10 +154,7 @@ export default function Home() {
             {errorMessage}
           </div>
         )}
-        
       </main>
     </div>
   );
 }
-
-
