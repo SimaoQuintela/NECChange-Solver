@@ -2,10 +2,75 @@ import Sidebar from "@/components/Sidebar";
 import Schedule from '@/components/schedule/calendar/Schedule';
 import Trades from "@/components/schedule/trades/Trades";
 import Head from "next/head";
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import alocation from '../../../public/data/alocation.json';
+import axios from 'axios';
+import { saveAs } from 'file-saver';
 
-import {useState} from 'react';
+
+import {useState, useEffect} from 'react';
+
+import JSZip from 'jszip';
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
+
+const exportToPDF = () => {
+  const input = document.getElementById('calendarContainer');
+  html2canvas(input)
+      .then((canvas) => {
+          const imgData = canvas.toDataURL('image/png');
+          const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+          var width = pdf.internal.pageSize.getWidth();
+          var height = pdf.internal.pageSize.getHeight();
+
+          height = canvas.height * width / canvas.width;
+          
+          pdf.addImage(imgData, 'PNG', 0, 0, width, height); // parameters: data, format, x, y, width, height
+          pdf.save("download.pdf");  
+      });
+};
+
+
+
+
+const exportAllToPDF = async (studentList, setStudentNr, getScheduleFn) => {
+  const zip = new JSZip();
+
+  for (const studentNr of studentList) {
+    // Set the student number
+    setStudentNr(studentNr);
+
+    // Trigger the search
+    await getScheduleFn();
+
+    // Wait for the schedule to be displayed
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    const input = document.getElementById('calendarContainer');
+    const canvas = await html2canvas(input);
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+    var width = pdf.internal.pageSize.getWidth();
+    var height = pdf.internal.pageSize.getHeight();
+
+    height = canvas.height * width / canvas.width;
+
+    pdf.addImage(imgData, 'PNG', 0, 0, width, height); // parameters: data, format, x, y, width, height
+
+    // add the PDF data to the ZIP file
+    zip.file(`${studentNr}.pdf`, pdf.output('blob'));
+  }
+
+  // generate the ZIP file and trigger a download
+  zip.generateAsync({ type: 'blob' }).then((content) => {
+    saveAs(content, 'schedules.zip');
+  });
+};
+
+
+
+
 
 
 function getDates(slot){
@@ -61,25 +126,35 @@ function handleEvents(data) {
 }
 
 
-export default function BackofficeSchedule(){
+export default function BackofficeSchedule() {
   const [studentNr, setStudentNr] = useState('');
   const [evt, setEvt] = useState([]);
-  const axios = require('axios');
 
   const getSchedule = () => {
-    axios.get('api/get/'+studentNr)
-    .then(response => {
-      let evts = handleEvents(response.data);
-      setEvt(evts);
-      console.log({"200": "Ok"})
-    })
-    .catch((error) =>{
-      setEvt([])
-      if(error.response) console.log(error.response)
-      else if(error.request) console.log(error.request)
-      else console.log({"Error": error.message})
-      console.log(error.config)
-    } )
+    axios.get('api/get/' + studentNr)
+      .then(response => {
+        let evts = handleEvents(response.data);
+        setEvt(evts);
+        console.log({ "200": "Ok" });
+      })
+      .catch((error) => {
+        setEvt([]);
+        if (error.response) console.log(error.response);
+        else if (error.request) console.log(error.request);
+        else console.log({ "Error": error.message });
+        console.log(error.config);
+      });
+    console.log(studentNr);
+  };
+
+  useEffect(() => {
+    getSchedule();
+  }, [studentNr]);
+
+  const studentNumbers = Object.keys(alocation);
+
+  const exportAllSchedules = () => {
+    exportAllToPDF(studentNumbers, setStudentNr, getSchedule);
   };
 
   return(
@@ -106,6 +181,9 @@ export default function BackofficeSchedule(){
             <Trades studentNr={studentNr} events={evt} getSchedule={getSchedule}/>
           </div>
           <Schedule events={evt} />
+          <button className='bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg mt-2' onClick={exportToPDF}>Export to PDF</button>
+
+          <button className='bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg ' onClick={exportAllSchedules}>Export All to PDF</button>
         </div>
       </main>
   );

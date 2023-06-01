@@ -15,7 +15,7 @@ export default function Schedule({ events }) {
   maxDate.setHours(20,0,0);
 
   return(
-    <div className="myCustomHeight">
+    <div id="calendarContainer" className="myCustomHeight">
       <Calendar
         toolbar={false}
         localizer={localizer}
