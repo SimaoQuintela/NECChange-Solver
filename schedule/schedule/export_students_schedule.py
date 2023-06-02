@@ -8,6 +8,7 @@ def create_schedule(student_id, schedule_data):
     # Initialize the table
     days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
     times = [
+        "8h-9h",
         "9h-10h",
         "10h-11h",
         "11h-12h",
@@ -17,8 +18,10 @@ def create_schedule(student_id, schedule_data):
         "15h-16h",
         "16h-17h",
         "17h-18h",
+        "18h-19h",
+        "19h-20h",
     ]
-    table = [["" for _ in range(5)] for _ in range(9)]
+    table = [["" for _ in range(5)] for _ in range(12)]
     overlaps = {}
 
     # Get the schedule data for the student
@@ -31,12 +34,15 @@ def create_schedule(student_id, schedule_data):
         uc_years.add(uc_year)  # Add the year of the UC to the set
         for slot in entry["slots"]:
             day = days.index(slot[0])
-            start_time = int(slot[1]) - 9
-            end_time = int(slot[3]) - 9
+            start_time = int(slot[1]) - 8
+            end_time = int(slot[3]) - 8
             course = "".join(filter(str.isupper, entry["uc"]))
             type_class = entry["type_class"]
             shift = entry["shift"]
-            slot_info = f"{course} {type_class}{shift}"
+            room = slot[5]  # Room information
+            slot_info = (
+                f"{course} {type_class}{shift} ({room})"  # Modified slot information
+            )
 
             # Check for overlapping slots
             for i in range(start_time, end_time):
@@ -56,23 +62,23 @@ def create_schedule(student_id, schedule_data):
     # Create the table as a plot with increased size and colors
     fig, ax = plt.subplots(figsize=(12, 8))
     ax.axis("off")
-    cell_colors = [["white" for _ in range(5)] for _ in range(9)]
+    cell_colors = [["white" for _ in range(5)] for _ in range(12)]
     color_map = {
-        "1": "#FFCCCC",
-        "2": "#CCFFCC",
-        "3": "#CCCCFF",
+        "1": "#CCCCFF",
+        "2": "#FFCCCC",
+        "3": "#CCFFCC",
     }  # Color mapping for each year
     light_color_map = {
-        "1": "#FF4343",
-        "2": "#56FF56",
-        "3": "#5656ff",
+        "1": "#5656ff",
+        "2": "#FF4343",
+        "3": "#56FF56",
     }  # Lighter color mapping for TP and PL
     for entry in student_schedule:
         uc_year = int(entry["year"])
         for slot in entry["slots"]:
             day = days.index(slot[0])
-            start_time = int(slot[1]) - 9
-            end_time = int(slot[3]) - 9
+            start_time = int(slot[1]) - 8
+            end_time = int(slot[3]) - 8
             for i in range(start_time, end_time):
                 if (i, day) in overlaps:  # Check if the slot is overlapping
                     cell_colors[i][day] = "lightgray"  # Change the color to light gray
@@ -94,7 +100,7 @@ def create_schedule(student_id, schedule_data):
         colLabels=days,
         rowLabels=times,
     )
-    table.scale(1, 2)  # Increase the row height for better readability
+    table.scale(2, 2)  # Increase the row height for better readability
     table.auto_set_font_size(False)  # Disable automatic font size adjustment
 
     for cell in table.get_celld().values():
