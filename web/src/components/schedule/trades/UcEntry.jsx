@@ -16,14 +16,14 @@ export default function UcEntry({shift, uc, type_class, setShiftTrade}){
             .then( response =>
             {
                 setShifts(response.data.shifts);
-                console.log(response)
+                //console.log(response)
             })
             .catch(error => console.log(error));
     }, [axios, type_class, uc]);
 
-    function handleClick(shift){
+    function handleClick(shiftBeforeTrade, shift){
         setShiftTrade(shiftTrade => [...shiftTrade.filter( (element) => (element.uc !== uc && element.type_class.slice(0,-1) !== type_class)),
-                                     {uc:uc, type_class: type_class, shift: shift}]
+                                     {uc:uc, type_class: type_class, shift: shift, shiftBeforeTrade: shiftBeforeTrade}]
         );
     }
     
@@ -42,7 +42,14 @@ export default function UcEntry({shift, uc, type_class, setShiftTrade}){
 
                         shifts.map((shift, index)=>{
                             return(
-                                <button key={index} onClick={()=>{setIsOpen(!isOpen); setCurrentShift(shift); handleClick(shift)}} className='block text-sm text-black px-3 pb-1 pt-1 h-6 bg-gray-100 hover:bg-gray-300'>
+                                <button key={index} 
+                                        onClick={()=>{
+                                            let shiftBeforeTrade = currentShift;
+                                            setIsOpen(!isOpen);
+                                            setCurrentShift(shift);
+                                            handleClick(shiftBeforeTrade, shift)
+                                        }}
+                                        className='block text-sm text-black px-3 pb-1 pt-1 h-6 bg-gray-100 hover:bg-gray-300'>
                                     {shift}
                                 </button>
                             );

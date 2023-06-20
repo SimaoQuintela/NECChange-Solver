@@ -30,7 +30,7 @@ export default function Trades( {studentNr, events, getSchedule} ){
 
     function updateJson(){
         let params = {studentNr: studentNr, trades:shiftTrade};
-        console.log(shiftTrade)
+        //console.log(shiftTrade)
         axios.put('api/put/updateJson', {params:params})
              .then(response => {console.log(response); getSchedule();})
              .catch(error => console.log(error));

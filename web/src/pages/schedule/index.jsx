@@ -72,8 +72,8 @@ function getDates(slot) {
   }
 
 
-  console.log({ "start": year + "-" + month + "-" + day + "T" + slot[1] + ":" + slot[2] });
-  console.log({ "end": year + "-" + month + "-" + day + "T" + slot[3] + ":" + slot[4] });
+  //console.log({ "start": year + "-" + month + "-" + day + "T" + slot[1] + ":" + slot[2] });
+  //console.log({ "end": year + "-" + month + "-" + day + "T" + slot[3] + ":" + slot[4] });
 
   let start = new Date(year + "-" + month + "-" + day + "T" + slot[1] + ":" + slot[2]);
   let end = new Date(year + "-" + month + "-" + day + "T" + slot[3] + ":" + slot[4]);
@@ -87,7 +87,7 @@ function handleEvents(data) {
   Object.values(data.classes).map((lesson) => {
     lesson.slots.map((slot) => {
       let dates = getDates(slot);
-      console.log(dates);
+      //console.log(dates);
       let event = {
         title:
           lesson.type_class +

@@ -5,7 +5,7 @@ export default function handler(req, res) {
 
   try{
     if(Object.keys(alocation).includes(student.student_nr)){
-      console.log(alocation[student.student_nr])
+      //console.log(alocation[student.student_nr])
       let classes = alocation[student.student_nr]
       res.status(200).json({"classes": classes}) 
     } else {

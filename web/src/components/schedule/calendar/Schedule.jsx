@@ -27,7 +27,7 @@ export default function Schedule({ events }) {
         max={maxDate}
         events={events}
         eventPropGetter={(event) => {
-          console.log(event)
+          //console.log(event)
           let color="";
           if(event.overlap === true){
               color = "#A0A0A0";
