@@ -109,6 +109,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                 shift_number = int(len(list(S[year][semester][uc][type_class].keys())))
                 for shift in S[year][semester][uc][type_class]:
                     aux = int(allocated_number_of_uc / shift_number)
+                    #print(uc, type_class, shift, aux - int(allocated_number_of_uc*0.1))
                     model.Add(
                         sum(P[student][year][semester][uc][type_class][shift] for student in students_nr
                                                                             if year in years_per_student(student, students_data, S, semester)
@@ -120,7 +121,6 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
     
 
     # R05 - The number of students allocated to a class must be less or equal than the room's capacity (30% tolerance)
-    
     for slot in slots_generated:
         for year in S:
             for uc in S[year][semester]:
@@ -139,7 +139,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                                                                                                             and semester_per_uc(uc, S, year, semester) == semester
                                                                                                             and slot in A[student][year][semester][uc][type_class][shift])
                                                     <= 
-                                                    int(rooms_capacity[room]/0.7)
+                                                    int(rooms_capacity[room]/0.5)
                                                 )
     
     # R06 - O[student][slot] = | classes number in slot - 1 |

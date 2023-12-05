@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 solver/__pycache__
+students_schedule_png/
+year_semester_schedule_png/
+OutputCsvUcs/

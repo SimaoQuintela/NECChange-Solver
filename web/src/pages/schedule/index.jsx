@@ -190,14 +190,14 @@ export default function BackofficeSchedule() {
   };
 
   return (
-    <main className="h-screen bg-white ">
+    <main className="h-screen bg-slate-200 ">
       <Head>
         <title>NECChange</title>
         <link rel="icon" href="logos/necc-blue.svg" />
       </Head>
       <Sidebar />
-      <div className="ml-64 pt-8">
-        <div className="w-full h-auto">
+      <div className="ml-64">
+        <div className="w-full h-auto p-8">
           <input
             type="text"
             className="rounded-lg"
@@ -217,8 +217,9 @@ export default function BackofficeSchedule() {
             events={evt}
             getSchedule={getSchedule}
           />
+          <Schedule events={evt} />
         </div>
-        <Schedule events={evt} />
+        
         {/* <button
           className="bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg mt-2"
           onClick={exportToPDF}

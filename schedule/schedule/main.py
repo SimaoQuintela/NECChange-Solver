@@ -37,8 +37,8 @@ def main():
     That's the main function. Here we can get all the schedules generated and also some analyzes about them.
     '''    
     # Semester in which we are generating the schedule
-    #semester = int(input("Gerar horários para o semestre: "))
-    semester = 2
+    semester = int(input("Gerar horários para o semestre: "))
+    semester = 1
 
     students_data = parser_students.read_students_info()
     ucs_data = read_ucs_data()
