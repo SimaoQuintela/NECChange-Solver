@@ -1,3 +1,8 @@
 __pycache__/
 *.pyc
 solver/__pycache__
+students_schedule_png/
+year_semester_schedule_png/
+OutputCsvUcs/
+data/uni_data/inscritos_ano23_24.csv
+data/uni_data/horario23_24.csv

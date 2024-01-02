@@ -3,34 +3,17 @@ import Schedule from "@/components/schedule/calendar/Schedule";
 import Trades from "@/components/schedule/trades/Trades";
 import Loader from "@/components/Loader";
 import Head from "next/head";
-// import html2canvas from "html2canvas";
-// import jsPDF from "jspdf";
-// import alocation from "../../../public/data/alocation.json";
-// import axios from "axios";
 
 import { useState, useEffect } from "react";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-// const exportToPDF = () => {
-//   const input = document.getElementById("calendarContainer");
-//   html2canvas(input).then((canvas) => {
-//     const imgData = canvas.toDataURL("image/png");
-//     const pdf = new jsPDF("p", "mm", "a4"); // A4 size page of PDF
-//     var width = pdf.internal.pageSize.getWidth();
-//     var height = pdf.internal.pageSize.getHeight();
-
-//     height = (canvas.height * width) / canvas.width;
-
-//     pdf.addImage(imgData, "PNG", 0, 0, width, height); // parameters: data, format, x, y, width, height
-//     pdf.save("download.pdf");
-//   });
-// };
-
-
 function getDates(slot) {
   let date = new Date();
+  console.log(date)
   date.toLocaleString("pt", { timeZone: "Europe/Lisbon" });
+
+  console.log(date)
 
   let year = date.getFullYear();
   let month = date.getMonth() + 1;
@@ -87,15 +70,13 @@ function handleEvents(data) {
   Object.values(data.classes).map((lesson) => {
     lesson.slots.map((slot) => {
       let dates = getDates(slot);
-      //console.log(dates);
       let event = {
         title:
           lesson.type_class +
           lesson.shift +
           " - " +
-          lesson.uc +
-          " - " +
-          slot[5],
+          lesson.uc,
+        // + " - " + slot[5],
         year: lesson.year,
         semester: lesson.semester,
         uc: lesson.uc,
@@ -190,14 +171,14 @@ export default function BackofficeSchedule() {
   };
 
   return (
-    <main className="h-screen bg-white ">
+    <main className="h-screen bg-slate-200 ">
       <Head>
         <title>NECChange</title>
         <link rel="icon" href="logos/necc-blue.svg" />
       </Head>
       <Sidebar />
-      <div className="ml-64 pt-8">
-        <div className="w-full h-auto">
+      <div className="h-full p-8 ml-64">
+        <div className="w-full">
           <input
             type="text"
             className="rounded-lg"
@@ -217,14 +198,8 @@ export default function BackofficeSchedule() {
             events={evt}
             getSchedule={getSchedule}
           />
+          <Schedule events={evt} />
         </div>
-        <Schedule events={evt} />
-        {/* <button
-          className="bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg mt-2"
-          onClick={exportToPDF}
-        >
-          Export to PDF
-        </button> */}
 
         <button
           className="bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg mt-2 "
@@ -237,7 +212,7 @@ export default function BackofficeSchedule() {
           className="bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg mt-2 "
           onClick={handleYearSchedule}
         >
-          Create Year Schedule
+          Export Year Schedule
         </button>
 
         {isLoadingExportAll && <Loader />}

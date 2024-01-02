@@ -30,9 +30,9 @@ const UploadButton = ({ label, onFilesSelect }) => {
           </>
         ) : (
           <>
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
+            <p className="mb-2 text-gray-500">
               Insert a file {''}
-              <span className="font-semibold text-gray-900 underline dark:text-white decoration-indigo-500"> {label}</span>
+              <span className="font-semibold text-gray-900 underline  decoration-indigo-500"> {label}</span>
             </p>
             <p className="text-xs text-blue-500">Only accepts .CSV files</p>
           </>
