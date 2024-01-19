@@ -8,10 +8,11 @@ def distribution_per_uc(solver, A, uc, year, semester):
     """
     distr = {}
     students = []
-    if(os.path.relpath(__file__) == "analytics/distribution.py"):
-        path = "data/uni_data/inscritos_anon.csv"
+    path_compare = os.path.join("analytics", "distribution.py")
+    if(os.path.relpath(__file__) == path_compare):
+        path = os.path.join("data", "uni_data", "inscritos_anon.csv")
     else:
-        path = "./../schedule/schedule/data/uni_data/inscritos_anon.csv"
+        path = os.path.join(".", "..", "schedule", "schedule", "data", "uni_data", "inscritos_anon.csv")
     csv_read = pd.read_csv(path)
     
     data_groupped = csv_read.groupby(["Unidade Curricular", "Nº Mecanográfico"])

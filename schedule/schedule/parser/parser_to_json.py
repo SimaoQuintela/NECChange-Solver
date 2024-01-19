@@ -69,11 +69,11 @@ def convert_A_to_JSON(A, P, S, rooms_per_slot, solver):
     tabbing_sec = " " * 10
     tabbing_info = " " * 13
     buffer = "{\n"
-
-    if(os.path.relpath(__file__) == "parser/parser_to_json.py"):
-        path = "../../web/public/data/alocation.json"
+    path_compare = os.path.join("parser", "parser_to_json.py")
+    if(os.path.relpath(__file__) == path_compare):
+        path = os.path.join("..","..","web","public","data","alocation.json")
     else:
-        path = "./public/data/alocation.json"
+        path = os.path.join(".", "public", "data", "alocation.json")
         
 
     file = open(path, "w")
@@ -160,10 +160,11 @@ def convert_S_to_JSON(S, rooms_per_slot):
             5: "Sexta"
     }
 
-    if(os.path.relpath(__file__) == "parser/parser_to_json.py"):
-        path = "../../web/public/data/schedule.json"
+    path_compare = os.path.join("parser", "parser_to_json.py")
+    if(os.path.relpath(__file__) == path_compare):
+        path = os.path.join("..", "..", "web", "public", "data", "schedule.json")
     else:
-        path = "./public/data/schedule.json"
+        path = os.path.join(".", "public", "data", "schedule.json")
         
 
     file = open(path, "w")

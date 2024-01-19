@@ -20,10 +20,12 @@ def fill_csv(uc, info):
 		for shift in info[uc][type_class]:
 				buffer += f"\"{uc}-{type_class}{shift}\",\"{uc}-{type_class}{shift}\",\"\",\"\",S,\"\",N,\"\",\"\",\"\",\"\",\"\"\n"
 
-	if(os.path.relpath(__file__) == "parser/parser_csv_ucs.py"):
-		path_shifts = "OutputCsvUcs/" + file_name_converter(uc) + "_turnos.csv"
+	path_compare = os.path.join("parser", "parser_csv_ucs.py")
+	if(os.path.relpath(__file__) == path_compare):
+		path_shifts = os.path.join("OutputCsvUcs", file_name_converter(uc))  + "_turnos.csv"
 	else:
-		path_shifts = "../schedule/schedule/OutputCsvUcs/" + file_name_converter(uc) + "_turnos.csv"
+		path = os.path.join("..", "schedule", "schedule", "OutputCsvUcs", file_name_converter(uc))
+		path_shifts = path + "_turnos.csv"
 
 	file_shifts = open(path_shifts, "w")
 	file_shifts.write(buffer)
@@ -36,10 +38,11 @@ def fill_csv(uc, info):
 				buffer += f"\"{uc}-{type_class}{shift}\",\"{student}\",\"{student}\",\"{student}\",\".\"\n"
 
 	
-	if(os.path.relpath(__file__) == "parser/parser_csv_ucs.py"):
-		path_students = "OutputCsvUcs/" + file_name_converter(uc) + "_alunos.csv"
+	path_compare = os.path.join("parser", "parser_csv_ucs.py")
+	if(os.path.relpath(__file__) == path_compare):
+		path_students = os.path.join("OutputCsvUcs", file_name_converter(uc)) + "_alunos.csv"
 	else:
-		path_students = "../schedule/schedule/OutputCsvUcs/" + file_name_converter(uc) + "_alunos.csv"
+		path_students = os.path.join("..", "schedule", "schedule", "OutputCsvUcs", file_name_converter(uc)) + "_alunos.csv"
 	
 	file_students = open(path_students, "w")
 	file_students.write(buffer)

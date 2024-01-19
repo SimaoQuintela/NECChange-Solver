@@ -28,11 +28,11 @@ def read_schedule_uni(ucs_data, semester, slots):
     """
 
     slots = parser_schedule.generate_slots()
-
-    if(os.path.relpath(__file__) == "parser/parser_schedule.py"):
-        path = "data/uni_data/horario.csv"
+    path_compare = os.path.join("parser", "parser_schedule.py")
+    if(os.path.relpath(__file__) == path_compare):
+        path = os.path.join("data", "uni_data", "horario.csv")
     else:
-        path = "./../schedule/schedule/data/uni_data/horario.csv"
+        path = os.path.join(".", "..", "schedule", "schedule", "data", "uni_data", "horario.csv")
     csv_read = pd.read_csv(filepath_or_buffer=path, delimiter=';')
     data_groupped = csv_read.groupby(["ModuleName", "ModuleAcronym", "ModuleCode"])
 
@@ -91,10 +91,11 @@ def rooms_capacity():
     This function creates a structure with the capacity of each room.
     """
     
-    if(os.path.relpath(__file__) == "parser/parser_schedule.py"):
-        path = "data/uni_data/salas.csv"
+    path_compare = os.path.join("parser","parser_schedule.py")
+    if(os.path.relpath(__file__) == path_compare):
+        path = os.path.join("data", "uni_data", "salas.csv")
     else:
-        path = "./../schedule/schedule/data/uni_data/salas.csv"
+        path = os.path.join(".", "..", "schedule", "schedule", "data", "uni_data", "salas.csv")
     csv_read = pd.read_csv(filepath_or_buffer=path, delimiter=';')
     groupped_by_building = csv_read.groupby("Edificio")
 

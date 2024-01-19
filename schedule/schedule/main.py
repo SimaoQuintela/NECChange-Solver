@@ -15,9 +15,9 @@ def read_ucs_data():
     '''
     
     if(os.path.relpath(__file__) == "main.py"):
-        path = "data/uc_years.csv"
+        path = os.path.join("data", "uc_years.csv")
     else:
-        path = "./../schedule/schedule/data/uc_years.csv"
+        path = os.path.join(".", "..", "schedule", "schedule", "data", "uc_years.csv")
 
     csv_read = pd.read_csv(filepath_or_buffer=path, delimiter=',')
     

@@ -75,7 +75,8 @@ def create_schedule(year, semester, schedule_data):
     if os.path.relpath(__file__) == "export_year_schedule.py":
         folder_path = "year_semester_schedule_png"
     else:
-        folder_path = "./../schedule/schedule/year_semester_schedule_png"
+        folder_path = os.path.join(".", "..", "schedule", "schedule", "year_semester_schedule_png")
+
     os.makedirs(folder_path, exist_ok=True)
 
     # Save the plot as a PNG image in the folder
@@ -87,11 +88,10 @@ def create_schedule(year, semester, schedule_data):
 
 # Load the schedule data from the JSON file
 if os.path.relpath(__file__) == "export_year_schedule.py":
-    data_path = "./../../web/public/data/schedule.json"
+    data_path = os.path.join(".", "..", "..", "web", "public", "data", "schedule.json")
 else:
-    data_path = "./../web/public/data/schedule.json"
+    data_path = os.path.join(".", "..", "web", "public", "data", "schedule.json")
 
-print(os.path.relpath(__file__))
 with open(data_path) as file:
     schedule_data = json.load(file)
 

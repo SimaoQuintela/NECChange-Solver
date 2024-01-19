@@ -114,7 +114,7 @@ def create_schedule(student_id, schedule_data):
     if os.path.relpath(__file__) == "export_students_schedule.py":
         folder_path = "students_schedule_png"
     else:
-        folder_path = "./../schedule/schedule/students_schedule_png"
+        folder_path = os.path.join(".", "..", "schedule", "schedule", "students_schedule_png")
     os.makedirs(folder_path, exist_ok=True)
 
     # Save the plot as a PNG image in the folder
@@ -126,9 +126,9 @@ def create_schedule(student_id, schedule_data):
 # Load the schedule data from the JSON file
 
 if os.path.relpath(__file__) == "export_students_schedule.py":
-    data_path = "./../../web/public/data/alocation.json"
+    data_path = os.path.join(".", "..", "..", "web", "public", "data", "alocation.json")
 else:
-    data_path = "./../web/public/data/alocation.json"
+    data_path = os.path.join(".", "..", "web", "public", "data", "alocation.json")
 
 with open(data_path) as file:
     schedule_data = json.load(file)
