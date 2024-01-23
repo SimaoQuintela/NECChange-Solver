@@ -14,7 +14,7 @@ def read_students_info():
 
     csv_read = pd.read_csv(path)
     students_data = {}
-    print(csv_read)
+
     data_groupped = csv_read.groupby(["Nº Mecanográfico", "Nome"])["Unidade Curricular"]
 
     for (number, _), ucs  in data_groupped:

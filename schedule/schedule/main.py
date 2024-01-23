@@ -57,7 +57,6 @@ def main():
     P = model_matrices[1]
     O = model_matrices[2]
     
-
     slots_generated = slots
     restrictions.apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms_capacity, slots_generated, students_data, allocated_number, O)
     status = solver.Solve(model)
