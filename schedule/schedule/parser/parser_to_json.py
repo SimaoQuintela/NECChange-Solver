@@ -76,7 +76,7 @@ def convert_A_to_JSON(A, P, S, rooms_per_slot, solver):
         path = os.path.join(".", "public", "data", "alocation.json")
         
 
-    file = open(path, "w")
+    file = open(path, "w", encoding='utf-8')
 
     days = {
             1: "Segunda",
@@ -167,7 +167,7 @@ def convert_S_to_JSON(S, rooms_per_slot):
         path = os.path.join(".", "public", "data", "schedule.json")
         
 
-    file = open(path, "w")
+    file = open(path, "w", encoding='utf-8')
 
     for year in S:
         for semester in S[year]:
