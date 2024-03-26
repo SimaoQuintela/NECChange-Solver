@@ -4,9 +4,8 @@ import pandas as pd
 from schedule.solver import student_matrices
 from schedule.solver.restrictions import restrictions
 from schedule.parser import parser_schedule, parser_students, parser_to_json, parser_csv_ucs
-from schedule.analytics import overlap, distribution, workload, roomsocupation
+from schedule.analytics import distribution
 
-from pprint import pprint
 from ortools.sat.python import cp_model
 
 def read_ucs_data():
@@ -65,8 +64,6 @@ def main():
 
         parser_to_json.convert_A_to_JSON(A, P, S, rooms_per_slot, solver)
         parser_csv_ucs.parser_csv_ucs(solver, P)
-
-        #['A94447', 'A93646', 'A95361', 'A95847']:
             
         #menu(solver, A, S, students_data, rooms_per_slot, rooms_capacity, semester)
     else:

@@ -75,7 +75,7 @@ def create_schedule(year, semester, schedule_data):
     if os.path.relpath(__file__) == "export_year_schedule.py":
         folder_path = "year_semester_schedule_png"
     else:
-        folder_path = os.path.join(".", "..", "schedule", "schedule", "year_semester_schedule_png")
+        folder_path = os.path.join(".", "..", "schedule", "schedule", "output", "year_semester_schedule_png")
 
     os.makedirs(folder_path, exist_ok=True)
 

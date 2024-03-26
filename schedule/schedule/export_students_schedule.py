@@ -114,7 +114,7 @@ def create_schedule(student_id, schedule_data):
     if os.path.relpath(__file__) == "export_students_schedule.py":
         folder_path = "students_schedule_png"
     else:
-        folder_path = os.path.join(".", "..", "schedule", "schedule", "students_schedule_png")
+        folder_path = os.path.join(".", "..", "schedule", "schedule", "output", "students_schedule_png")
     os.makedirs(folder_path, exist_ok=True)
 
     # Save the plot as a PNG image in the folder

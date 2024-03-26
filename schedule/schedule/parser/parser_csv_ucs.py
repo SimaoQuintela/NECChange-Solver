@@ -24,7 +24,7 @@ def fill_csv(uc, info):
 	if(os.path.relpath(__file__) == path_compare):
 		path_shifts = os.path.join("OutputCsvUcs", file_name_converter(uc))  + "_turnos.csv"
 	else:
-		path = os.path.join("..", "schedule", "schedule", "OutputCsvUcs", file_name_converter(uc))
+		path = os.path.join("..", "schedule", "schedule", "output", "OutputCsvUcs", file_name_converter(uc))
 		path_shifts = path + "_turnos.csv"
 
 	file_shifts = open(path_shifts, "w")
@@ -42,7 +42,7 @@ def fill_csv(uc, info):
 	if(os.path.relpath(__file__) == path_compare):
 		path_students = os.path.join("OutputCsvUcs", file_name_converter(uc)) + "_alunos.csv"
 	else:
-		path_students = os.path.join("..", "schedule", "schedule", "OutputCsvUcs", file_name_converter(uc)) + "_alunos.csv"
+		path_students = os.path.join("..", "schedule", "schedule", "output", "OutputCsvUcs", file_name_converter(uc)) + "_alunos.csv"
 	
 	file_students = open(path_students, "w")
 	file_students.write(buffer)

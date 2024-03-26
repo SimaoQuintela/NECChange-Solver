@@ -73,9 +73,6 @@ def overlaps_per_shift(info):
 
 
 
-
-
-
 def sort_aux(s):
 	days = {
 		"Segunda" : 1,
@@ -90,8 +87,6 @@ def sort_aux(s):
 	day = day[:-1]
 
 	return days[day]
-
-
 
 
 def key_parser(student):
@@ -156,10 +151,6 @@ def overlaps_per_student(info, student):
 
 
 			pprint(res)
-
-
-
-
 
 
 
