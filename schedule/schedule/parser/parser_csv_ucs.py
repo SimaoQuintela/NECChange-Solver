@@ -1,5 +1,6 @@
 import os
 
+
 def file_name_converter(uc):
 	'''
 	This function converts all the spaces of a string into the following char: _
@@ -27,7 +28,9 @@ def fill_csv(uc, info):
 		path = os.path.join("..", "schedule", "schedule", "output", "OutputCsvUcs", file_name_converter(uc))
 		path_shifts = path + "_turnos.csv"
 
-	file_shifts = open(path_shifts, "w")
+	print(path_shifts)
+
+	file_shifts = open(path_shifts, "a")
 	file_shifts.write(buffer)
 	file_shifts.close()
 
@@ -44,7 +47,7 @@ def fill_csv(uc, info):
 	else:
 		path_students = os.path.join("..", "schedule", "schedule", "output", "OutputCsvUcs", file_name_converter(uc)) + "_alunos.csv"
 	
-	file_students = open(path_students, "w")
+	file_students = open(path_students, "a")
 	file_students.write(buffer)
 	file_students.close()
 

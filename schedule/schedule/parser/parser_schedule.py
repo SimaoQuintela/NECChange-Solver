@@ -2,7 +2,7 @@ import os
 from pprint import pprint
 import pandas as pd
 import re
-from schedule.parser import parser_schedule
+from parser import parser_schedule
 
 
 days = {

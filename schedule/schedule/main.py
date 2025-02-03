@@ -1,10 +1,10 @@
 import os
 import pandas as pd
 
-from schedule.solver import student_matrices
-from schedule.solver.restrictions import restrictions
-from schedule.parser import parser_schedule, parser_students, parser_to_json, parser_csv_ucs
-from schedule.analytics import distribution
+from solver import student_matrices
+from solver.restrictions import restrictions
+from parser import parser_schedule, parser_students, parser_to_json, parser_csv_ucs
+from analytics import distribution
 
 from ortools.sat.python import cp_model
 

@@ -1,5 +1,5 @@
 import os
-from schedule.analytics import overlap
+from analytics import overlap
 
 
 def previous_slot(slot):
