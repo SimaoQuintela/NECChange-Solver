@@ -24,11 +24,20 @@ def fill_csv(uc, info):
 	path_compare = os.path.join("parser", "parser_csv_ucs.py")
 	if(os.path.relpath(__file__) == path_compare):
 		path_shifts = os.path.join("OutputCsvUcs", file_name_converter(uc))  + "_turnos.csv"
+
+		if not os.path.exists("OutputCsvUcs"):
+			os.makedirs("OutputCsvUcs")
+			print("Directory ", "OutputCsvUcs", " Created ")
+
 	else:
 		path = os.path.join("..", "schedule", "schedule", "output", "OutputCsvUcs", file_name_converter(uc))
 		path_shifts = path + "_turnos.csv"
 
-	print(path_shifts)
+		if not os.path.exists(path):
+			os.makedirs(path)
+			print("Directory ", path, " Created ")
+
+
 
 	file_shifts = open(path_shifts, "a")
 	file_shifts.write(buffer)
@@ -74,6 +83,7 @@ def parser_csv_ucs(solver, P):
 									info[uc][type_class][shift] = list()
 								if (solver.Value(P[student][year][semester][uc][type_class][shift]) == 1):
 									info[uc][type_class][shift].append("a" + str(student[1:]))
+
 
 	for uc in info:
 		fill_csv(uc, info)
