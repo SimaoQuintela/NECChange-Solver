@@ -7,7 +7,7 @@ export default function handler(req, res) {
     "../schedule/schedule/export_year_schedule.py"
   );
 
-  exec(`python ${scriptPath}`, (error, stdout, stderr) => {
+  exec(`python3 ${scriptPath}`, (error, stdout, stderr) => {
     if (error) {
       console.error(`An error occurred during execution: ${error}`);
       res.status(500).json({ error: "An error occurred during execution" });
