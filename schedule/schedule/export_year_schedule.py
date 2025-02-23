@@ -16,9 +16,13 @@ def create_schedule(year, semester, schedule_data):
         "15h-16h",
         "16h-17h",
         "17h-18h",
+        "18h-19h",
+        "19h-20h",
     ]
-    table = [["" for _ in range(5)] for _ in range(9)]
+    table = [["" for _ in range(5)] for _ in range(11)]
     overlaps = {}
+    
+    print(schedule_data)
 
     # Populate the table with schedule data
     for entry in schedule_data:
@@ -34,6 +38,7 @@ def create_schedule(year, semester, schedule_data):
 
                 # Check for overlapping slots
                 for i in range(start_time, end_time):
+                    print(i, day)
                     if table[i][day] != "":
                         if (i, day) in overlaps:
                             overlaps[(i, day)].append(slot_info)
@@ -50,8 +55,8 @@ def create_schedule(year, semester, schedule_data):
     # Create the table as a plot with increased size and colors
     fig, ax = plt.subplots(figsize=(12, 8))
     ax.axis("off")
-    cell_colors = [["white" for _ in range(5)] for _ in range(9)]
-    for i in range(9):
+    cell_colors = [["white" for _ in range(5)] for _ in range(11)]
+    for i in range(11):
         for j in range(5):
             if table[i][j] != "":
                 if (i, j) in overlaps:
@@ -92,9 +97,13 @@ if os.path.relpath(__file__) == "export_year_schedule.py":
 else:
     data_path = os.path.join(".", "..", "web", "public", "data", "schedule.json")
 
+# print(data_path)
+
 with open(data_path) as file:
     schedule_data = json.load(file)
+    # print(schedule_data)
 
+print("Generating schedules...")
 # Generate schedules for each year and semester
 for year in range(1, 4):
     for semester in range(1, 3):
