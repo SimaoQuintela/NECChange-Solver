@@ -5,12 +5,12 @@ import "@/styles/Home.module.css";
 import UploadButton from "@/components/UploadButton";
 import Sidebar from "@/components/Sidebar";
 import Loader from "@/components/Loader";
+import axios from "axios";
 
 export default function Home() {
-  // TODO: Remove this any type
-  const [selectedFiles1, setSelectedFiles1] = useState(null);
-  const [selectedFiles2, setSelectedFiles2] = useState(null);
-  const [selectedFiles3, setSelectedFiles3] = useState(null);
+  const [selectedFiles1, setSelectedFiles1] = useState<File[]>([]);
+  const [selectedFiles2, setSelectedFiles2] = useState<File[]>([]);
+  const [selectedFiles3, setSelectedFiles3] = useState<File[]>([]);
 
   const [showUploadNotification, setShowUploadNotification] = useState(false);
   const [showGenerateNotification, setShowGenerateNotification] =
@@ -32,32 +32,29 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [showUploadNotification, showGenerateNotification, errorMessage]);
 
-  const handleUploadClick = () => {
-    console.log("Upload button clicked");
+  const handleUploadClick = async () => {
     [selectedFiles1, selectedFiles2, selectedFiles3].forEach(
-      (selectedFiles) => {
+      async (selectedFiles) => {
         if (selectedFiles) {
           const formData = new FormData();
+
           Array.from(selectedFiles).forEach((file) => {
-            formData.append("file", file as Blob);
+            formData.append("file", file);
           });
 
-          fetch("/api/upload", {
-            method: "POST",
-            body: formData,
-          })
-            .then((response) => {
-              if (response.status === 200) {
-                console.log("Files uploaded successfully");
-                setShowUploadNotification(true);
-              } else {
-                setErrorMessage("Upload failed!");
-              }
-            })
-            .catch((error) => {
-              console.error(error);
-              setErrorMessage("An error occurred during upload.");
-            });
+          console.log("Files uploaded: ", formData);
+
+          const response = await axios.post("/api/upload", formData);
+          console.log(response.data);
+
+          // Error handling for file upload
+          if (response.data.message === "No file uploaded.") {
+            setErrorMessage("No file uploaded. Please select a file.");
+          } else if (response.data.message === "File uploaded successfully.") {
+            setShowUploadNotification(true);
+          } else {
+            setErrorMessage("An error occurred during upload.");
+          }
         }
       }
     );
@@ -66,7 +63,7 @@ export default function Home() {
   const handleGenerateClick = () => {
     console.log("Generate button clicked");
     setIsLoadingGeneration(true);
-    fetch("/api/generate-schedule", { method: "POST" })
+    fetch("/api/generate_schedule", { method: "POST" })
       .then((response) => {
         setIsLoadingGeneration(false);
         if (response.status === 200) {
