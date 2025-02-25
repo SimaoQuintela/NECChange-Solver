@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import UcEntry from "./UcEntry";
 import axios from "axios";
 import { EventCalendarI, StudentsNumberType } from "@/types/Types";
+import Button from '@mui/material/Button';
 
 export default function Trades({
   studentNr,
@@ -56,13 +57,7 @@ export default function Trades({
 
   return (
     <>
-      <button
-        type="button"
-        className="float-right bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 mr-4 rounded-lg"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        Trades
-      </button>
+      <Button variant="contained" onClick={() => setIsOpen(!isOpen)} className="bg-[#1775B9]">Trades</Button>
       <Modal
         style={customStyles}
         isOpen={isOpen}

@@ -9,11 +9,17 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import Trades from "@/components/schedule/Trades/Trades";
 import Schedule from "@/components/schedule/calendar/Schedule";
 import axios from "axios";
-import { EventCalendarI, SlotType, StudentAlocationType, StudentNumberTypeNotNull, StudentsNumberType } from "@/types/Types";
+import {
+  EventCalendarI,
+  SlotType,
+  StudentAlocationType,
+  StudentNumberTypeNotNull,
+  StudentsNumberType,
+} from "@/types/Types";
+import InputAuto from "@/components/InputAuto";
+import Button from "@mui/material/Button";
 
-function getDates(
-  slot: SlotType
-) {
+function getDates(slot: SlotType) {
   const date = new Date();
   date.toLocaleString("pt", { timeZone: "Europe/Lisbon" });
 
@@ -60,9 +66,6 @@ function getDates(
     day = "0" + day;
   }
 
-  //console.log({ "start": year + "-" + month + "-" + day + "T" + slot[1] + ":" + slot[2] });
-  //console.log({ "end": year + "-" + month + "-" + day + "T" + slot[3] + ":" + slot[4] });
-
   const start = new Date(
     year + "-" + month + "-" + day + "T" + slot[1] + ":" + slot[2]
   );
@@ -77,7 +80,6 @@ function handleEvents(data: StudentAlocationType<StudentNumberTypeNotNull>) {
   if (data === null) return [];
 
   const events: EventCalendarI[] = [];
-
 
   Object.values(data).map((lesson) => {
     lesson.slots.map((slot) => {
@@ -107,6 +109,7 @@ export default function BackofficeSchedule() {
   const [isLoadingExportAll, setIsLoadingExportAll] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showExportNotification, setShowExportNotification] = useState(false);
+  const [studentKeys, setStudentKeys] = useState<string[]>([]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -120,21 +123,21 @@ export default function BackofficeSchedule() {
     return () => clearTimeout(timer);
   }, [showExportNotification, errorMessage]);
 
-
   /**
    * @brief This function gets the schedule of a student
    * It will make a request to the server to get the schedule of the student stored as JSON
    * generated from the parser. It will then call the handleEvents function to convert the
    * JSON into an array of events that can be displayed on the calendar.
-   * 
+   *
    * @returns {Promise<void>}
    */
   const getSchedule = async () => {
     if (studentNr === "") return;
 
-    const res = await axios.get<
-      { classes: StudentAlocationType<typeof studentNr>, studentNr: StudentsNumberType }
-    >(`/api/students/${studentNr}`);
+    const res = await axios.get<{
+      classes: StudentAlocationType<typeof studentNr>;
+      studentNr: StudentsNumberType;
+    }>(`/api/students/${studentNr}`);
 
     if (res.data.classes?.length === 0) {
       setEvt([]);
@@ -149,7 +152,7 @@ export default function BackofficeSchedule() {
   /**
    * @brief This function will export all the classes of all students to a PDF file
    * It will make a request to the server to execute the export_all.py script
-   * 
+   *
    * @todo Loading
    * @todo Download the file as .zip from the server
    * @returns {Promise<void>}
@@ -158,24 +161,23 @@ export default function BackofficeSchedule() {
     setIsLoadingExportAll(true);
     try {
       const res = await axios.post("/api/export/all");
-      
+
       if (res.data.status === 200) {
         console.log(res.data);
         setShowExportNotification(true);
-      } 
+      }
     } catch (error) {
       console.error(error);
       setErrorMessage("An error occurred during exportation.");
     }
 
     setIsLoadingExportAll(false);
-  }
-
+  };
 
   /**
    * @brief This function will export the year schedule to a PDF file
    * It will make a request to the server to execute the export_year_schedule.py script
-   * 
+   *
    * @todo Loading
    * @todo Download the file from the server
    * @returns {Promise<void>}
@@ -195,7 +197,23 @@ export default function BackofficeSchedule() {
     }
 
     setIsLoadingExportAll(false);
-  }
+  };
+
+  useEffect(() => {
+    async function fetchStudents() {
+      try {
+        const response = await fetch("/api/students/numbers");
+        const data = await response.json();
+        setStudentKeys(
+          data.map((student: { studentNr: string }) => student.studentNr)
+        );
+      } catch (error) {
+        console.error("Erro ao buscar estudantes:", error);
+      }
+    }
+
+    fetchStudents();
+  }, []);
 
   return (
     <main className="h-screen bg-slate-200 ">
@@ -206,25 +224,29 @@ export default function BackofficeSchedule() {
       <Sidebar />
       <div className="h-full p-8 ml-64">
         <div className="w-full">
-          <input
-            type="text"
-            className="rounded-lg"
-            value={studentNr}
-            onChange={(e) => setStudentNr(e.target.value as StudentsNumberType)}
-            placeholder="Student number"
-          />
-          <button
-            type="button"
-            className="bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg"
-            onClick={getSchedule}
-          >
-            Search
-          </button>
-          <Trades
-            studentNr={studentNr}
-            events={evt}
-            getSchedule={getSchedule}
-          />
+          <div className="flex justify-between">
+            <div className="flex gap-2">
+              <div className="w-[200px]">
+                <InputAuto
+                  label="Student number"
+                  options={studentKeys}
+                  setStudent={setStudentNr}
+                />
+              </div>
+              <Button
+                variant="contained"
+                onClick={getSchedule}
+                className="bg-[#1775B9]"
+              >
+                Search
+              </Button>
+            </div>
+            <Trades
+              studentNr={studentNr}
+              events={evt}
+              getSchedule={getSchedule}
+            />
+          </div>
           <Schedule events={evt} />
         </div>
 
