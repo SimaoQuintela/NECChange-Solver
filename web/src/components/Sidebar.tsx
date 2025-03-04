@@ -21,7 +21,7 @@ const sidebarData = [
 
 // TODO: Check if the JSONs are available
 // TODO: Create an API route for this, since this check must be done in the backend
-function Sidebar(props: { activeTab: "Schedule" | "Upload" | undefined }) {
+function Sidebar(props: { activeTab: "Schedule" | "Upload" | null }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const hasAllocationsJSON = true;
