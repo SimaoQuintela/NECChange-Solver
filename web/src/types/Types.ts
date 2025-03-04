@@ -1,4 +1,5 @@
 import alocation from "@/../public/data/alocation.json"
+import schedule from "@/../public/data/schedule.json"
 
 export type StudentNumberTypeNotNull = keyof typeof alocation;
 export type StudentsNumberType = keyof typeof alocation | "";
@@ -14,7 +15,6 @@ export type StudentAlocation = {
     slots: SlotType[];
 };
 
-
 export type WeekDayType = "Segunda" | "Terça" | "Quarta" | "Quinta" | "Sexta" | "Sábado" | "Domingo";
 export type SlotType = [WeekDayType, string, string, string, string, string, boolean];
 
@@ -25,10 +25,12 @@ export interface EventCalendarI {
   year: string;
   semester: string;
   uc: string;
-  type_class: string;
+  type_class: "TP" | "T" | "PL";
   shift: string;
   overlap: boolean;
   allDay: boolean;
   start: Date;
   end: Date;
 };
+
+export type UcSchedule = typeof schedule;

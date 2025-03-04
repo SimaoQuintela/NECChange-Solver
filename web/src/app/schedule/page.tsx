@@ -6,7 +6,6 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import Trades from "@/components/schedule/Trades/Trades";
 import Schedule from "@/components/schedule/calendar/Schedule";
 import axios from "axios";
 import {
@@ -19,7 +18,7 @@ import {
 import InputAuto from "@/components/InputAuto";
 import Button from "@mui/material/Button";
 
-function getDates(slot: SlotType) {
+export function getDates(slot: SlotType) {
   const date = new Date();
   date.toLocaleString("pt", { timeZone: "Europe/Lisbon" });
 
@@ -90,7 +89,7 @@ function handleEvents(data: StudentAlocationType<StudentNumberTypeNotNull>) {
         year: lesson.year,
         semester: lesson.semester,
         uc: lesson.uc,
-        type_class: lesson.type_class,
+        type_class: lesson.type_class as "TP" | "T" | "PL",
         shift: lesson.shift,
         allDay: false,
         overlap: slot[6] as boolean,
@@ -106,7 +105,7 @@ function handleEvents(data: StudentAlocationType<StudentNumberTypeNotNull>) {
 export default function BackofficeSchedule() {
   const [studentNr, setStudentNr] = useState<StudentsNumberType>("");
   const [evt, setEvt] = useState<EventCalendarI[]>([]);
-  const [isLoadingExportAll, setIsLoadingExportAll] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showExportNotification, setShowExportNotification] = useState(false);
   const [studentKeys, setStudentKeys] = useState<string[]>([]);
@@ -142,11 +141,14 @@ export default function BackofficeSchedule() {
     if (res.data.classes?.length === 0) {
       setEvt([]);
       setErrorMessage("No classes found for student number " + studentNr);
+      setIsLoading(false);
       return;
     }
 
     const evts = handleEvents(res.data.classes);
     setEvt(evts);
+
+    setIsLoading(false);
   };
 
   /**
@@ -158,7 +160,7 @@ export default function BackofficeSchedule() {
    * @returns {Promise<void>}
    */
   const handleExportAll = async () => {
-    setIsLoadingExportAll(true);
+    setIsLoading(true);
     try {
       const res = await axios.post("/api/export/all");
 
@@ -171,7 +173,7 @@ export default function BackofficeSchedule() {
       setErrorMessage("An error occurred during exportation.");
     }
 
-    setIsLoadingExportAll(false);
+    setIsLoading(false);
   };
 
   /**
@@ -183,7 +185,7 @@ export default function BackofficeSchedule() {
    * @returns {Promise<void>}
    */
   const handleYearSchedule = async () => {
-    setIsLoadingExportAll(true);
+    setIsLoading(true);
     try {
       const res = await axios.post("/api/export/year_schedule");
 
@@ -196,7 +198,7 @@ export default function BackofficeSchedule() {
       setErrorMessage("An error occurred during exportation.");
     }
 
-    setIsLoadingExportAll(false);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -241,13 +243,8 @@ export default function BackofficeSchedule() {
                 Search
               </Button>
             </div>
-            <Trades
-              studentNr={studentNr}
-              events={evt}
-              getSchedule={getSchedule}
-            />
           </div>
-          <Schedule events={evt} />
+          <Schedule eventsProps={evt} studentNr={studentNr} getSchedule={getSchedule} setIsLoading={setIsLoading} />
         </div>
 
         <button
@@ -264,7 +261,7 @@ export default function BackofficeSchedule() {
           Export Year Schedule
         </button>
 
-        {isLoadingExportAll && <Loader />}
+        {isLoading && <Loader />}
 
         {showExportNotification && (
           <div className="fixed top-0 right-0 m-6 p-4 bg-green-500 text-white rounded shadow-lg">
