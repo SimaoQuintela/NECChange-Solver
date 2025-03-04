@@ -3,8 +3,9 @@ import { ScheduleLogo } from "@/icons/ScheduleLogo";
 import { UploadIcon } from "@/icons/UploadIcon";
 import { Button } from "@mui/material";
 import Link from "next/link";
-import { useState } from "react";
 import { FaAngleDoubleRight, FaAngleDoubleLeft } from "react-icons/fa";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const sidebarData = [
   {
@@ -19,13 +20,21 @@ const sidebarData = [
   },
 ];
 
-// TODO: Check if the JSONs are available
-// TODO: Create an API route for this, since this check must be done in the backend
 function Sidebar(props: { activeTab: "Schedule" | "Upload" | null }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [hasAllocationsJSON, setHasAllocationsJSON] = useState(false);
+  const [hasScheduleJSON, setHasScheduleJSON] = useState(false);
 
-  const hasAllocationsJSON = true;
-  const hasScheduleJSON = false;
+  useEffect(() => {
+    axios
+      .get("/api/status")
+      .then((response) => {
+        const { alocation, schedule } = response.data;
+        setHasAllocationsJSON(alocation);
+        setHasScheduleJSON(schedule);
+      })
+      .catch((error) => console.error("Erro ao buscar status:", error));
+  }, []);
 
   return (
     <>
