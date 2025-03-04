@@ -223,8 +223,8 @@ export default function BackofficeSchedule() {
         <title>NECChange</title>
         <link rel="icon" href="logos/necc-blue.svg" />
       </Head>
-      <Sidebar />
-      <div className="h-full p-8 ml-64">
+      <Sidebar activeTab="Schedule" />
+      <div className="h-full p-8 ml-[75px] pt-[75px]">
         <div className="w-full">
           <div className="flex justify-between">
             <div className="flex gap-2">
