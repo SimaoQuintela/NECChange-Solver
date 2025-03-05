@@ -1,6 +1,7 @@
 import { NeccLogo } from "@/icons/NeccLogo";
 import { ScheduleLogo } from "@/icons/ScheduleLogo";
 import { UploadIcon } from "@/icons/UploadIcon";
+import { AnalyticsLogo } from "@/icons/AnalyticsLogo";
 import { Button } from "@mui/material";
 import Link from "next/link";
 import { FaAngleDoubleRight, FaAngleDoubleLeft } from "react-icons/fa";
@@ -18,6 +19,12 @@ const sidebarData = [
     href: "/schedule",
     icon: <ScheduleLogo />,
   },
+
+  {
+    title: "Analytics",
+    href: "/",
+    icon: <AnalyticsLogo />
+  }
 ];
 
 function Sidebar(props: { activeTab: "Schedule" | "Upload" | null }) {
