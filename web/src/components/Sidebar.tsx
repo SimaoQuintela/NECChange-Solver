@@ -22,12 +22,12 @@ const sidebarData = [
 
   {
     title: "Analytics",
-    href: "/",
+    href: "/analytics",
     icon: <AnalyticsLogo />
   }
 ];
 
-function Sidebar(props: { activeTab: "Schedule" | "Upload" | null }) {
+function Sidebar(props: { activeTab: "Schedule" | "Upload" | "Analytics" | null }) {
   const [isOpen, setIsOpen] = useState(false);
   const [hasAllocationsJSON, setHasAllocationsJSON] = useState(false);
   const [hasScheduleJSON, setHasScheduleJSON] = useState(false);
