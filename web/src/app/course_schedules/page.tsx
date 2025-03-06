@@ -17,7 +17,6 @@ import {
   StudentsNumberType,
 } from "@/types/Types";
 
-
 export function getDates(slot: SlotType) {
   const date = new Date();
   date.toLocaleString("pt", { timeZone: "Europe/Lisbon" });
@@ -103,13 +102,15 @@ function handleEvents(data: StudentAlocationType<StudentNumberTypeNotNull>) {
 }
 
 export default function BackofficeSchedule() {
-  const [studentNr, /*setStudentNr*/] = useState<StudentsNumberType>("");
+  const [studentNr /*setStudentNr*/] = useState<StudentsNumberType>("");
   const [evt, setEvt] = useState<EventCalendarI[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showExportNotification, setShowExportNotification] = useState(false);
-  const [/*studentKeys*/, setStudentKeys] = useState<string[]>([]);
-  //const [year, setYear] = useState<string>("");
+  const [, /*studentKeys*/ setStudentKeys] = useState<string[]>([]);
+  const [year, setYear] = useState<string>("1º Year");
+
+  console.log("Carlos", year);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -179,10 +180,15 @@ export default function BackofficeSchedule() {
         <div className="w-full">
           <div className="flex justify-between">
             <div className="flex gap-2">
-              <RowRadioButtonsGroup />
+              <RowRadioButtonsGroup setValue={setYear} value={year} />
             </div>
           </div>
-          <Schedule eventsProps={evt} studentNr={studentNr} getSchedule={getSchedule} setIsLoading={setIsLoading} />
+          <Schedule
+            eventsProps={evt}
+            studentNr={studentNr}
+            getSchedule={getSchedule}
+            setIsLoading={setIsLoading}
+          />
         </div>
 
         {isLoading && <Loader />}
