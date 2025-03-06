@@ -218,7 +218,7 @@ export default function BackofficeSchedule() {
   }, []);
 
   return (
-    <main className="h-screen bg-slate-200 ">
+    <main className="h-screen bg-slate-200">
       <Head>
         <title>NECChange</title>
         <link rel="icon" href="logos/necc-blue.svg" />

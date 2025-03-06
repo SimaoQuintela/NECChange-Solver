@@ -1,5 +1,5 @@
-// UploadButton.jsx
 import React, { useRef, useState } from "react";
+import UploadIconCSV from "@/icons/UploadIconCSV";
 
 const UploadButton = ({
   label,
@@ -8,49 +8,71 @@ const UploadButton = ({
   label: string;
   onFilesSelect: (files: File[]) => void;
 }) => {
-  const inputRef = useRef(null);
-  const [fileName, setFileName] = useState("Click to browse...");
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [fileName, setFileName] = useState("Click or drag files here...");
   const [isFileSelected, setIsFileSelected] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
-  const handleFileSelect = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const selectedFiles = Array.from(event.target.files ?? []);
-    onFilesSelect(selectedFiles);
+  const handleFileSelect = (files: FileList | null) => {
+    if (!files) return;
+    const selectedFiles = Array.from(files).filter((file) =>
+      file.name.endsWith(".csv")
+    );
+
     if (selectedFiles.length > 0) {
       setFileName(selectedFiles[0].name);
       setIsFileSelected(true);
+      onFilesSelect(selectedFiles);
     } else {
       setIsFileSelected(false);
     }
   };
 
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleFileSelect(event.target.files);
+  };
+
+  const onDragOver = (event: React.DragEvent<HTMLLabelElement>) => {
+    event.preventDefault();
+    setIsDragging(true);
+  };
+
+  const onDragLeave = () => {
+    setIsDragging(false);
+  };
+
+  const onDrop = (event: React.DragEvent<HTMLLabelElement>) => {
+    event.preventDefault();
+    setIsDragging(false);
+    handleFileSelect(event.dataTransfer.files);
+  };
+
   return (
-    <label className="w-96 h-80 border-2 border-blue-300 border-dashed rounded-lg flex flex-col items-center justify-center cursor-pointer bg-blue-50 hover:bg-blue-100">
+    <label
+      className={`w-96 h-80 border-2 border-dashed rounded-lg flex flex-col items-center justify-center cursor-pointer 
+        ${
+          isDragging
+            ? "border-blue-500 bg-blue-100"
+            : "border-blue-300 bg-blue-50 hover:bg-blue-100"
+        }`}
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      onDrop={onDrop}
+    >
       <div className="flex flex-col items-center justify-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          className="w-16 h-16 mb-4 text-blue-400"
-        >
-          <path d="M14 13v4H10v-4H7l5-5 5 5h-3zm-4 6v2H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2h1"></path>
-        </svg>
+        <UploadIconCSV className="w-16 h-16 mb-4 text-blue-400" />
         {isFileSelected ? (
           <>
             <p className="mb-2 text-sm text-blue-500 font-semibold">
               {fileName}
             </p>
-            <p className="text-xs text-blue-500 opacity-0">CSV</p>
           </>
         ) : (
           <>
             <p className="mb-2 text-gray-500">
-              Insert a file {""}
-              <span className="font-semibold text-gray-900 underline  decoration-indigo-500">
-                {" "}
-                {label}
+              Drag & drop or{" "}
+              <span className="font-semibold text-gray-900 underline decoration-indigo-500">
+                click to upload {label}
               </span>
             </p>
             <p className="text-xs text-blue-500">Only accepts .CSV files</p>
@@ -60,7 +82,8 @@ const UploadButton = ({
       <input
         ref={inputRef}
         type="file"
-        onChange={handleFileSelect}
+        accept=".csv"
+        onChange={onInputChange}
         className="absolute inset-0 w-full h-full opacity-0"
         style={{ zIndex: -1 }}
       />
