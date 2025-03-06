@@ -20,9 +20,19 @@ const sidebarData = [
     href: "/schedule",
     icon: <ScheduleLogo />,
   },
+  {
+    title: "Course Schedules",
+    href: "/course_schedules",
+    icon: <CourseSchedulesIcon />,
+  },
+  {
+    title: "Analytics",
+    href: "/analytics",
+    icon: <AnalyticsLogo />,
+  },
 ];
 
-function Sidebar(props: { activeTab: "Schedule" | "Upload" | null }) {
+function Sidebar(props: { activeTab: "Schedule" | "Upload" | "Course Schedules" | "Analytics" | null }) {
   const [isOpen, setIsOpen] = useState(false);
   const [hasAllocationsJSON, setHasAllocationsJSON] = useState(false);
   const [hasScheduleJSON, setHasScheduleJSON] = useState(false);
