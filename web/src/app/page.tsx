@@ -68,7 +68,7 @@ export default function Home() {
         <link rel="icon" href="logos/necc-blue.svg" />
       </Head>
       <Sidebar activeTab="Upload" />
-      <main className="pl-64 flex-grow flex flex-col items-center justify-center pt-12 h-screen space-y-4">
+      <main className="flex-grow flex flex-col items-center justify-center pt-12 h-screen space-y-4">
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
           Upload{" "}
           <span className="underline underline-offset-3 decoration-8 decoration-blue-400">

@@ -1,3 +1,4 @@
+"use client";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "moment-timezone";
 import moment from "moment";
@@ -6,6 +7,7 @@ import { EventCalendarI, SlotType, UcSchedule } from "@/types/Types";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getDates } from "@/app/schedule/page";
+import { usePathname } from "next/navigation";
 
 moment.tz.setDefault("Europe/Lisbon");
 
@@ -18,7 +20,7 @@ export default function Schedule({
   setIsLoading,
 }: {
   eventsProps: EventCalendarI[];
-  studentNr: string;
+  studentNr?: string;
   getSchedule: () => Promise<void>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
@@ -42,12 +44,18 @@ export default function Schedule({
   const maxDate = new Date();
   maxDate.setHours(20, 0, 0);
 
-  const getUcShifts = async (uc: string, type: "TP" | "T" | "PL", currentShift: string) => {
+  const getUcShifts = async (
+    uc: string,
+    type: "TP" | "T" | "PL",
+    currentShift: string
+  ) => {
     // console.log(uc);
     const response = await axios.get<UcSchedule>(`/api/ucs/${uc}`);
 
     const ucShifts = response.data
-      .filter((shift) => shift.type_class === type && shift.shift !== currentShift)
+      .filter(
+        (shift) => shift.type_class === type && shift.shift !== currentShift
+      )
       .map((shift) =>
         shift.slots.map((slot) => {
           const dates = getDates(slot as SlotType);
@@ -103,6 +111,9 @@ export default function Schedule({
 
     setIsLoading(false);
   };
+  const pathname = usePathname();
+  const disabledRoutes = ["/course_schedules"];
+  const isDisabled = disabledRoutes.includes(pathname);
 
   return (
     <div>
@@ -118,16 +129,21 @@ export default function Schedule({
         defaultDate={new Date()}
         defaultView={"work_week"}
         views={["day", "work_week"]}
+        dayLayoutAlgorithm={"no-overlap"}
         min={minDate}
-        onSelectEvent={(event) => {
-          if (viewType === "student") {
-            getUcShifts(event.uc, event.type_class, event.shift);
-          } else {
-            updateJson(event.uc, event.type_class, event.shift);
-            setViewType("student");
-            setEvents({ ...events, ucShifts: [] });
-          }
-        }}
+        onSelectEvent={
+          isDisabled
+            ? undefined
+            : (event) => {
+                if (viewType === "student") {
+                  getUcShifts(event.uc, event.type_class, event.shift);
+                } else {
+                  updateJson(event.uc, event.type_class, event.shift);
+                  setViewType("student");
+                  setEvents({ ...events, ucShifts: [] });
+                }
+              }
+        }
         selectable
         max={maxDate}
         events={viewType === "student" ? events.student : events.ucShifts}
