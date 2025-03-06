@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ message: "No file uploaded.", status: 400 });
         }
 
-        if (uploadedFile instanceof File) {
+        if (uploadedFile instanceof Blob) {
             const fileName = uploadedFile.name;
 
             const fileBuffer = Buffer.from(await uploadedFile.arrayBuffer());
