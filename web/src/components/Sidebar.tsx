@@ -1,6 +1,7 @@
 import { NeccLogo } from "@/icons/NeccLogo";
 import { ScheduleLogo } from "@/icons/ScheduleLogo";
 import { UploadIcon } from "@/icons/UploadIcon";
+import { CourseSchedulesIcon } from "@/icons/CourseSchedulesIcon";
 import { Button } from "@mui/material";
 import Link from "next/link";
 import { FaAngleDoubleRight, FaAngleDoubleLeft } from "react-icons/fa";
@@ -18,9 +19,14 @@ const sidebarData = [
     href: "/schedule",
     icon: <ScheduleLogo />,
   },
+  {
+    title: "Course Schedules",
+    href: "/course_schedules",
+    icon: <CourseSchedulesIcon />,
+  },
 ];
 
-function Sidebar(props: { activeTab: "Schedule" | "Upload" | null }) {
+function Sidebar(props: { activeTab: "Schedule" | "Upload" | "Course Schedules" | null }) {
   const [isOpen, setIsOpen] = useState(false);
   const [hasAllocationsJSON, setHasAllocationsJSON] = useState(false);
   const [hasScheduleJSON, setHasScheduleJSON] = useState(false);
