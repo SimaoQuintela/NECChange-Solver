@@ -2,6 +2,7 @@
 import Sidebar from "@/components/Sidebar";
 import Loader from "@/components/Loader";
 import Head from "next/head";
+import RowRadioButtonsGroup from "@/components/RowRadioButtonsGroup";
 
 import { useState, useEffect } from "react";
 
@@ -15,8 +16,7 @@ import {
   StudentNumberTypeNotNull,
   StudentsNumberType,
 } from "@/types/Types";
-import InputAuto from "@/components/InputAuto";
-import Button from "@mui/material/Button";
+
 
 export function getDates(slot: SlotType) {
   const date = new Date();
@@ -103,12 +103,13 @@ function handleEvents(data: StudentAlocationType<StudentNumberTypeNotNull>) {
 }
 
 export default function BackofficeSchedule() {
-  const [studentNr, setStudentNr] = useState<StudentsNumberType>("");
+  const [studentNr, /*setStudentNr*/] = useState<StudentsNumberType>("");
   const [evt, setEvt] = useState<EventCalendarI[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showExportNotification, setShowExportNotification] = useState(false);
-  const [studentKeys, setStudentKeys] = useState<string[]>([]);
+  const [/*studentKeys*/, setStudentKeys] = useState<string[]>([]);
+  //const [year, setYear] = useState<string>("");
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -151,56 +152,6 @@ export default function BackofficeSchedule() {
     setIsLoading(false);
   };
 
-  /**
-   * @brief This function will export all the classes of all students to a PDF file
-   * It will make a request to the server to execute the export_all.py script
-   *
-   * @todo Loading
-   * @todo Download the file as .zip from the server
-   * @returns {Promise<void>}
-   */
-  const handleExportAll = async () => {
-    setIsLoading(true);
-    try {
-      const res = await axios.post("/api/export/all");
-
-      if (res.data.status === 200) {
-        console.log(res.data);
-        setShowExportNotification(true);
-      }
-    } catch (error) {
-      console.error(error);
-      setErrorMessage("An error occurred during exportation.");
-    }
-
-    setIsLoading(false);
-  };
-
-  /**
-   * @brief This function will export the year schedule to a PDF file
-   * It will make a request to the server to execute the export_year_schedule.py script
-   *
-   * @todo Loading
-   * @todo Download the file from the server
-   * @returns {Promise<void>}
-   */
-  const handleYearSchedule = async () => {
-    setIsLoading(true);
-    try {
-      const res = await axios.post("/api/export/year_schedule");
-
-      if (res.data.status === 200) {
-        console.log(res.data);
-        setShowExportNotification(true);
-      }
-    } catch (error) {
-      console.error(error);
-      setErrorMessage("An error occurred during exportation.");
-    }
-
-    setIsLoading(false);
-  };
-
   useEffect(() => {
     async function fetchStudents() {
       try {
@@ -228,32 +179,13 @@ export default function BackofficeSchedule() {
         <div className="w-full">
           <div className="flex justify-between">
             <div className="flex gap-2">
-              <div className="w-[200px]">
-                <InputAuto
-                  label="Student number"
-                  options={studentKeys}
-                  setStudent={setStudentNr}
-                />
-              </div>
-              <Button
-                variant="contained"
-                onClick={getSchedule}
-                className="bg-[#1775B9]"
-              >
-                Search
-              </Button>
+              <RowRadioButtonsGroup />
             </div>
           </div>
           <Schedule eventsProps={evt} studentNr={studentNr} getSchedule={getSchedule} setIsLoading={setIsLoading} />
         </div>
 
         {isLoading && <Loader />}
-
-        {showExportNotification && (
-          <div className="fixed top-0 right-0 m-6 p-4 bg-green-500 text-white rounded shadow-lg">
-            Export successful!
-          </div>
-        )}
 
         {errorMessage && (
           <div className="fixed top-0 right-0 m-6 p-4 bg-red-500 text-white rounded shadow-lg">
