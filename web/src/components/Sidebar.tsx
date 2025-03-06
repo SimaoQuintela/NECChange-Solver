@@ -1,6 +1,7 @@
 import { NeccLogo } from "@/icons/NeccLogo";
 import { ScheduleLogo } from "@/icons/ScheduleLogo";
 import { UploadIcon } from "@/icons/UploadIcon";
+import { CourseSchedulesIcon } from "@/icons/CourseSchedulesIcon";
 import { AnalyticsLogo } from "@/icons/AnalyticsLogo";
 import { Button } from "@mui/material";
 import Link from "next/link";
@@ -19,15 +20,19 @@ const sidebarData = [
     href: "/schedule",
     icon: <ScheduleLogo />,
   },
-
+  {
+    title: "Course Schedules",
+    href: "/course_schedules",
+    icon: <CourseSchedulesIcon />,
+  },
   {
     title: "Analytics",
     href: "/analytics",
-    icon: <AnalyticsLogo />
-  }
+    icon: <AnalyticsLogo />,
+  },
 ];
 
-function Sidebar(props: { activeTab: "Schedule" | "Upload" | "Analytics" | null }) {
+function Sidebar(props: { activeTab: "Schedule" | "Upload" | "Course Schedules" | "Analytics" | null }) {
   const [isOpen, setIsOpen] = useState(false);
   const [hasAllocationsJSON, setHasAllocationsJSON] = useState(false);
   const [hasScheduleJSON, setHasScheduleJSON] = useState(false);
