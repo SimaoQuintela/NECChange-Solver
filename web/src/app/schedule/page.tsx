@@ -2,9 +2,7 @@
 import Sidebar from "@/components/Sidebar";
 import Loader from "@/components/Loader";
 import Head from "next/head";
-
 import { useState, useEffect } from "react";
-
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import Schedule from "@/components/schedule/calendar/Schedule";
 import axios from "axios";

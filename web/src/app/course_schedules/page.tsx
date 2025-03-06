@@ -14,8 +14,8 @@ import {
   SlotType,
   StudentAlocationType,
   StudentNumberTypeNotNull,
-  StudentsNumberType,
 } from "@/types/Types";
+import toast, { Toaster } from "react-hot-toast";
 
 export function getDates(slot: SlotType) {
   const date = new Date();
@@ -101,76 +101,53 @@ function handleEvents(data: StudentAlocationType<StudentNumberTypeNotNull>) {
   return events;
 }
 
-export default function BackofficeSchedule() {
-  const [studentNr /*setStudentNr*/] = useState<StudentsNumberType>("");
+export default function CourseSchecules() {
   const [evt, setEvt] = useState<EventCalendarI[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [showExportNotification, setShowExportNotification] = useState(false);
-  const [, /*studentKeys*/ setStudentKeys] = useState<string[]>([]);
   const [year, setYear] = useState<string>("1º Year");
-
-  console.log("Carlos", year);
+  const [hasScheduleJSON, setHasScheduleJSON] = useState(false);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (showExportNotification || errorMessage) {
-      timer = setTimeout(() => {
-        setShowExportNotification(false);
-        setErrorMessage(null);
-      }, 3000);
-    }
+    axios
+      .get("/api/status")
+      .then((response) => {
+        const { alocation, schedule } = response.data;
+        if (schedule == false) {
+          toast.error("No schedule found. Please upload a schedule.");
+        }
+        setHasScheduleJSON(schedule);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar status:", error);
+      });
+  }, [year]);
 
-    return () => clearTimeout(timer);
-  }, [showExportNotification, errorMessage]);
-
-  /**
-   * @brief This function gets the schedule of a student
-   * It will make a request to the server to get the schedule of the student stored as JSON
-   * generated from the parser. It will then call the handleEvents function to convert the
-   * JSON into an array of events that can be displayed on the calendar.
-   *
-   * @returns {Promise<void>}
-   */
   const getSchedule = async () => {
-    if (studentNr === "") return;
-
-    const res = await axios.get<{
-      classes: StudentAlocationType<typeof studentNr>;
-      studentNr: StudentsNumberType;
-    }>(`/api/students/${studentNr}`);
-
-    if (res.data.classes?.length === 0) {
-      setEvt([]);
-      setErrorMessage("No classes found for student number " + studentNr);
+    setIsLoading(true);
+    try {
+      const params = { year: year.match(/\d+/)?.[0] };
+      const response = await axios.get("api/slots", { params });
+      const evts = handleEvents(response.data.slots);
+      console.log(response.data.slots);
+      setEvt(evts);
+    } catch (error) {
+      toast.error(
+        "Error fetching schedule. Please ensure the schedule object is correctly formatted and uploaded."
+      );
+    } finally {
       setIsLoading(false);
-      return;
     }
-
-    const evts = handleEvents(res.data.classes);
-    setEvt(evts);
-
-    setIsLoading(false);
   };
 
   useEffect(() => {
-    async function fetchStudents() {
-      try {
-        const response = await fetch("/api/students/numbers");
-        const data = await response.json();
-        setStudentKeys(
-          data.map((student: { studentNr: string }) => student.studentNr)
-        );
-      } catch (error) {
-        console.error("Erro ao buscar estudantes:", error);
-      }
+    if (hasScheduleJSON) {
+      getSchedule();
     }
-
-    fetchStudents();
-  }, []);
+  }, [hasScheduleJSON, year]);
 
   return (
     <main className="h-screen bg-slate-200 ">
+      <Toaster position="bottom-right" reverseOrder={false} />
       <Head>
         <title>NECChange</title>
         <link rel="icon" href="logos/necc-blue.svg" />
@@ -185,19 +162,12 @@ export default function BackofficeSchedule() {
           </div>
           <Schedule
             eventsProps={evt}
-            studentNr={studentNr}
             getSchedule={getSchedule}
             setIsLoading={setIsLoading}
           />
         </div>
 
         {isLoading && <Loader />}
-
-        {errorMessage && (
-          <div className="fixed top-0 right-0 m-6 p-4 bg-red-500 text-white rounded shadow-lg">
-            {errorMessage}
-          </div>
-        )}
       </div>
     </main>
   );

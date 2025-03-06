@@ -46,9 +46,8 @@ def main():
     ucs_data = read_ucs_data()
     slots = parser_schedule.generate_slots()
     (S, rooms_per_slot) = parser_schedule.read_schedule_uni(ucs_data, semester, slots)
-    parser_to_json.convert_S_to_JSON(S, rooms_per_slot)
-    parser_to_json.convert_S_to_JSON(S, rooms_per_slot)
     rooms_capacity = parser_schedule.rooms_capacity()
+    parser_to_json.convert_S_to_JSON(S, rooms_per_slot, rooms_capacity)
     stats, allocated_number = distribution.allocated_number_per_uc(students_data)
     
     model = cp_model.CpModel()
