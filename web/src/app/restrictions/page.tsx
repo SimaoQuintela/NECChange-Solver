@@ -1,7 +1,7 @@
-export default function Analytics() {
+export default function Restrictions() {
   return (
     <div className="h-screen bg-slate-200">
-      <h1>Analytics</h1>
+      <h1>Restrictions</h1>
     </div>
   );
 }
