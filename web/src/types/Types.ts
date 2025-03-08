@@ -15,6 +15,17 @@ export type StudentAlocation = {
     slots: SlotType[];
 };
 
+export type ChartData = {
+  labels: string[];
+  datasets: {
+    label: string;
+    data: number[];
+    backgroundColor: string;
+    borderColor: string;
+    borderWidth: number;
+  }[];
+};
+
 export type WeekDayType = "Segunda" | "Terça" | "Quarta" | "Quinta" | "Sexta" | "Sábado" | "Domingo";
 export type SlotType = [WeekDayType, string, string, string, string, string, boolean];
 
@@ -35,5 +46,22 @@ export interface EventCalendarI {
   capacity?: number;
   allocations?: number;
 };
+
+export interface UCData {
+  uc: string;
+  year: string;
+  type_class: string;
+}
+
+export interface StudentsPerUCChartProps {
+  year: string;
+  color: string;
+  borderColor: string;
+}
+
+export interface DashboardCardProps {
+  title: string;
+  children: React.ReactNode; 
+}
 
 export type UcSchedule = typeof schedule;
