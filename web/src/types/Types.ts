@@ -31,6 +31,9 @@ export interface EventCalendarI {
   allDay: boolean;
   start: Date;
   end: Date;
+  room?: string;
+  capacity?: number;
+  allocations?: number;
 };
 
 export type UcSchedule = typeof schedule;

@@ -8,10 +8,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { getDates } from "@/app/schedule/page";
 import { usePathname } from "next/navigation";
+import roomsAllocations from "@/../public/data/roomsAllocations.json";
 
 moment.tz.setDefault("Europe/Lisbon");
 
 const localizer = momentLocalizer(moment);
+
+type RoomAllocationsUc = keyof typeof roomsAllocations;
+type RoomAllocationsType =
+  keyof (typeof roomsAllocations)[keyof typeof roomsAllocations];
 
 export default function Schedule({
   eventsProps,
@@ -54,13 +59,26 @@ export default function Schedule({
 
     const ucShifts = response.data
       .filter(
-        (shift) => shift.type_class === type && shift.shift !== currentShift
+        (shift) => shift.type_class === type
       )
       .map((shift) =>
         shift.slots.map((slot) => {
           const dates = getDates(slot as SlotType);
+
+          const roomData = roomsAllocations[
+            shift.uc as unknown as RoomAllocationsUc
+          ][
+            (shift.type_class + shift.shift) as unknown as RoomAllocationsType
+          ] as {
+            rooms: string[];
+            capacity: number[];
+            allocations: number;
+          };
+
+          const roomIndex = roomData.rooms.indexOf(slot[5].toString().split("Ed")[1]);
+
           return {
-            title: shift.type_class + shift.shift,
+            title: shift.type_class + shift.shift + " - " + roomData.allocations + "/" + roomData.capacity[roomIndex],
             year: shift.year,
             semester: shift.semester,
             uc: shift.uc,
@@ -70,6 +88,9 @@ export default function Schedule({
             overlap: slot[6] as unknown as boolean,
             start: dates.start,
             end: dates.end,
+            room: roomData.rooms[roomIndex],
+            capacity: roomData.capacity[roomIndex],
+            allocations: roomData.allocations,
           };
         })
       )
@@ -84,6 +105,8 @@ export default function Schedule({
     // console.log(ucShifts);
     return response.data;
   };
+
+  console.log(events, "events");
 
   const updateJson = async (uc: string, type_class: string, shift: string) => {
     setIsLoading(true);
@@ -150,15 +173,21 @@ export default function Schedule({
         eventPropGetter={(event) => {
           // console.log(event)
           let color = "";
-          const isSwap = event.title == event.type_class + event.shift;
+          const isSwap = event.title == (event.type_class + event.shift) + " - " + event.allocations + "/" + event.capacity;
 
           // If the event is overlapping with another event the color is gray
           if (event.overlap === true && viewType == "student") {
             color = "#A0A0A0";
           } else {
             // If the event is the sleected item in the calendar
-            if (isSwap) {
-              color = "#000";
+            if (isSwap && event.allocations && event.capacity) {
+              if (event.allocations === event.capacity) {
+                color = "#000";
+              } else if (event.allocations < event.capacity) {
+                color = "#0e5f0e";
+              } else {
+                color = "#ff0000";
+              }
             } else if (event.year === "1") {
               // If the class is a theoretical class the color is blue, otherwise it is light blue
               if (event.type_class === "T") color = "#0066CC";
