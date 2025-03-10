@@ -7,8 +7,12 @@ import Sidebar from "@/components/Sidebar";
 import Loader from "@/components/Loader";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import Button from "@mui/material/Button";
 
 export default function Home() {
+  const router = useRouter();
+
   const [selectedFiles1, setSelectedFiles1] = useState<File[]>([]);
   const [selectedFiles2, setSelectedFiles2] = useState<File[]>([]);
   const [selectedFiles3, setSelectedFiles3] = useState<File[]>([]);
@@ -114,6 +118,13 @@ export default function Home() {
             Generate
           </span>
         </button>
+        <Button
+          variant="contained"
+          onClick={() => router.push("/restrictions")}
+          className="bg-[#1775B9]"
+        >
+          Make Restrictions Dynamic
+        </Button>
 
         {/* TODO: ADD A DELETE BUTTON HERE FOR DELETING THE UPLOADED FILES */}
 
