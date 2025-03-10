@@ -164,6 +164,7 @@ export default function CourseSchecules() {
             eventsProps={evt}
             getSchedule={getSchedule}
             setIsLoading={setIsLoading}
+            isClickable={false}
           />
         </div>
 

@@ -27,7 +27,7 @@ export type ChartData = {
 };
 
 export type WeekDayType = "Segunda" | "Terça" | "Quarta" | "Quinta" | "Sexta" | "Sábado" | "Domingo";
-export type SlotType = [WeekDayType, string, string, string, string, string, boolean];
+export type SlotType = [WeekDayType, string, string, string, string, string, string];
 
 
 // Calendar Event Type

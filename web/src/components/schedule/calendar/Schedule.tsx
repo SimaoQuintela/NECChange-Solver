@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { getDates } from "@/app/schedule/page";
 import { usePathname } from "next/navigation";
 import roomsAllocations from "@/../public/data/roomsAllocations.json";
+import PopUp from "@/components/PopUp";
 
 moment.tz.setDefault("Europe/Lisbon");
 
@@ -18,18 +19,45 @@ type RoomAllocationsUc = keyof typeof roomsAllocations;
 type RoomAllocationsType =
   keyof (typeof roomsAllocations)[keyof typeof roomsAllocations];
 
+const CustomEvent = ({ event }: { event: EventCalendarI }) => {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      <div>{event.title}</div>
+      <div
+        style={{
+          marginTop: "auto",
+          fontSize: "0.8em",
+          textAlign: "right",
+        }}
+      >
+        Capacity - {event.capacity}
+      </div>
+    </div>
+  );
+};
+
 export default function Schedule({
   eventsProps,
   studentNr,
   getSchedule,
   setIsLoading,
+  showCapacity = false,
+  isClickable = true,
+  isTrade = true,
 }: {
   eventsProps: EventCalendarI[];
   studentNr?: string;
   getSchedule: () => Promise<void>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  showCapacity?: boolean;
+  isClickable?: boolean;
+  isTrade?: boolean;
 }) {
   const [viewType, setViewType] = useState<"student" | "ucShifts">("student");
+  const [eventSelected, setEventSelected] = useState<EventCalendarI | null>(
+    null
+  );
+  const [open, setOpen] = useState(false);
 
   const [events, setEvents] = useState<{
     student: EventCalendarI[];
@@ -58,9 +86,7 @@ export default function Schedule({
     const response = await axios.get<UcSchedule>(`/api/ucs/${uc}`);
 
     const ucShifts = response.data
-      .filter(
-        (shift) => shift.type_class === type
-      )
+      .filter((shift) => shift.type_class === type)
       .map((shift) =>
         shift.slots.map((slot) => {
           const dates = getDates(slot as SlotType);
@@ -75,10 +101,18 @@ export default function Schedule({
             allocations: number;
           };
 
-          const roomIndex = roomData.rooms.indexOf(slot[5].toString().split("Ed")[1]);
+          const roomIndex = roomData.rooms.indexOf(
+            slot[5].toString().split("Ed")[1]
+          );
 
           return {
-            title: shift.type_class + shift.shift + " - " + roomData.allocations + "/" + roomData.capacity[roomIndex],
+            title:
+              shift.type_class +
+              shift.shift +
+              " - " +
+              roomData.allocations +
+              "/" +
+              roomData.capacity[roomIndex],
             year: shift.year,
             semester: shift.semester,
             uc: shift.uc,
@@ -97,6 +131,7 @@ export default function Schedule({
       .flat() as EventCalendarI[];
 
     // TODO: Notify user that there are no shifts available
+    // Toast notification Camargo
     if (ucShifts.length === 0) return;
 
     setViewType("ucShifts");
@@ -106,7 +141,7 @@ export default function Schedule({
     return response.data;
   };
 
-  console.log(events, "events");
+  console.log(events.student, "eventssssss");
 
   const updateJson = async (uc: string, type_class: string, shift: string) => {
     setIsLoading(true);
@@ -134,9 +169,6 @@ export default function Schedule({
 
     setIsLoading(false);
   };
-  const pathname = usePathname();
-  const disabledRoutes = ["/course_schedules"];
-  const isDisabled = disabledRoutes.includes(pathname);
 
   return (
     <div>
@@ -155,9 +187,10 @@ export default function Schedule({
         dayLayoutAlgorithm={"no-overlap"}
         min={minDate}
         onSelectEvent={
-          isDisabled
+          !isClickable
             ? undefined
-            : (event) => {
+            : isTrade
+            ? (event, e) => {
                 if (viewType === "student") {
                   getUcShifts(event.uc, event.type_class, event.shift);
                 } else {
@@ -166,14 +199,32 @@ export default function Schedule({
                   setEvents({ ...events, ucShifts: [] });
                 }
               }
+            : (event) => {
+                setEventSelected(event);
+                setOpen(true);
+              }
         }
         selectable
         max={maxDate}
+        components={
+          showCapacity
+            ? {
+                event: CustomEvent,
+              }
+            : {}
+        }
         events={viewType === "student" ? events.student : events.ucShifts}
         eventPropGetter={(event) => {
           // console.log(event)
           let color = "";
-          const isSwap = event.title == (event.type_class + event.shift) + " - " + event.allocations + "/" + event.capacity;
+          const isSwap =
+            event.title ==
+            event.type_class +
+              event.shift +
+              " - " +
+              event.allocations +
+              "/" +
+              event.capacity;
 
           // If the event is overlapping with another event the color is gray
           if (event.overlap === true && viewType == "student") {
@@ -219,6 +270,14 @@ export default function Schedule({
         }}
         className="bg-white font-sans"
       />
+      {open && (
+        <PopUp
+          title={eventSelected?.title ?? ""}
+          capacity={eventSelected?.capacity}
+          open={open}
+          setOpen={setOpen}
+        />
+      )}
     </div>
   );
 }
