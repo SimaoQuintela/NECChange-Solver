@@ -272,8 +272,7 @@ export default function Schedule({
       />
       {open && (
         <PopUp
-          title={eventSelected?.title ?? ""}
-          capacity={eventSelected?.capacity}
+          event={eventSelected as EventCalendarI}
           open={open}
           setOpen={setOpen}
         />
