@@ -141,7 +141,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                         if slot in S[year][semester][uc][type_class][shift]:
                             for dic in rooms_per_slot[slot]:
                                 if uc in dic:
-                                    if type_class in dic[uc] and type_class != "T":
+                                    #if type_class in dic[uc] and type_class != "T":
                                         if shift in dic[uc][type_class]:
                                             room = dic[uc][type_class][shift]
                                             #print(dic , "=>", slot)
