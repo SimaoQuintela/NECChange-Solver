@@ -128,7 +128,6 @@ export default function CourseSchecules() {
       const params = { year: year.match(/\d+/)?.[0] };
       const response = await axios.get("api/slots", { params });
       const evts = handleEvents(response.data.slots);
-      console.log(response.data.slots);
       setEvt(evts);
     } catch (error) {
       toast.error(

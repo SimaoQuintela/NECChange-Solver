@@ -10,6 +10,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import Typography from "@mui/material/Typography";
 import { EventCalendarI } from "@/types/Types";
+import axios from "axios";
 
 interface PopUpProps {
   event: EventCalendarI;
@@ -29,9 +30,16 @@ export default function PopUp({ event, open, setOpen }: PopUpProps) {
     setNewCapacity(value);
   };
 
-  const handleSave = () => {
-    console.log(`Changed capacity from ${event.capacity} to ${newCapacity}`);
-    setOpen(false);
+  const handleSave = async () => {
+    const key = `${event.uc}-${event.type_class}-${event.shift}-${event.room}`;
+    const dados = { [key]: newCapacity };
+
+    try {
+      await axios.post("/api/dynamicAlocation", dados);
+      setOpen(false);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

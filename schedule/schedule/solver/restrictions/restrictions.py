@@ -1,3 +1,15 @@
+""" import json
+import os
+
+json_path = os.path.join("..", "..", "web", "public", "data", "dynamicAlocation.json")
+
+if os.path.exists(json_path):
+    with open(json_path, "r", encoding="utf-8") as file:
+        dynamicAlocation = json.load(file)
+    print(dynamicAlocation)
+else:
+    print(f"Erro: O arquivo {json_path} não foi encontrado.")
+ """
 def years_per_student(student, students_data, S, semester):
     """
     This function returns the years in which the student is enrolled.
@@ -120,7 +132,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
     
 
     # R05 - The number of students allocated to a class must be less or equal than the room's capacity (30% tolerance)
-    """
+    
     for slot in slots_generated:
         for year in S:
             for uc in S[year][semester]:
@@ -129,9 +141,10 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                         if slot in S[year][semester][uc][type_class][shift]:
                             for dic in rooms_per_slot[slot]:
                                 if uc in dic:
-                                    if type_class in dic[uc]:
+                                    #if type_class in dic[uc] and type_class != "T":
                                         if shift in dic[uc][type_class]:
                                             room = dic[uc][type_class][shift]
+                                            #print(dic , "=>", slot)
                                             model.Add(
                                                     sum(A[student][year][semester][uc][type_class][shift][slot] for student in students_nr
                                                                                                             if year in years_per_student(student, students_data, S, semester)
@@ -139,9 +152,9 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                                                                                                             and semester_per_uc(uc, S, year, semester) == semester
                                                                                                             and slot in A[student][year][semester][uc][type_class][shift])
                                                     <= 
-                                                    int(rooms_capacity[room]/0.5)
+                                                    int(rooms_capacity[room] * 1.7)
                                                 )
-    """
+    
     # R06 - O[student][slot] = | classes number in slot - 1 |
     for student in O:
             for slot in O[student]:

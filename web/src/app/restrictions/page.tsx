@@ -84,7 +84,6 @@ function handleEvents(data: StudentAlocationType<StudentNumberTypeNotNull>) {
       const dates = getDates(slot as SlotType);
       const event = {
         title: lesson.type_class + lesson.shift + " - " + lesson.uc,
-        // + " - " + slot[5],
         year: lesson.year,
         semester: lesson.semester,
         uc: lesson.uc,
@@ -95,6 +94,7 @@ function handleEvents(data: StudentAlocationType<StudentNumberTypeNotNull>) {
         start: dates.start,
         end: dates.end,
         capacity: Number(slot[6]),
+        room: typeof slot[5] === "boolean" ? "" : slot[5] // isto está completamente errado mas ns pq o room é um boolean 
       };
       events.push(event);
     });
