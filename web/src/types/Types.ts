@@ -47,21 +47,44 @@ export interface EventCalendarI {
   allocations?: number;
 };
 
-export interface UCData {
-  uc: string;
-  year: string;
-  type_class: string;
-}
-
 export interface StudentsPerUCChartProps {
   year: string;
   color: string;
   borderColor: string;
+  ucFilter?: string | null;
 }
 
 export interface DashboardCardProps {
   title: string;
   children: React.ReactNode; 
+}
+
+export interface UCSData {
+  uc: string;
+  year: string;
+  semester: string;
+  type_class: string;
+  shift: string;
+  slots: Array<[string, string, string, string, string, string, boolean]>;
+}
+
+export interface OverlapChartProps {
+  ucName: string;
+}
+
+export interface ShiftDistributionChartProps {
+  ucName: string;
+  year: string;
+}
+
+export interface ShiftCount {
+  shiftLabel: string;
+  count: number;
+}
+
+export interface UCItem {
+  id: string;
+  name: string;
 }
 
 export type UcSchedule = typeof schedule;
