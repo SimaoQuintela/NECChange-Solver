@@ -2,13 +2,13 @@
 import Sidebar from "@/components/Sidebar";
 import Head from "next/head";
 import StudentsPerUCChart from "@/components/analytics/StudentsPerUCChart";
-import ShiftDistributionChart from "@/components/analytics/chartPerUC";
-import OverlapChart from "@/components/analytics/OverlapChart";
 import DashboardCard from "@/components/analytics/DashboardCard";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
+import { MenuItem, Select, InputLabel, FormControl, Button, Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import { UCSData, UCItem } from "@/types/Types";
-
+import ShiftPieChart from "@/components/analytics/ShiftPieChart";
+import { useShiftDistribution } from "@/utils/UseShiftDistribution";
+import { useOverlapData } from "@/utils/utilsChartPerUC";
 
 export default function BackofficeAnalytics() {
   const [selectedUC, setSelectedUC] = useState<string>("General");
@@ -78,65 +78,63 @@ export default function BackofficeAnalytics() {
       <div className="h-full p-8 ml-[75px] pt-[75px] flex flex-col">
         <div className="bg-white rounded-lg shadow-md py-2 px-4 mb-6 flex justify-between items-center w-full min-h-[50px]">
           <h1 className="text-lg font-bold">Dashboard</h1>
-          <Dropdown>
-            <DropdownTrigger>
-              <Button className="bg-blue-500 text-white px-3 py-1 rounded">
-                {selectedUC}
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu 
-              aria-label="UC Selection" 
-              onAction={(key) => {
-                const selected = ucList.find(uc => uc.id === key);
-                if (selected) setSelectedUC(selected.name);
-              }}
-              className="max-h-64 overflow-y-auto"
-            >
-              {ucList.map((uc) => (
-                <DropdownItem key={uc.id}>{uc.name}</DropdownItem>
-              ))}
-            </DropdownMenu>
-          </Dropdown>
+          <Box sx={{ minWidth: 120 }}>
+            <FormControl fullWidth>
+              <InputLabel id="uc-select-label">Unidade Curricular</InputLabel>
+              <Select
+                labelId="uc-select-label"
+                id="uc-select"
+                value={selectedUC}
+                onChange={(e) => setSelectedUC(e.target.value)}
+                label="Unidade Curricular"
+                sx={{ maxWidth: 200 }}
+              >
+                {ucList.map((uc) => (
+                  <MenuItem key={uc.id} value={uc.name}>
+                    {uc.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
         </div>
 
         <div className="flex flex-col flex-grow gap-4">
           {selectedUC !== "General" && (
             <div className="flex flex-col items-center w-full gap-8">
               {/* Linha para Distribuição por Turnos e Sobreposição */}
-              <div className="flex justify-center items-center w-full gap-8">
-                {/* Container para gráficos */}
-                <div className="flex flex-col md:flex-row justify-center items-center w-full gap-8">
-                  {/* Container para gráficos de distribuição por turnos */}
-                  <div className="flex flex-col justify-center items-center w-[500px] h-[500px]">
-                    {availableYears.length > 0 && (
-                      <div className="flex flex-col justify-center items-center w-full h-full gap-4">
-                        {availableYears.slice(0, 2).map((year) => (
-                          <div key={`shift-${year}`} className="w-full h-[240px]">
-                            <h2 className="text-lg font-bold text-center mb-2">{`Distribuição por Turnos (${year}º Ano)`}</h2>
-                            <ShiftDistributionChart ucName={selectedUC} year={year} />
-                          </div>
-                        ))}
-                      </div>
-                    )}
+              <div className="flex justify-center gap-8 w-full">
+                {/* Container Distribuição por Turnos */}
+                <div className="flex flex-col items-center justify-start bg-white shadow-md rounded-lg w-[600px] h-[400px] p-4">
+                  <h2 className="text-lg font-bold text-center w-full border-b pb-2">
+                    Distribuição por Turnos
+                  </h2>
+                  <div className="flex justify-center items-center w-full h-full">
+                    <CombinedChart ucName={selectedUC} year={availableYears[0]} chartType="shift" />
                   </div>
-                  
-                  {/* Container para o gráfico de sobreposição */}
-                  <div className="flex flex-col justify-center items-center w-[500px] h-[500px]">
-                    <h2 className="text-lg font-bold text-center mb-2">Sobreposição de Horários</h2>
-                    <OverlapChart ucName={selectedUC} />
+                </div>
+
+                {/* Container Sobreposição de Horários */}
+                <div className="flex flex-col items-center justify-start bg-white shadow-md rounded-lg w-[600px] h-[400px] p-4">
+                  <h2 className="text-lg font-bold text-center w-full border-b pb-2">
+                    Sobreposição de Horários
+                  </h2>
+                  <div className="flex justify-center items-center w-full h-full">
+                    <CombinedChart ucName={selectedUC} chartType="overlap" />
                   </div>
                 </div>
               </div>
             </div>
           )}
+
           {selectedUC === "General" && (
             <>
               {["1", "2", "3"].map(year => (
                 <DashboardCard key={`students-${year}`} title={`Alunos por Unidade Curricular (${year}º Ano)`}>
-                  <StudentsPerUCChart 
-                    year={year} 
-                    color={year === "1" ? "rgba(54, 162, 235, 0.6)" : year === "2" ? "rgba(75, 192, 192, 0.6)" : "rgba(153, 102, 255, 0.6)"} 
-                    borderColor={year === "1" ? "rgba(54, 162, 235, 1)" : year === "2" ? "rgba(75, 192, 192, 1)" : "rgba(153, 102, 255, 1)"} 
+                  <StudentsPerUCChart
+                    year={year}
+                    color={year === "1" ? "rgba(54, 162, 235, 0.6)" : year === "2" ? "rgba(75, 192, 192, 0.6)" : "rgba(153, 102, 255, 0.6)"}
+                    borderColor={year === "1" ? "rgba(54, 162, 235, 1)" : year === "2" ? "rgba(75, 192, 192, 1)" : "rgba(153, 102, 255, 1)"}
                   />
                 </DashboardCard>
               ))}
@@ -145,5 +143,27 @@ export default function BackofficeAnalytics() {
         </div>
       </div>
     </main>
+  );
+}
+
+
+function CombinedChart({ ucName, year, chartType }: { ucName: string, year?: string, chartType: 'shift' | 'overlap' }) {
+  const { chartData: shiftData, loading: shiftLoading, error: shiftError } = useShiftDistribution(ucName, year || "");
+  const { chartData: overlapData, loading: overlapLoading, error: overlapError } = useOverlapData(ucName);
+
+  if (shiftLoading || overlapLoading) return <p>Carregando dados do gráfico...</p>;
+
+  if (shiftError || overlapError) {
+    return <p className="text-red-500">{shiftError || overlapError}</p>;
+  }
+
+  return (
+    <div className="h-full flex flex-col justify-center items-center">
+      {chartType === 'shift' ? (
+        shiftData ? <ShiftPieChart data={shiftData} /> : <p className="text-center">Sem dados de distribuição por turnos.</p>
+      ) : (
+        overlapData ? <ShiftPieChart data={overlapData} /> : <p className="text-center">Nenhuma sobreposição encontrada.</p>
+      )}
+    </div>
   );
 }

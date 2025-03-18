@@ -1,3 +1,4 @@
+import { Chart } from "chart.js/auto";
 import { useEffect, useState } from "react";
 import { UCSData } from "@/types/Types";
 
@@ -16,7 +17,7 @@ export function useOverlapData(ucName: string) {
         
         const overlapCounts = new Map<string, number>();
 
-        Object.entries(data).forEach(([studentId, studentSchedule]) => {
+        Object.entries(data).forEach(([_, studentSchedule]) => {
           const targetClasses = studentSchedule.filter(entry => entry.uc === ucName);
           if (targetClasses.length === 0) return;
           
@@ -36,7 +37,6 @@ export function useOverlapData(ucName: string) {
 
               if (hasOverlap) {
                 overlapCounts.set(classKey, (overlapCounts.get(classKey) || 0) + 1);
-                return;
               }
             });
           });
@@ -56,35 +56,17 @@ export function useOverlapData(ucName: string) {
           const backgroundColors: string[] = [];
           const borderColors: string[] = [];
 
-          const sortedEntries = Array.from(overlapCounts.entries()).sort((a, b) => {
-            const typeA = a[0].replace(/[0-9]/g, '');
-            const typeB = b[0].replace(/[0-9]/g, '');
-            if (typeA !== typeB) {
-              const typeOrder = { T: 0, TP: 1, PL: 2 };
-              return typeOrder[typeA as keyof typeof typeOrder] - typeOrder[typeB as keyof typeof typeOrder];
-            }
-            const shiftA = parseInt(a[0].replace(/[A-Z]/g, '') || '0');
-            const shiftB = parseInt(b[0].replace(/[A-Z]/g, '') || '0');
-            return shiftA - shiftB;
-          });
-
-          sortedEntries.forEach(([classKey, count]) => {
+          Array.from(overlapCounts.entries()).sort((a, b) => a[0].localeCompare(b[0])).forEach(([classKey, count]) => {
             const type = classKey.replace(/[0-9]/g, '');
-            const shift = classKey.replace(/[A-Z]/g, '');
-            labels.push(`${type}${shift}`);
+            labels.push(`${classKey} (${count} sobre.)`);
             counts.push(count);
 
-            if (colorMap[type]) {
-              backgroundColors.push(colorMap[type].bg);
-              borderColors.push(colorMap[type].border);
-            } else {
-              backgroundColors.push("rgba(153, 102, 255, 0.7)");
-              borderColors.push("rgba(153, 102, 255, 1)");
-            }
+            backgroundColors.push(colorMap[type]?.bg || "rgba(153, 102, 255, 0.7)");
+            borderColors.push(colorMap[type]?.border || "rgba(153, 102, 255, 1)");
           });
 
           setChartData({
-            labels: labels,
+            labels,
             datasets: [
               {
                 data: counts,
@@ -93,6 +75,31 @@ export function useOverlapData(ucName: string) {
                 borderWidth: 1,
               },
             ],
+            options: {
+              plugins: {
+                legend: {
+                  display: true,
+                  labels: {
+                    color: "#333",
+                    font: { size: 14 },
+                    generateLabels: (chart: Chart) => {
+                      const dataset = chart.data.datasets?.[0];
+                      if (!dataset) return [];
+
+                      const bgColors = dataset.backgroundColor as string[];
+                      const borderColors = dataset.borderColor as string[];
+
+                      return chart.data.labels?.map((label, index) => ({
+                        text: label as string,
+                        fillStyle: bgColors?.[index] || "rgba(0, 0, 0, 0.5)",
+                        strokeStyle: borderColors?.[index] || "rgba(0, 0, 0, 1)",
+                        lineWidth: 1,
+                      })) || [];
+                    },
+                  },
+                },
+              },
+            },
           });
         }
 
