@@ -7,7 +7,6 @@ import { EventCalendarI, SlotType, UcSchedule } from "@/types/Types";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getDates } from "@/app/schedule/page";
-import { usePathname } from "next/navigation";
 import roomsAllocations from "@/../public/data/roomsAllocations.json";
 import PopUp from "@/components/PopUp";
 
@@ -58,7 +57,7 @@ export default function Schedule({
     null
   );
   const [open, setOpen] = useState(false);
-
+  const [ucSelected, setUcSelected] = useState("");
   const [events, setEvents] = useState<{
     student: EventCalendarI[];
     ucShifts: EventCalendarI[];
@@ -134,6 +133,7 @@ export default function Schedule({
     // Toast notification Camargo
     if (ucShifts.length === 0) return;
 
+    setUcSelected(uc);
     setViewType("ucShifts");
     setEvents({ ...events, ucShifts: [...events.student, ...ucShifts] });
 
@@ -144,6 +144,11 @@ export default function Schedule({
   console.log(events.student, "eventssssss");
 
   const updateJson = async (uc: string, type_class: string, shift: string) => {
+    // If user clicks in a shift that is not the selected one, do nothing
+    // This is to prevent the user from clicking in a shift that is not the selected one
+    if (ucSelected !== uc) return;
+
+
     setIsLoading(true);
     const shiftTrade = {
       uc,
@@ -163,6 +168,7 @@ export default function Schedule({
     console.log(res.data, "res");
 
     if (res.data.status === 200) {
+      await axios.post("api/generate_shift_allocation");
       getSchedule();
       return;
     }
