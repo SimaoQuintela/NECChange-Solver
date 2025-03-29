@@ -177,12 +177,12 @@ export default function Schedule({
   };
 
   return (
-    <div>
+    <div className="mr-6">
       <Calendar
         toolbar={false}
         localizer={localizer}
         style={{
-          height: "80vh",
+          height: "85vh",
           marginTop: "10px",
           borderRadius: "8px",
           background: "#fff",

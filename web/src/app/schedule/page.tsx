@@ -15,6 +15,8 @@ import {
 } from "@/types/Types";
 import InputAuto from "@/components/InputAuto";
 import Button from "@mui/material/Button";
+import { Filter1 } from "@mui/icons-material";
+import { FaFilter, FaSearch, FaSort } from "react-icons/fa";
 
 export function getDates(slot: SlotType) {
   const date = new Date();
@@ -107,6 +109,7 @@ export default function BackofficeSchedule() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showExportNotification, setShowExportNotification] = useState(false);
   const [studentKeys, setStudentKeys] = useState<string[]>([]);
+  const [studentsListOpen, setStudentsListOpen] = useState(true);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -222,43 +225,126 @@ export default function BackofficeSchedule() {
         <link rel="icon" href="logos/necc-blue.svg" />
       </Head>
       <Sidebar activeTab="Schedule" />
-      <div className="h-full p-8 ml-[75px] pt-[75px]">
-        <div className="w-full">
-          <div className="flex justify-between">
-            <div className="flex gap-2">
-              <div className="w-[200px]">
-                <InputAuto
+      <div className="h-full pl-8 ml-[75px] pt-[60px]">
+        <div className="w-full h-full flex">
+          <div className="w-full pt-4 flex flex-col">
+            <Schedule
+              eventsProps={evt}
+              studentNr={studentNr}
+              getSchedule={getSchedule}
+              setIsLoading={setIsLoading}
+            />
+
+            <div className="pt-2 -ml-2">
+              <button
+                className="bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg mt-2 "
+                onClick={handleExportAll}
+              >
+                Export All to PDF
+              </button>
+              <button
+                className="bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg mt-2 "
+                onClick={handleYearSchedule}
+              >
+                Export Year Schedule
+              </button>
+            </div>
+          </div>
+          <div
+            style={{
+              width: studentsListOpen ? "300px" : "0px",
+            }}
+            className="h-full relative transition-all"
+          >
+            <div
+              className="cursor-pointer absolute w-[20px] h-[50px] bg-[#1775B9] rounded-l-full -left-[20px] top-[50%] -translate-y-[50%]"
+              onClick={() => setStudentsListOpen((state) => !state)}
+            ></div>
+            <div className="w-full h-full flex flex-col overflow-y-auto bg-white border-l-2 border-slate-300 p-2 gap-2">
+              <div className="flex gap-2">
+                <Button
+                  color="info"
+                  variant="contained"
+                  style={{
+                    padding: "0px !important",
+                    minWidth: "0px !important",
+                    width: "40px",
+                    height: "30px",
+                  }}
+                >
+                  <FaFilter />
+                </Button>
+                <Button
+                  color="info"
+                  variant="contained"
+                  className="p-0"
+                  style={{
+                    padding: "0px !important",
+                    minWidth: "0px !important",
+                    width: "40px",
+                    height: "30px",
+                  }}
+                >
+                  <FaSort />
+                </Button>
+                <input
+                  type="text"
+                  className="max-w-[150px] flex-1 border-2 border-slate-400 pl-1 outline-none"
+                  placeholder="Student Number"
+                />
+                <Button
+                  color="info"
+                  variant="contained"
+                  className="p-0"
+                  style={{
+                    padding: "0px !important",
+                    minWidth: "0px !important",
+                    width: "40px",
+                    height: "30px",
+                  }}
+                >
+                  <FaSearch />
+                </Button>
+                {/* <InputAuto
                   label="Student number"
                   options={studentKeys}
                   setStudent={setStudentNr}
-                />
+                /> */}
+
+                {/* <Button
+                  variant="contained"
+                  onClick={getSchedule}
+                  className="bg-[#1775B9]"
+                >
+                  Search
+                </Button> */}
               </div>
-              <Button
-                variant="contained"
-                onClick={getSchedule}
-                className="bg-[#1775B9]"
-              >
-                Search
-              </Button>
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
+              <StudentCard />
             </div>
           </div>
-          <Schedule eventsProps={evt} studentNr={studentNr} getSchedule={getSchedule} setIsLoading={setIsLoading} />
         </div>
-
-        <button
-          className="bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg mt-2 "
-          onClick={handleExportAll}
-        >
-          Export All to PDF
-        </button>
-
-        <button
-          className="bg-[#1775B9] text-white pl-4 pr-4 pt-2 pb-2 ml-2 rounded-lg mt-2 "
-          onClick={handleYearSchedule}
-        >
-          Export Year Schedule
-        </button>
-
         {isLoading && <Loader />}
 
         {showExportNotification && (
@@ -276,3 +362,20 @@ export default function BackofficeSchedule() {
     </main>
   );
 }
+
+const StudentCard = () => {
+  return (
+    <div className="h-[50px] w-full border-2 border-slate-400 bg-slate-200 flex p-1 pb-0">
+      <div className="flex flex-col justify-between w-full">
+        <p className="whitespace-nowrap text-[0.65em] truncate w-full">
+          Pedro Augusto Ennes de Martino Camargo
+        </p>
+        <div className="flex justify-between">
+          <p className="whitespace-nowrap text-[1em] font-bold">a102504</p>
+          <p>Allocations: 7</p>
+          <p>Overlaps: 3</p>
+        </div>
+      </div>
+    </div>
+  );
+};
