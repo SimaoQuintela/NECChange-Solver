@@ -1,4 +1,4 @@
-""" import json
+import json
 import os
 
 json_path = os.path.join("..", "..", "web", "public", "data", "dynamicAlocation.json")
@@ -9,7 +9,7 @@ if os.path.exists(json_path):
     print(dynamicAlocation)
 else:
     print(f"Erro: O arquivo {json_path} não foi encontrado.")
- """
+    
 def years_per_student(student, students_data, S, semester):
     """
     This function returns the years in which the student is enrolled.
@@ -144,7 +144,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                                     #if type_class in dic[uc] and type_class != "T":
                                         if shift in dic[uc][type_class]:
                                             room = dic[uc][type_class][shift]
-                                            #print(dic , "=>", slot)
+                                            print(dic , "=>", slot)
                                             model.Add(
                                                     sum(A[student][year][semester][uc][type_class][shift][slot] for student in students_nr
                                                                                                             if year in years_per_student(student, students_data, S, semester)
