@@ -6,7 +6,7 @@ json_path = os.path.join("..", "..", "web", "public", "data", "dynamicAlocation.
 if os.path.exists(json_path):
     with open(json_path, "r", encoding="utf-8") as file:
         dynamicAlocation = json.load(file)
-    print(dynamicAlocation)
+
 else:
     print(f"Erro: O arquivo {json_path} não foi encontrado.")
     
@@ -132,7 +132,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
     
 
     # R05 - The number of students allocated to a class must be less or equal than the room's capacity (30% tolerance)
-    
+    """     
     for slot in slots_generated:
         for year in S:
             for uc in S[year][semester]:
@@ -154,7 +154,7 @@ def apply_restrictions_to_solver(model, A, P, S, semester, rooms_per_slot, rooms
                                                     <= 
                                                     int(rooms_capacity[room] * 1.7)
                                                 )
-    
+    """
     # R06 - O[student][slot] = | classes number in slot - 1 |
     for student in O:
             for slot in O[student]:
