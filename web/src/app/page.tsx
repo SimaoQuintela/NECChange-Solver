@@ -19,6 +19,10 @@ export default function Home() {
   const [isLoadingGeneration, setIsLoadingGeneration] = useState(false);
 
   const handleUploadClick = async () => {
+    if (selectedFiles1[0].name !=  "horario.csv") return;
+    if (selectedFiles2[0].name !=  "inscritos_anon.csv") return;
+    if (selectedFiles3[0].name !=  "salas.csv") return;
+
     [selectedFiles1, selectedFiles2, selectedFiles3].forEach(
       async (selectedFiles) => {
         if (selectedFiles) {

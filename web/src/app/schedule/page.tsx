@@ -13,9 +13,7 @@ import {
   StudentNumberTypeNotNull,
   StudentsNumberType,
 } from "@/types/Types";
-import InputAuto from "@/components/InputAuto";
 import Button from "@mui/material/Button";
-import { Filter1 } from "@mui/icons-material";
 import { FaFilter, FaSearch, FaSort } from "react-icons/fa";
 
 export function getDates(slot: SlotType) {
@@ -103,12 +101,12 @@ function handleEvents(data: StudentAlocationType<StudentNumberTypeNotNull>) {
 }
 
 export default function BackofficeSchedule() {
-  const [studentNr, setStudentNr] = useState<StudentsNumberType>("");
+  const [studentNr,] = useState<StudentsNumberType>("");
   const [evt, setEvt] = useState<EventCalendarI[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showExportNotification, setShowExportNotification] = useState(false);
-  const [studentKeys, setStudentKeys] = useState<string[]>([]);
+  const [, setStudentKeys] = useState<string[]>([]);
   const [studentsListOpen, setStudentsListOpen] = useState(true);
 
   useEffect(() => {
@@ -309,9 +307,9 @@ export default function BackofficeSchedule() {
                   label="Student number"
                   options={studentKeys}
                   setStudent={setStudentNr}
-                /> */}
+                />
 
-                {/* <Button
+                <Button
                   variant="contained"
                   onClick={getSchedule}
                   className="bg-[#1775B9]"
