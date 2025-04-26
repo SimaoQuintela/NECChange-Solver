@@ -130,8 +130,6 @@ export default function Home() {
           Make Restrictions Dynamic
         </Button>
 
-        {/* TODO: ADD A DELETE BUTTON HERE FOR DELETING THE UPLOADED FILES */}
-
         {isLoadingGeneration && <Loader />}
       </main>
     </div>

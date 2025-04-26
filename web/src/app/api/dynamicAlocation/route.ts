@@ -4,7 +4,6 @@ import path from "path";
 
 const filePath = path.join(process.cwd(), "public/data/dynamicAlocation.json");
 
-// Função para carregar os dados sempre que necessário
 const loadData = () => {
   try {
     const data = fs.readFileSync(filePath, "utf-8");
@@ -14,11 +13,6 @@ const loadData = () => {
   }
 };
 
-/* export async function GET() {
-  const dynamicAlocation = loadData();
-  return NextResponse.json({ dynamicAlocation });
-}
- */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
