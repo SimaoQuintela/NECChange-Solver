@@ -16,7 +16,7 @@
       "capacity": [
         40
       ],
-      "allocations": 80
+      "allocations": 79
     },
     "TP2": {
       "rooms": [
@@ -25,7 +25,7 @@
       "capacity": [
         40
       ],
-      "allocations": 60
+      "allocations": 61
     }
   },
   "Programação Orientada aos Objetos": {
@@ -36,7 +36,7 @@
       "capacity": [
         90
       ],
-      "allocations": 57
+      "allocations": 56
     },
     "T1": {
       "rooms": [
@@ -63,7 +63,7 @@
       "capacity": [
         49
       ],
-      "allocations": 32
+      "allocations": 33
     }
   },
   "Sistemas Operativos": {
@@ -74,7 +74,7 @@
       "capacity": [
         49
       ],
-      "allocations": 38
+      "allocations": 39
     },
     "T1": {
       "rooms": [
@@ -92,7 +92,7 @@
       "capacity": [
         47
       ],
-      "allocations": 40
+      "allocations": 39
     },
     "PL3": {
       "rooms": [
@@ -217,7 +217,7 @@
       "capacity": [
         30
       ],
-      "allocations": 27
+      "allocations": 28
     },
     "TP1": {
       "rooms": [
@@ -226,7 +226,7 @@
       "capacity": [
         30
       ],
-      "allocations": 19
+      "allocations": 18
     }
   },
   "Programação Concorrente": {
@@ -346,7 +346,7 @@
       "capacity": [
         55
       ],
-      "allocations": 50
+      "allocations": 51
     },
     "TP1": {
       "rooms": [
@@ -355,7 +355,7 @@
       "capacity": [
         30
       ],
-      "allocations": 60
+      "allocations": 58
     },
     "TP3": {
       "rooms": [
@@ -364,7 +364,7 @@
       "capacity": [
         49
       ],
-      "allocations": 58
+      "allocations": 59
     }
   },
   "Autómatos e Linguagens Formais": {

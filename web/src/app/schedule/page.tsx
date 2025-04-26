@@ -2,7 +2,7 @@
 import Sidebar from "@/components/Sidebar";
 import Loader from "@/components/Loader";
 import Head from "next/head";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import Schedule from "@/components/schedule/calendar/Schedule";
 import axios from "axios";
@@ -14,7 +14,15 @@ import {
   StudentsNumberType,
 } from "@/types/Types";
 import Button from "@mui/material/Button";
-import { FaFilter, FaSearch, FaSort } from "react-icons/fa";
+import { FaFilter, FaSort } from "react-icons/fa";
+import Students from "@/../public/data/students.json";
+
+interface StudentData {
+  name: string;
+  number: string;
+  alocations: number;
+  overlaps: number;
+}
 
 export function getDates(slot: SlotType) {
   const date = new Date();
@@ -101,7 +109,16 @@ function handleEvents(data: StudentAlocationType<StudentNumberTypeNotNull>) {
 }
 
 export default function BackofficeSchedule() {
-  const [studentNr,] = useState<StudentsNumberType>("");
+  // filters
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchBox, setSearchBox] = useState<string>("");
+  const [allocation, setAllocation] = useState<number>(10);
+  const [overlaps, setOverlaps] = useState<number>(5);
+  const [allocationFilter, setAllocationFilter] = useState<boolean>(false);
+  const [overlapsFilter, setOverlapsFilter] = useState<boolean>(false);
+  const [sortBy, setSortBy] = useState<keyof typeof sorts>("allocation");
+
+  const [studentNr, setStudentNr] = useState<StudentsNumberType>("");
   const [evt, setEvt] = useState<EventCalendarI[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -120,6 +137,10 @@ export default function BackofficeSchedule() {
 
     return () => clearTimeout(timer);
   }, [showExportNotification, errorMessage]);
+
+  useEffect(() => {
+    getSchedule();
+  }, [studentNr])
 
   /**
    * @brief This function gets the schedule of a student
@@ -216,6 +237,55 @@ export default function BackofficeSchedule() {
     fetchStudents();
   }, []);
 
+  const studentsArray = Object.keys(Students);
+
+  const filters = {
+    allocation: (allocation: number) => (student: StudentData) =>
+      student.alocations > allocation,
+    overlaps: (overlaps: number) => (student: StudentData) =>
+      student.overlaps > overlaps,
+    number: (number: string) => (student: StudentData) =>
+      student.number.toLowerCase().includes(number.toLowerCase()),
+    name: (name: string) => (student: StudentData) =>
+      student.name.toLowerCase().includes(name.toLowerCase()),
+  };
+
+  const sorts = {
+    allocation: (studentA: StudentData, studentB: StudentData) => {
+      if (studentA.alocations > studentB.alocations) return -1;
+      if (studentA.alocations < studentB.alocations) return 1;
+      return 0;
+    },
+    overlaps: (studentA: StudentData, studentB: StudentData) => {
+      if (studentA.overlaps > studentB.overlaps) return -1;
+      if (studentA.overlaps < studentB.overlaps) return 1;
+      return 0;
+    },
+  };
+
+  const everyFilters = [
+    allocationFilter ? filters.allocation(allocation) : () => true,
+    overlapsFilter ? filters.overlaps(overlaps) : () => true,
+  ];
+  const someFilters = [filters.number(searchBox), filters.name(searchBox)];
+
+  // Filter and sort the students based on the active filters and sorting criteria
+  const filteredStudents = studentsArray
+    .filter((student) => {
+      const studentData = Students[student as keyof typeof Students];
+
+      return (
+        everyFilters.every((filter) => filter(studentData)) &&
+        someFilters.some((filter) => filter(studentData))
+      );
+    })
+    .sort((studentA, studentB) =>
+      sorts[sortBy](
+        Students[studentA as keyof typeof Students],
+        Students[studentB as keyof typeof Students]
+      )
+    );
+
   return (
     <main className="h-screen bg-slate-200">
       <Head>
@@ -258,88 +328,121 @@ export default function BackofficeSchedule() {
               className="cursor-pointer absolute w-[20px] h-[50px] bg-[#1775B9] rounded-l-full -left-[20px] top-[50%] -translate-y-[50%]"
               onClick={() => setStudentsListOpen((state) => !state)}
             ></div>
-            <div className="w-full h-full flex flex-col overflow-y-auto bg-white border-l-2 border-slate-300 p-2 gap-2">
+            {isOpen && (
+              <div className="absolute top-2 -left-[190px] w-[200px] bg-white z-50 rounded shadow-lg flex flex-col border border-slate-300">
+                <div className="flex items-center justify-between bg-[#1775B9] text-white p-2 rounded-t">
+                  <input
+                    type="checkbox"
+                    className="border-2 border-white pl-1 outline-none"
+                    placeholder="Search"
+                    onChange={(e) => setAllocationFilter(e.target.checked)}
+                    checked={allocationFilter}
+                  />
+                  <label className="text-sm font-semibold">
+                    Filter by Allocations
+                  </label>
+                </div>
+                {allocationFilter && (
+                  <div>
+                    <input
+                      type="number"
+                      className="w-full border-2 border-slate-400 pl-1 outline-none"
+                      placeholder="Allocations"
+                      onChange={(e) => {
+                        setAllocation(Number(e.target.value));
+                      }}
+                      value={allocation}
+                    />
+                  </div>
+                )}
+                <div className="flex items-center justify-between bg-[#1775B9] text-white p-2 border-t">
+                  <div className="flex items-center justify-between w-full">
+                    <input
+                      type="checkbox"
+                      className="border-2 border-white pl-1 outline-none"
+                      placeholder="Search"
+                      onChange={(e) => setOverlapsFilter(e.target.checked)}
+                      checked={overlapsFilter}
+                    />
+                    <label className="text-sm font-semibold">
+                      Filter by Overlaps
+                    </label>
+                  </div>
+                </div>
+                {overlapsFilter && (
+                  <div>
+                    <input
+                      type="number"
+                      className="w-full border-2 border-slate-400 pl-1 outline-none"
+                      placeholder="Allocations"
+                      onChange={(e) => {
+                        setOverlaps(Number(e.target.value));
+                      }}
+                      value={overlaps}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+            <div className="relative w-full h-full flex flex-col overflow-y-auto bg-white border-l-2 border-slate-300 p-2 gap-2">
               <div className="flex gap-2">
                 <Button
                   color="info"
                   variant="contained"
+                  className="flex-1"
                   style={{
                     padding: "0px !important",
-                    minWidth: "0px !important",
+                    minWidth: "40px !important",
                     width: "40px",
                     height: "30px",
                   }}
+                  onClick={() => setIsOpen((state) => !state)}
                 >
                   <FaFilter />
                 </Button>
-                <Button
-                  color="info"
-                  variant="contained"
-                  className="p-0"
-                  style={{
-                    padding: "0px !important",
-                    minWidth: "0px !important",
-                    width: "40px",
-                    height: "30px",
-                  }}
-                >
-                  <FaSort />
-                </Button>
+                <div className="relative group flex-1">
+                  <Button
+                    color="info"
+                    variant="contained"
+                    className="p-0 relative"
+                    style={{
+                      padding: "0px !important",
+                      minWidth: "0px !important",
+                      width: "40px",
+                      height: "30px",
+                    }}
+                    onClick={() => {
+                      const sortModes = Object.keys(sorts);
+                      const currentIndex = sortModes.indexOf(sortBy);
+                      const nextIndex = (currentIndex + 1) % sortModes.length;
+                      setSortBy(sortModes[nextIndex] as keyof typeof sorts);
+                    }}
+                  >
+                    <FaSort />
+                  </Button>
+
+                  <div className="absolute -left-1/2 min-w-[100px] z-50 bg-black border border-slate-400 text-[10px] text-white rounded flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                    Sort by: <span className="font-bold ml-1">{sortBy}</span>
+                  </div>
+                </div>
                 <input
                   type="text"
-                  className="max-w-[150px] flex-1 border-2 border-slate-400 pl-1 outline-none"
-                  placeholder="Student Number"
+                  className="max-w-[175px] flex-1 border-2 border-slate-400 pl-1 outline-none"
+                  placeholder="Search"
+                  onChange={(e) => setSearchBox(e.target.value)}
+                  value={searchBox}
                 />
-                <Button
-                  color="info"
-                  variant="contained"
-                  className="p-0"
-                  style={{
-                    padding: "0px !important",
-                    minWidth: "0px !important",
-                    width: "40px",
-                    height: "30px",
-                  }}
-                >
-                  <FaSearch />
-                </Button>
-                {/* <InputAuto
-                  label="Student number"
-                  options={studentKeys}
-                  setStudent={setStudentNr}
-                />
-
-                <Button
-                  variant="contained"
-                  onClick={getSchedule}
-                  className="bg-[#1775B9]"
-                >
-                  Search
-                </Button> */}
               </div>
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
-              <StudentCard />
+              {filteredStudents.map((student) => {
+                return (
+                  <StudentCard
+                    studentData={Students[student as keyof typeof Students]}
+                    setStudentNr={setStudentNr}
+                    getSchedule={getSchedule}
+                    key={student}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>
@@ -361,18 +464,42 @@ export default function BackofficeSchedule() {
   );
 }
 
-const StudentCard = () => {
+const StudentCard = ({
+  studentData,
+  setStudentNr,
+  // getSchedule,
+}: {
+  studentData: {
+    name: string;
+    number: string;
+    alocations: number;
+    overlaps: number;
+  };
+  setStudentNr: Dispatch<SetStateAction<StudentsNumberType>>;
+  getSchedule: () => Promise<void>;
+}) => {
   return (
-    <div className="h-[50px] w-full border-2 border-slate-400 bg-slate-200 flex p-1 pb-0">
-      <div className="flex flex-col justify-between w-full">
-        <p className="whitespace-nowrap text-[0.65em] truncate w-full">
-          Pedro Augusto Ennes de Martino Camargo
-        </p>
-        <div className="flex justify-between">
-          <p className="whitespace-nowrap text-[1em] font-bold">a102504</p>
-          <p>Allocations: 7</p>
-          <p>Overlaps: 3</p>
+    <div
+      className="bg-[#1775B9] hover:bg-[#134c75] border border-blue-300 relative rounded-lg shadow-md p-4 font-sans"
+      onClick={() => {
+        setStudentNr(studentData.number.toLocaleUpperCase() as StudentsNumberType);
+        // getSchedule();
+      }}
+    >
+      {studentData.overlaps > 0 && (
+        <div className="absolute right-3 top-2 text-white px-1 rounded-lg text-xl font-bold bg-red-600">
+          !
         </div>
+      )}
+      <h4 className="text-base font-bold mb-1 text-white">
+        {studentData.name}
+      </h4>
+      <div className="font-semibold mb-1 text-white/90">
+        {studentData.number}
+      </div>
+      <div className="text-white text-sm">
+        Allocations: {studentData.alocations} &nbsp;&nbsp; Overlaps:{" "}
+        <span className="p-1 rounded-md font-bold">{studentData.overlaps}</span>
       </div>
     </div>
   );
