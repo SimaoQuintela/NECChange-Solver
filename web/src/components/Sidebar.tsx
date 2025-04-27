@@ -7,7 +7,9 @@ import { Button } from "@mui/material";
 import Link from "next/link";
 import { FaAngleDoubleRight, FaAngleDoubleLeft } from "react-icons/fa";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
+import Help from "./Help";
+import { usePathname } from "next/navigation";
 
 const sidebarData = [
   {
@@ -32,7 +34,29 @@ const sidebarData = [
   },
 ];
 
-function Sidebar(props: { activeTab: "Schedule" | "Upload" | "Course Schedules" | "Analytics" | null }) {
+const RenderHelp: Record<string, JSX.Element | undefined> = {
+  "/": (
+    <Help
+      title={`Drag and drop the files or select them manually from your computer. 
+Please ensure that the files have the following exact names: 
+1. horario.csv 
+2. inscritos_anon.csv 
+3. salas.csv. 
+After selecting the files, click on Upload. 
+Then, you can either click Generate to create the schedule or apply dynamic restrictions before generating.`}
+    />
+  ),
+  "/schedule": (
+    <Help
+      title={`This page displays the generated schedule.
+You can download the schedule in CSV format by clicking the Download button.`}
+    />
+  ),
+};
+
+function Sidebar(props: {
+  activeTab: "Schedule" | "Upload" | "Course Schedules" | "Analytics" | null;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [hasAllocationsJSON, setHasAllocationsJSON] = useState(false);
   const [hasScheduleJSON, setHasScheduleJSON] = useState(false);
@@ -47,6 +71,7 @@ function Sidebar(props: { activeTab: "Schedule" | "Upload" | "Course Schedules" 
       })
       .catch((error) => console.error("Erro ao buscar status:", error));
   }, []);
+  const pathname = usePathname();
 
   return (
     <>
@@ -77,6 +102,7 @@ function Sidebar(props: { activeTab: "Schedule" | "Upload" | "Course Schedules" 
             ></div>
             Schedule
           </div>
+          {RenderHelp[pathname] && RenderHelp[pathname]}
         </div>
       </nav>
       <aside
