@@ -12,10 +12,10 @@ import {
   StudentAlocationType,
   StudentNumberTypeNotNull,
   StudentsNumberType,
+  StudentType,
 } from "@/types/Types";
 import Button from "@mui/material/Button";
 import { FaFilter, FaSort } from "react-icons/fa";
-import Students from "@/../public/data/students.json";
 
 interface StudentData {
   name: string;
@@ -117,7 +117,7 @@ export default function BackofficeSchedule() {
   const [allocationFilter, setAllocationFilter] = useState<boolean>(false);
   const [overlapsFilter, setOverlapsFilter] = useState<boolean>(false);
   const [sortBy, setSortBy] = useState<keyof typeof sorts>("allocation");
-
+  const [Students, setStudents] = useState<StudentType | null>(null);
   const [studentNr, setStudentNr] = useState<StudentsNumberType>("");
   const [evt, setEvt] = useState<EventCalendarI[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -125,6 +125,21 @@ export default function BackofficeSchedule() {
   const [showExportNotification, setShowExportNotification] = useState(false);
   const [, setStudentKeys] = useState<string[]>([]);
   const [studentsListOpen, setStudentsListOpen] = useState(true);
+
+
+  useEffect(() => {
+    async function fetchStudents() {
+      try {
+        const response = await fetch("/api/students/get_json");
+        const data = await response.json();
+        setStudents(data);
+      } catch (error) {
+        console.error("Error fetching students:", error);
+      }
+    }
+
+    fetchStudents();
+  }, []);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -169,6 +184,12 @@ export default function BackofficeSchedule() {
     setEvt(evts);
 
     setIsLoading(false);
+
+    // Update the studentNr state with the selected student number
+    // In "background" (not loading)
+    const response = await fetch("/api/students/get_json");
+    const data = await response.json();
+    setStudents(data);
   };
 
   /**
@@ -236,6 +257,21 @@ export default function BackofficeSchedule() {
 
     fetchStudents();
   }, []);
+
+  if (!Students) {
+    return (
+      <div className="h-screen bg-slate-200">
+        <Head>
+          <title>NECChange</title>
+          <link rel="icon" href="logos/necc-blue.svg" />
+        </Head>
+        <Sidebar activeTab="Schedule" />
+        <div className="h-full pl-8 ml-[75px] pt-[60px]">
+          <Loader />
+        </div>
+      </div>
+    )
+  }
 
   const studentsArray = Object.keys(Students);
 

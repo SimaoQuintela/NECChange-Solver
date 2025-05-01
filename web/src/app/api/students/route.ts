@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import type { NextApiRequest } from 'next';
 import { NextResponse } from 'next/server';
-import Alocation from '@/../public/data/alocation.json';
+import Alocation from '@/data/alocation.json';
 import path from 'path';
 import fs, { writeFile } from 'fs';
 import { parse } from 'csv-parse/sync';
@@ -93,7 +93,7 @@ export async function POST() {
         const overlaps = countOverlaps(allSlots);
 
         outputData[studentId] = {
-            name: studentNameMapping[studentId],
+            name: studentNameMapping[studentId] ? studentNameMapping[studentId] : "Unknown",
             number: studentId.toLowerCase(),
             alocations,
             overlaps,
@@ -104,8 +104,8 @@ export async function POST() {
             // Convert object to JSON string
             const jsonData = JSON.stringify(outputData, null, 2);
     
-            // Define file path in /public
-            const filePath = path.join(process.cwd(), "public", "data", `students.json`);
+            // Define file path in /src
+            const filePath = path.join(process.cwd(), "src", "data", `students.json`);
     
     
             // Write the JSON file
@@ -126,7 +126,7 @@ export async function POST() {
 
 
 export async function GET() {
-    const filePath = path.join(process.cwd(), "public", "data", `students.json`);
+    const filePath = path.join(process.cwd(), "src", "data", `students.json`);
 
     const fileContent = fs.readFileSync(filePath, 'utf-8');
 

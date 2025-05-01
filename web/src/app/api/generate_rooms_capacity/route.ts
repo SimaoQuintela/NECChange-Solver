@@ -11,7 +11,7 @@ import Papa from "papaparse";
  */
 export async function GET() {
     try {
-        // Define CSV file path inside /public
+        // Define CSV file path inside /src
         const filePath = path.join(
             process.cwd(),
             "../schedule/schedule/data/uni_data",

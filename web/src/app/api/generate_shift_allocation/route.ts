@@ -1,4 +1,4 @@
-import Alocation from "@/../public/data/alocation.json";
+import Alocation from "@/data/alocation.json";
 import axios, { AxiosResponse } from "axios";
 import { writeFile } from "fs";
 import { NextResponse } from "next/server";
@@ -65,8 +65,8 @@ export async function POST() {
         // Convert object to JSON string
         const jsonData = JSON.stringify(res, null, 2);
 
-        // Define file path in /public
-        const filePath = path.join(process.cwd(), "public", "data", `roomsAllocations.json`);
+        // Define file path in /src
+        const filePath = path.join(process.cwd(), "src", "data", `roomsAllocations.json`);
 
 
         // Write the JSON file

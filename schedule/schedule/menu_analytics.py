@@ -200,7 +200,7 @@ def allocated_number(info):
 
 
 def menu():
-	path = os.path.join("..", "..", "web", "public", "data", "alocation.json")
+	path = os.path.join("..", "..", "web", "src", "data", "alocation.json")
 	with open(path, 'r', encoding='utf-8') as f:
 		json_data = f.read()
 

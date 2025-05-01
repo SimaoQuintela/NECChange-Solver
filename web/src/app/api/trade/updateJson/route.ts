@@ -1,6 +1,6 @@
 import { SlotType, StudentAlocation, StudentAlocationUniqueType, StudentNumberTypeNotNull } from "@/types/Types";
-import alocation from "@/../public/data/alocation.json"
-import schedule from "@/../public/data/schedule.json"
+import alocation from "@/data/alocation.json"
+import schedule from "@/data/schedule.json"
 import fs from 'fs';
 
 interface Body {
@@ -69,7 +69,7 @@ function evaluate_overlap_classes(slots_to_check: SlotType[], classes: StudentAl
 export async function PUT(request: Request) {
     const { studentNr, trades } = await request.json() as Body;
 
-    const fileName = './public/data/alocation.json'
+    const fileName = './src/data/alocation.json'
     trades.map((trade) => {
         // evaluate the classes that stay on the same slot
         const shiftNumberBeforeTrade = trade.shiftBeforeTrade.at(trade.shift.length - 1);

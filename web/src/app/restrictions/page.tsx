@@ -17,7 +17,7 @@ import {
 } from "@/types/Types";
 import toast, { Toaster } from "react-hot-toast";
 import { Button } from "@mui/material";
-import dynamicAllocationData from "@/../public/data/dynamicAlocation.json";
+import dynamicAllocationData from "@/data/dynamicAlocation.json";
 
 export function getDates(slot: SlotType) {
   const date = new Date();

@@ -1,5 +1,8 @@
-import alocation from "@/../public/data/alocation.json"
-import schedule from "@/../public/data/schedule.json"
+import alocation from "@/data/alocation.json"
+import schedule from "@/data/schedule.json"
+import students from "@/data/students.json"
+
+export type StudentType = typeof students;
 
 export type StudentNumberTypeNotNull = keyof typeof alocation;
 export type StudentsNumberType = keyof typeof alocation | "";

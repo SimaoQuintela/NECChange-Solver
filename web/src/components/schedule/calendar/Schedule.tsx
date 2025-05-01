@@ -7,7 +7,7 @@ import { EventCalendarI, SlotType, UcSchedule } from "@/types/Types";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getDates } from "@/app/schedule/page";
-import roomsAllocations from "@/../public/data/roomsAllocations.json";
+import roomsAllocations from "@/data/roomsAllocations.json";
 import PopUp from "@/components/PopUp";
 
 moment.tz.setDefault("Europe/Lisbon");
@@ -57,6 +57,15 @@ export default function Schedule({
     null
   );
   const [open, setOpen] = useState(false);
+  const [roomsData, setRoomsData] = useState<{
+    [key in RoomAllocationsUc]: {
+      [key in RoomAllocationsType]: {
+        rooms: string[];
+        capacity: number[];
+        allocations: number;
+      };
+    };
+    } | null>(null);
 
   const [ucSelected, setUcSelected] = useState<{
     uc: string;
@@ -82,11 +91,35 @@ export default function Schedule({
   const maxDate = new Date();
   maxDate.setHours(20, 0, 0);
 
+  useEffect(() => {
+    const getRoomData = async () => {
+      const response = await axios.get<
+        {
+          [key in RoomAllocationsUc]: {
+            [key in RoomAllocationsType]: {
+              rooms: string[];
+              capacity: number[];
+              allocations: number;
+            };
+          };
+        }
+      >("/api/rooms");
+      setRoomsData(response.data);
+    };
+
+    getRoomData();
+  }, []);
+
+  // console.log(roomsData, "roomData");
+
   const getUcShifts = async (
     uc: string,
     type: "TP" | "T" | "PL",
     currentShift: string
   ) => {
+    if (!roomsData) return;
+
+
     // console.log(uc);
     const response = await axios.get<UcSchedule>(`/api/ucs/${uc}`);
 
@@ -96,7 +129,7 @@ export default function Schedule({
         shift.slots.map((slot) => {
           const dates = getDates(slot as SlotType);
 
-          const roomData = roomsAllocations[
+          const roomData = roomsData[
             shift.uc as unknown as RoomAllocationsUc
           ][
             (shift.type_class + shift.shift) as unknown as RoomAllocationsType
@@ -151,7 +184,7 @@ export default function Schedule({
     return response.data;
   };
 
-  console.log(events.student, "eventssssss");
+  // console.log(events.student, "eventssssss");
 
   const updateJson = async (uc: string, type_class: string, shift: string) => {
     // If user clicks in a shift that is not the selected one, do nothing
@@ -178,9 +211,10 @@ export default function Schedule({
     console.log(res.data, "res");
 
     if (res.data.status === 200) {
-      await axios.post("api/generate_shift_allocation");
+      await axios.post("api/students/update_overlaps", {
+        studentNumber: studentNr?.toUpperCase(),
+      });
       getSchedule();
-      return;
     }
 
     setIsLoading(false);
@@ -206,7 +240,10 @@ export default function Schedule({
           !isClickable
             ? undefined
             : isTrade
-            ? (event, e) => {
+            ? (event,e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
                 if (viewType === "student") {
                   getUcShifts(event.uc, event.type_class, event.shift);
                 } else {

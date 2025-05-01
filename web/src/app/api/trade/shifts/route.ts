@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import schedule from "@/../public/data/schedule.json"
+import schedule from "@/data/schedule.json"
 
 export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams

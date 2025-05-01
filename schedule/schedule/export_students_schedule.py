@@ -126,9 +126,9 @@ def create_schedule(student_id, schedule_data):
 # Load the schedule data from the JSON file
 
 if os.path.relpath(__file__) == "export_students_schedule.py":
-    data_path = os.path.join(".", "..", "..", "web", "public", "data", "alocation.json")
+    data_path = os.path.join(".", "..", "..", "web", "src", "data", "alocation.json")
 else:
-    data_path = os.path.join(".", "..", "web", "public", "data", "alocation.json")
+    data_path = os.path.join(".", "..", "web", "src", "data", "alocation.json")
 
 with open(data_path) as file:
     schedule_data = json.load(file)

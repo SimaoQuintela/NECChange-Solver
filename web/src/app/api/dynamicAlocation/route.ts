@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
-const filePath = path.join(process.cwd(), "public/data/dynamicAlocation.json");
+const filePath = path.join(process.cwd(), "src/data/dynamicAlocation.json");
 
 const loadData = () => {
   try {

@@ -71,9 +71,9 @@ def convert_A_to_JSON(A, P, S, rooms_per_slot, solver):
     buffer = "{\n"
     path_compare = os.path.join("parser", "parser_to_json.py")
     if(os.path.relpath(__file__) == path_compare):
-        path = os.path.join("..","..","web","public","data","alocation.json")
+        path = os.path.join("..","..","web","src","data","alocation.json")
     else:
-        path = os.path.join(".", "public", "data", "alocation.json")
+        path = os.path.join(".", "src", "data", "alocation.json")
         
 
     file = open(path, "w", encoding='utf-8')
@@ -162,9 +162,9 @@ def convert_S_to_JSON(S, rooms_per_slot, rooms_capacity):
 
     path_compare = os.path.join("parser", "parser_to_json.py")
     if(os.path.relpath(__file__) == path_compare):
-        path = os.path.join("..", "..", "web", "public", "data", "schedule.json")
+        path = os.path.join("..", "..", "web", "src", "data", "schedule.json")
     else:
-        path = os.path.join(".", "public", "data", "schedule.json")
+        path = os.path.join(".", "src", "data", "schedule.json")
         
 
     file = open(path, "w", encoding='utf-8')

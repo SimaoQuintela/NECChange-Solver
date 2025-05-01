@@ -5,7 +5,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["Segunda", "14", "00", "16", "00", "Ed1-2.18", "55"],["Quinta", "09", "00", "11", "00", "Ed1-2.19", "44"]]
+       "slots" : [["Quarta", "09", "00", "11", "00", "Ed1-0.17", "60"],["Quinta", "11", "00", "13", "00", "Ed1-2.26", "52"]]
    },
    {
        "uc" : "Análise",
@@ -13,7 +13,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "2",
-       "slots" : [["Quinta", "14", "00", "16", "00", "Ed1-1.20", "49"],["Segunda", "11", "00", "13", "00", "Ed1-2.26", "52"]]
+       "slots" : [["Quarta", "11", "00", "13", "00", "Ed1-0.17", "60"],["Quinta", "09", "00", "11", "00", "Ed1-2.19", "44"]]
    },
    {
        "uc" : "Geometria",
@@ -21,7 +21,7 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Segunda", "10", "00", "11", "00", "Ed1-0.22", "130"],["Terça", "09", "00", "10", "00", "Ed1-0.22", "130"]]
+       "slots" : [["Terça", "11", "00", "13", "00", "Ed1-0.04", "145"]]
    },
    {
        "uc" : "Geometria",
@@ -29,7 +29,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["Sexta", "09", "00", "11", "00", "Ed1-2.19", "44"]]
+       "slots" : [["Quinta", "09", "00", "11", "00", "Ed1-0.17", "60"]]
    },
    {
        "uc" : "Geometria",
@@ -37,7 +37,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "2",
-       "slots" : [["Quarta", "10", "00", "12", "00", "Ed1-2.19", "44"]]
+       "slots" : [["Quinta", "11", "00", "13", "00", "Ed1-0.17", "60"]]
    },
    {
        "uc" : "Laboratório de Algoritmia I",
@@ -45,7 +45,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "1",
-       "slots" : [["Sexta", "11", "00", "13", "00", "Ed1-2.19", "44"]]
+       "slots" : [["Segunda", "09", "00", "11", "00", "Ed1-2.11", "47"]]
    },
    {
        "uc" : "Laboratório de Algoritmia I",
@@ -53,7 +53,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "2",
-       "slots" : [["Quinta", "11", "00", "13", "00", "Ed1-2.20", "50"]]
+       "slots" : [["Terça", "14", "00", "16", "00", "Ed1-1.40", "60"]]
    },
    {
        "uc" : "Laboratório de Algoritmia I",
@@ -61,7 +61,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "3",
-       "slots" : [["Quinta", "09", "00", "11", "00", "Ed1-2.20", "50"]]
+       "slots" : [["Segunda", "09", "00", "11", "00", "Ed1-1.05", "77"]]
    },
    {
        "uc" : "Matemática Discreta",
@@ -69,7 +69,7 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Sexta", "14", "00", "16", "00", "Ed1-2.07", "112"]]
+       "slots" : [["Sexta", "09", "00", "11", "00", "Ed1-0.04", "145"]]
    },
    {
        "uc" : "Matemática Discreta",
@@ -77,7 +77,15 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["Terça", "11", "00", "13", "00", "Ed2-1.07", "92"]]
+       "slots" : [["Quarta", "11", "00", "13", "00", "Ed1-1.21", "54"]]
+   },
+   {
+       "uc" : "Matemática Discreta",
+       "year" : "1",
+       "semester" : "1",
+       "type_class" : "TP",
+       "shift" : "2",
+       "slots" : [["Quarta", "09", "00", "11", "00", "Ed1-0.18", "60"]]
    },
    {
        "uc" : "Programação Imperativa",
@@ -85,7 +93,7 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Quarta", "12", "00", "13", "00", "Ed1-0.20", "145"],["Terça", "10", "00", "11", "00", "Ed1-0.22", "130"]]
+       "slots" : [["Terça", "09", "00", "11", "00", "Ed1-0.08", "179"]]
    },
    {
        "uc" : "Programação Imperativa",
@@ -93,7 +101,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["Segunda", "11", "00", "13", "00", "Ed1-2.09", "30"]]
+       "slots" : [["Sexta", "14", "00", "16", "00", "Ed1-2.21", "47"]]
    },
    {
        "uc" : "Programação Imperativa",
@@ -101,7 +109,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "2",
-       "slots" : [["Segunda", "11", "00", "13", "00", "Ed1-2.27", "55"]]
+       "slots" : [["Quarta", "14", "00", "16", "00", "Ed2-0.03", "140"]]
    },
    {
        "uc" : "Programação Imperativa",
@@ -109,7 +117,15 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "3",
-       "slots" : [["Quarta", "10", "00", "12", "00", "Ed1-1.22", "49"]]
+       "slots" : [["Sexta", "14", "00", "16", "00", "Ed1-2.22", "49"]]
+   },
+   {
+       "uc" : "Programação Imperativa",
+       "year" : "1",
+       "semester" : "1",
+       "type_class" : "TP",
+       "shift" : "4",
+       "slots" : [["Quarta", "14", "00", "16", "00", "Ed1-1.20", "49"]]
    },
    {
        "uc" : "Sistemas de Computação",
@@ -117,7 +133,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "1",
-       "slots" : [["Quinta", "11", "00", "13", "00", "Ed1-1.21", "54"]]
+       "slots" : [["Segunda", "11", "00", "13", "00", "Ed1-2.20", "50"]]
    },
    {
        "uc" : "Sistemas de Computação",
@@ -125,7 +141,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "2",
-       "slots" : [["Sexta", "11", "00", "13", "00", "Ed1-1.21", "54"]]
+       "slots" : [["Segunda", "09", "00", "11", "00", "Ed1-2.17", "45"]]
    },
    {
        "uc" : "Sistemas de Computação",
@@ -133,7 +149,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "3",
-       "slots" : [["Quinta", "11", "00", "13", "00", "Ed1-2.17", "45"]]
+       "slots" : [["Segunda", "11", "00", "13", "00", "Ed1-1.27", "44"]]
    },
    {
        "uc" : "Sistemas de Computação",
@@ -141,7 +157,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "4",
-       "slots" : [["Sexta", "11", "00", "13", "00", "Ed1-2.17", "45"]]
+       "slots" : [["Segunda", "09", "00", "11", "00", "Ed1-1.27", "44"]]
    },
    {
        "uc" : "Sistemas de Computação",
@@ -149,7 +165,39 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Quarta", "09", "00", "10", "00", "Ed1-1.40", "60"],["Segunda", "09", "00", "10", "00", "Ed1-1.40", "60"]]
+       "slots" : [["Sexta", "11", "00", "13", "00", "Ed1-0.04", "145"]]
+   },
+   {
+       "uc" : "Análise Numérica",
+       "year" : "2",
+       "semester" : "1",
+       "type_class" : "PL",
+       "shift" : "1",
+       "slots" : [["Segunda", "09", "00", "11", "00", "Ed6-3.72", "30"]]
+   },
+   {
+       "uc" : "Análise Numérica",
+       "year" : "2",
+       "semester" : "1",
+       "type_class" : "PL",
+       "shift" : "2",
+       "slots" : [["Segunda", "13", "00", "15", "00", "Ed6-3.72", "30"]]
+   },
+   {
+       "uc" : "Análise Numérica",
+       "year" : "2",
+       "semester" : "1",
+       "type_class" : "TP",
+       "shift" : "1",
+       "slots" : [["Terça", "10", "00", "13", "00", "Ed6-3.71", "30"]]
+   },
+   {
+       "uc" : "Análise Numérica",
+       "year" : "2",
+       "semester" : "1",
+       "type_class" : "TP",
+       "shift" : "2",
+       "slots" : [["Terça", "15", "00", "18", "00", "Ed6-3.72", "30"]]
    },
    {
        "uc" : "Autómatos e Linguagens Formais",
@@ -157,7 +205,7 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Sexta", "11", "00", "13", "00", "Ed2-0.01", "140"]]
+       "slots" : [["Quinta", "11", "00", "13", "00", "Ed2-0.05", "140"]]
    },
    {
        "uc" : "Autómatos e Linguagens Formais",
@@ -165,7 +213,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["Segunda", "14", "00", "16", "00", "Ed1-1.40", "60"]]
+       "slots" : [["Quinta", "16", "00", "18", "00", "Ed1-0.18", "60"]]
    },
    {
        "uc" : "Autómatos e Linguagens Formais",
@@ -173,7 +221,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "2",
-       "slots" : [["Segunda", "16", "00", "18", "00", "Ed1-0.18", "60"]]
+       "slots" : [["Sexta", "14", "00", "16", "00", "Ed1-0.18", "60"]]
    },
    {
        "uc" : "Cálculo de Programas",
@@ -181,7 +229,7 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Quinta", "14", "00", "16", "00", "Ed1-1.40", "60"]]
+       "slots" : [["Segunda", "14", "00", "16", "00", "Ed1-0.04", "145"]]
    },
    {
        "uc" : "Cálculo de Programas",
@@ -189,7 +237,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["Segunda", "16", "00", "18", "00", "Ed7-0.07", "40"]]
+       "slots" : [["Quarta", "16", "00", "18", "00", "Ed2-0.03", "140"]]
    },
    {
        "uc" : "Cálculo de Programas",
@@ -197,7 +245,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "2",
-       "slots" : [["Segunda", "14", "00", "16", "00", "Ed7-0.07", "40"]]
+       "slots" : [["Sexta", "16", "00", "18", "00", "Ed2-1.03", "99"]]
    },
    {
        "uc" : "Laboratório de Algoritmia II",
@@ -221,7 +269,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "1",
-       "slots" : [["Quinta", "16", "00", "18", "00", "Ed1-2.20", "50"]]
+       "slots" : [["Sexta", "14", "00", "16", "00", "Ed7-0.07", "40"]]
    },
    {
        "uc" : "Programação Orientada aos Objetos",
@@ -229,7 +277,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "2",
-       "slots" : [["Quinta", "16", "00", "18", "00", "Ed1-1.17", "49"]]
+       "slots" : [["Quinta", "16", "00", "18", "00", "Ed1-2.14", "49"]]
    },
    {
        "uc" : "Programação Orientada aos Objetos",
@@ -237,7 +285,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "3",
-       "slots" : [["Terça", "18", "00", "20", "00", "Ed1-2.05", "90"]]
+       "slots" : [["Sexta", "14", "00", "16", "00", "Ed1-1.17", "49"]]
    },
    {
        "uc" : "Programação Orientada aos Objetos",
@@ -245,7 +293,7 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Quarta", "11", "00", "13", "00", "Ed1-0.08", "179"]]
+       "slots" : [["Quinta", "14", "00", "16", "00", "Ed1-0.08", "179"]]
    },
    {
        "uc" : "Sistemas Operativos",
@@ -253,7 +301,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "1",
-       "slots" : [["Sexta", "16", "00", "18", "00", "Ed1-2.22", "49"]]
+       "slots" : [["Segunda", "16", "00", "18", "00", "Ed1-2.19", "44"]]
    },
    {
        "uc" : "Sistemas Operativos",
@@ -261,7 +309,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "2",
-       "slots" : [["Sexta", "16", "00", "18", "00", "Ed1-2.11", "47"]]
+       "slots" : [["Quarta", "14", "00", "16", "00", "Ed1-2.14", "49"]]
    },
    {
        "uc" : "Sistemas Operativos",
@@ -269,7 +317,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "3",
-       "slots" : [["Sexta", "16", "00", "18", "00", "Ed1-1.17", "49"]]
+       "slots" : [["Quarta", "14", "00", "16", "00", "Ed1-2.11", "47"]]
    },
    {
        "uc" : "Sistemas Operativos",
@@ -277,7 +325,7 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Sexta", "14", "00", "16", "00", "Ed3-0.07", "130"]]
+       "slots" : [["Terça", "14", "00", "16", "00", "Ed1-0.08", "179"]]
    },
    {
        "uc" : "Álgebra Universal e Categorias",
@@ -285,7 +333,7 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Quarta", "14", "00", "16", "00", "Ed2-0.05", "140"]]
+       "slots" : [["Quarta", "11", "00", "13", "00", "Ed1-0.04", "145"]]
    },
    {
        "uc" : "Álgebra Universal e Categorias",
@@ -293,7 +341,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["Terça", "18", "00", "20", "00", "Ed1-1.19", "55"]]
+       "slots" : [["Quarta", "16", "00", "18", "00", "Ed1-1.05", "77"]]
    },
    {
        "uc" : "Álgebra Universal e Categorias",
@@ -301,7 +349,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "2",
-       "slots" : [["Terça", "14", "00", "16", "00", "Ed1-1.20", "49"]]
+       "slots" : [["Segunda", "16", "00", "18", "00", "Ed1-2.18", "55"]]
    },
    {
        "uc" : "Álgebra Universal e Categorias",
@@ -309,7 +357,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "3",
-       "slots" : [["Terça", "11", "00", "13", "00", "Ed1-1.20", "49"]]
+       "slots" : [["Quarta", "09", "00", "11", "00", "Ed1-1.19", "55"]]
    },
    {
        "uc" : "Computação Gráfica",
@@ -317,7 +365,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "2",
-       "slots" : [["Quinta", "09", "00", "11", "00", "Ed1-2.14", "49"]]
+       "slots" : [["Quarta", "11", "00", "13", "00", "Ed1-2.14", "49"]]
    },
    {
        "uc" : "Computação Gráfica",
@@ -325,7 +373,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "1",
-       "slots" : [["Terça", "15", "00", "17", "00", "Ed1-2.25", "49"]]
+       "slots" : [["Segunda", "14", "00", "16", "00", "Ed1-2.21", "47"]]
    },
    {
        "uc" : "Computação Gráfica",
@@ -333,7 +381,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "3",
-       "slots" : [["Terça", "11", "00", "13", "00", "Ed1-2.25", "49"]]
+       "slots" : [["Terça", "11", "00", "13", "00", "Ed1-2.22", "49"]]
    },
    {
        "uc" : "Computação Gráfica",
@@ -341,7 +389,7 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Segunda", "11", "00", "13", "00", "Ed1-1.40", "60"]]
+       "slots" : [["Segunda", "09", "00", "11", "00", "Ed1-1.25", "41"]]
    },
    {
        "uc" : "Interação e Concorrência",
@@ -349,7 +397,7 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Quarta", "11", "00", "13", "00", "Ed1-1.17", "49"]]
+       "slots" : [["Quinta", "11", "00", "13", "00", "Ed1-1.40", "60"]]
    },
    {
        "uc" : "Interação e Concorrência",
@@ -357,7 +405,39 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["Quinta", "11", "00", "13", "00", "Ed1-1.27", "44"]]
+       "slots" : [["Quinta", "09", "00", "11", "00", "Ed1-1.40", "60"]]
+   },
+   {
+       "uc" : "Probabilidades e Aplicações",
+       "year" : "3",
+       "semester" : "1",
+       "type_class" : "PL",
+       "shift" : "1",
+       "slots" : [["Quinta", "17", "00", "18", "00", "Ed6-3.72", "30"]]
+   },
+   {
+       "uc" : "Probabilidades e Aplicações",
+       "year" : "3",
+       "semester" : "1",
+       "type_class" : "PL",
+       "shift" : "2",
+       "slots" : [["Terça", "10", "00", "11", "00", "Ed6-3.72", "30"]]
+   },
+   {
+       "uc" : "Probabilidades e Aplicações",
+       "year" : "3",
+       "semester" : "1",
+       "type_class" : "TP",
+       "shift" : "1",
+       "slots" : [["Quinta", "15", "00", "17", "00", "Ed6-3.72", "30"]]
+   },
+   {
+       "uc" : "Probabilidades e Aplicações",
+       "year" : "3",
+       "semester" : "1",
+       "type_class" : "TP",
+       "shift" : "2",
+       "slots" : [["Terça", "11", "00", "13", "00", "Ed6-3.72", "30"]]
    },
    {
        "uc" : "Programação Concorrente",
@@ -365,7 +445,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "1",
-       "slots" : [["Quinta", "09", "00", "11", "00", "Ed1-1.27", "44"]]
+       "slots" : [["Quarta", "11", "00", "13", "00", "Ed1-2.20", "50"]]
    },
    {
        "uc" : "Programação Concorrente",
@@ -373,7 +453,7 @@
        "semester" : "1",
        "type_class" : "PL",
        "shift" : "2",
-       "slots" : [["Sexta", "11", "00", "13", "00", "Ed1-1.17", "49"]]
+       "slots" : [["Terça", "11", "00", "13", "00", "Ed1-1.21", "54"]]
    },
    {
        "uc" : "Programação Concorrente",
@@ -381,7 +461,7 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Sexta", "09", "00", "11", "00", "Ed2-0.07", "140"]]
+       "slots" : [["Sexta", "09", "00", "11", "00", "Ed1-0.20", "145"]]
    },
    {
        "uc" : "Semântica das Linguagens de Programação",
@@ -389,7 +469,7 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Quarta", "14", "00", "16", "00", "Ed1-1.19", "55"]]
+       "slots" : [["Terça", "09", "00", "11", "00", "Ed1-2.19", "44"]]
    },
    {
        "uc" : "Semântica das Linguagens de Programação",
@@ -397,7 +477,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["Terça", "09", "00", "11", "00", "Ed3-1.02", "87"]]
+       "slots" : [["Segunda", "11", "00", "13", "00", "Ed1-1.25", "41"]]
    },
    {
        "uc" : "Teoria de Números Computacional",
@@ -405,7 +485,7 @@
        "semester" : "1",
        "type_class" : "T",
        "shift" : "1",
-       "slots" : [["Segunda", "09", "00", "11", "00", "Ed3-0.06", "110"]]
+       "slots" : [["Sexta", "11", "00", "13", "00", "Ed1-0.20", "145"]]
    },
    {
        "uc" : "Teoria de Números Computacional",
@@ -413,7 +493,7 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "1",
-       "slots" : [["Sexta", "11", "00", "13", "00", "Ed6-3.71", "30"]]
+       "slots" : [["Sexta", "14", "00", "16", "00", "Ed6-3.72", "30"]]
    },
    {
        "uc" : "Teoria de Números Computacional",
@@ -421,6 +501,6 @@
        "semester" : "1",
        "type_class" : "TP",
        "shift" : "2",
-       "slots" : [["Quarta", "09", "00", "11", "00", "Ed6-3.71", "30"]]
+       "slots" : [["Quinta", "14", "00", "16", "00", "Ed3-0.06", "110"]]
    }
 ]

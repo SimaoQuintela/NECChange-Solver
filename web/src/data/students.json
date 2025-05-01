@@ -1,0 +1,1724 @@
+{
+  "A100051": {
+    "name": "Joao Carlos Santos Granja",
+    "number": "a100051",
+    "alocations": 13,
+    "overlaps": 0
+  },
+  "A108472": {
+    "name": "Afonso Henrique Cerqueira Leal",
+    "number": "a108472",
+    "alocations": 16,
+    "overlaps": 2
+  },
+  "A108479": {
+    "name": "Rodrigo Machado Rodrigues",
+    "number": "a108479",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A108649": {
+    "name": "Rodrigo Goncalves Rocha",
+    "number": "a108649",
+    "alocations": 15,
+    "overlaps": 1
+  },
+  "A112802": {
+    "name": "Caio de Souza Lins",
+    "number": "a112802",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A100104": {
+    "name": "Tiago João Viana Bernardo",
+    "number": "a100104",
+    "alocations": 10,
+    "overlaps": 1
+  },
+  "A108483": {
+    "name": "João Pedro Morais da Silva",
+    "number": "a108483",
+    "alocations": 18,
+    "overlaps": 3
+  },
+  "A102504": {
+    "name": "Pedro Augusto Ennes de Martino Camargo",
+    "number": "a102504",
+    "alocations": 15,
+    "overlaps": 0
+  },
+  "A108398": {
+    "name": "Pedro Dong Mo",
+    "number": "a108398",
+    "alocations": 13,
+    "overlaps": 3
+  },
+  "A112259": {
+    "name": "Eduardo Oliveira Carvalho",
+    "number": "a112259",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A91666": {
+    "name": "Francisco António Borges Paulino",
+    "number": "a91666",
+    "alocations": 8,
+    "overlaps": 0
+  },
+  "A91667": {
+    "name": "João Miguel Silva Freitas",
+    "number": "a91667",
+    "alocations": 4,
+    "overlaps": 0
+  },
+  "A112077": {
+    "name": "Manoel Carvalho Monteiro Lobato Lemos",
+    "number": "a112077",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102518": {
+    "name": "Eduardo Pereira Vilaça",
+    "number": "a102518",
+    "alocations": 18,
+    "overlaps": 4
+  },
+  "A111724": {
+    "name": "Lucas Gabriel Rodrigues Ferreira",
+    "number": "a111724",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A100060": {
+    "name": "Alexandra Isabel de Sousa Calafate",
+    "number": "a100060",
+    "alocations": 20,
+    "overlaps": 5
+  },
+  "A96628": {
+    "name": "Francisca Alexandra Pimenta Jácome de Sousa",
+    "number": "a96628",
+    "alocations": 8,
+    "overlaps": 0
+  },
+  "A108648": {
+    "name": "Luís Pereira Oliveira Ferreira",
+    "number": "a108648",
+    "alocations": 11,
+    "overlaps": 1
+  },
+  "A108473": {
+    "name": "André Filipe Dourado Pinheiro",
+    "number": "a108473",
+    "alocations": 13,
+    "overlaps": 3
+  },
+  "A96798": {
+    "name": "José Pedro Silva Ferreira",
+    "number": "a96798",
+    "alocations": 16,
+    "overlaps": 3
+  },
+  "A102938": {
+    "name": "Davide de Oliveira Santos",
+    "number": "a102938",
+    "alocations": 16,
+    "overlaps": 3
+  },
+  "A105735": {
+    "name": "Gabriel Deciomo Martins Gouveia",
+    "number": "a105735",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A111163": {
+    "name": "Tiago Varandas Guedes",
+    "number": "a111163",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A111280": {
+    "name": "Francisco João Tavares e Silva",
+    "number": "a111280",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A70619": {
+    "name": "Eduardo Manuel Sousa Pereira",
+    "number": "a70619",
+    "alocations": 12,
+    "overlaps": 0
+  },
+  "A112458": {
+    "name": "Goncalo Miguel Pinho Dias",
+    "number": "a112458",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A105533": {
+    "name": "Guilherme Pinto Pinho",
+    "number": "a105533",
+    "alocations": 20,
+    "overlaps": 4
+  },
+  "A112825": {
+    "name": "Rafael de Almeida Silva e Costa",
+    "number": "a112825",
+    "alocations": 5,
+    "overlaps": 0
+  },
+  "A100080": {
+    "name": "Bianca Margarida Rodrigues Vilaverde",
+    "number": "a100080",
+    "alocations": 14,
+    "overlaps": 1
+  },
+  "A105530": {
+    "name": "Luis Filipe Pinheiro Silva",
+    "number": "a105530",
+    "alocations": 12,
+    "overlaps": 0
+  },
+  "A100056": {
+    "name": "Hugo Gameiro Gomes",
+    "number": "a100056",
+    "alocations": 14,
+    "overlaps": 2
+  },
+  "A91689": {
+    "name": "Tiago Rafael Fernandes Guimarães",
+    "number": "a91689",
+    "alocations": 2,
+    "overlaps": 0
+  },
+  "A98982": {
+    "name": "Matilde Galhetas Domingues",
+    "number": "a98982",
+    "alocations": 4,
+    "overlaps": 0
+  },
+  "A108481": {
+    "name": "Diogo Alexandre Lages de Oliveira",
+    "number": "a108481",
+    "alocations": 8,
+    "overlaps": 0
+  },
+  "A109381": {
+    "name": "Wu Hou Pan",
+    "number": "a109381",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A110011": {
+    "name": "Diogo Rodrigues Roriz de Oliveira",
+    "number": "a110011",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A98978": {
+    "name": "Luís Rodrigues Ribeiro",
+    "number": "a98978",
+    "alocations": 4,
+    "overlaps": 0
+  },
+  "A111016": {
+    "name": "Gonçalo Miguel Abreu Pereira",
+    "number": "a111016",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A108571": {
+    "name": "Vitor Martins Nunes Borges Fernandes",
+    "number": "a108571",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A108577": {
+    "name": "Claudio Rafael Oliveira Ferreira",
+    "number": "a108577",
+    "alocations": 13,
+    "overlaps": 2
+  },
+  "A102935": {
+    "name": "Ivo Costa Sousa",
+    "number": "a102935",
+    "alocations": 13,
+    "overlaps": 1
+  },
+  "A108655": {
+    "name": "Lara Catarina Vilaça Lopes",
+    "number": "a108655",
+    "alocations": 15,
+    "overlaps": 2
+  },
+  "A98983": {
+    "name": "Tiago José Fernandes",
+    "number": "a98983",
+    "alocations": 10,
+    "overlaps": 2
+  },
+  "A102933": {
+    "name": "José Afonso da Silva Miranda",
+    "number": "a102933",
+    "alocations": 13,
+    "overlaps": 1
+  },
+  "A102054": {
+    "name": "Gabryelle dos Santos Gonçalves",
+    "number": "a102054",
+    "alocations": 12,
+    "overlaps": 0
+  },
+  "A105751": {
+    "name": "João Henrique Duarte Teodoro",
+    "number": "a105751",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A108485": {
+    "name": "André Cerejeira Campos Couto",
+    "number": "a108485",
+    "alocations": 17,
+    "overlaps": 2
+  },
+  "A110393": {
+    "name": "João Paulo Pires Cascais",
+    "number": "a110393",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A112412": {
+    "name": "Ivo Matos Teixeira",
+    "number": "a112412",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A96467": {
+    "name": "José Carlos Batista Loureiro",
+    "number": "a96467",
+    "alocations": 18,
+    "overlaps": 4
+  },
+  "A102934": {
+    "name": "Hugo Simões Marques",
+    "number": "a102934",
+    "alocations": 12,
+    "overlaps": 1
+  },
+  "A100050": {
+    "name": "Pedro André Ferreira Malainho",
+    "number": "a100050",
+    "alocations": 14,
+    "overlaps": 3
+  },
+  "A109753": {
+    "name": "Eduardo Muir Cabral de Almeida Ribeiro Thompson",
+    "number": "a109753",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A110250": {
+    "name": "Pavlo P´Yatkovskyy",
+    "number": "a110250",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102944": {
+    "name": "Matias Gabriel Gonçalves",
+    "number": "a102944",
+    "alocations": 15,
+    "overlaps": 3
+  },
+  "A87962": {
+    "name": "David Costa da Cunha",
+    "number": "a87962",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A53971": {
+    "name": "Nuno Filipe Norberto Gonçalves de Oliveira",
+    "number": "a53971",
+    "alocations": 12,
+    "overlaps": 2
+  },
+  "A108661": {
+    "name": "Rodrigo Fernandes da Silva",
+    "number": "a108661",
+    "alocations": 15,
+    "overlaps": 1
+  },
+  "A100110": {
+    "name": "Pedro Manuel Pereira dos Santos",
+    "number": "a100110",
+    "alocations": 12,
+    "overlaps": 1
+  },
+  "A105532": {
+    "name": "Killian Alexandre Ferreira Oliveira",
+    "number": "a105532",
+    "alocations": 12,
+    "overlaps": 2
+  },
+  "A108561": {
+    "name": "Francisco Bonjardim Dias",
+    "number": "a108561",
+    "alocations": 13,
+    "overlaps": 0
+  },
+  "A109069": {
+    "name": "Miguel Ângelo Oliveira da Silva",
+    "number": "a109069",
+    "alocations": 16,
+    "overlaps": 4
+  },
+  "A100094": {
+    "name": "André Filipe Ferreira da Silva",
+    "number": "a100094",
+    "alocations": 14,
+    "overlaps": 2
+  },
+  "A102462": {
+    "name": "João Afonso Almeida Sousa",
+    "number": "a102462",
+    "alocations": 18,
+    "overlaps": 4
+  },
+  "A110360": {
+    "name": "Nelson Dinis Saraiva Antunes",
+    "number": "a110360",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A103491": {
+    "name": "Carolina Marques Borges",
+    "number": "a103491",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A85797": {
+    "name": "Jorge Miguel Meireles Machado",
+    "number": "a85797",
+    "alocations": 12,
+    "overlaps": 2
+  },
+  "A102498": {
+    "name": "Jorge Miguel Domingues de Oliveira Barata",
+    "number": "a102498",
+    "alocations": 13,
+    "overlaps": 0
+  },
+  "A100082": {
+    "name": "Hugo Alexandre Peres Ferreira",
+    "number": "a100082",
+    "alocations": 16,
+    "overlaps": 4
+  },
+  "A111215": {
+    "name": "Hugo Silva Moura",
+    "number": "a111215",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102512": {
+    "name": "João de Albuquerque Ferreira Vieira da Fonseca",
+    "number": "a102512",
+    "alocations": 12,
+    "overlaps": 0
+  },
+  "A110640": {
+    "name": "Paulo Gabriel Torres Rodrigues",
+    "number": "a110640",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A84588": {
+    "name": "Rui Pedro Magalhães Torres",
+    "number": "a84588",
+    "alocations": 22,
+    "overlaps": 5
+  },
+  "A102508": {
+    "name": "Rita Mota Machado",
+    "number": "a102508",
+    "alocations": 14,
+    "overlaps": 2
+  },
+  "A100052": {
+    "name": "João Pedro Valadares Machado Carneiro Vieira",
+    "number": "a100052",
+    "alocations": 6,
+    "overlaps": 0
+  },
+  "A104616": {
+    "name": "Valentino Korpys Simões",
+    "number": "a104616",
+    "alocations": 12,
+    "overlaps": 1
+  },
+  "A94017": {
+    "name": "Miguel Ângelo Mesquita Rego",
+    "number": "a94017",
+    "alocations": 2,
+    "overlaps": 0
+  },
+  "A80263": {
+    "name": "Tiago Pereira Gonçalves",
+    "number": "a80263",
+    "alocations": 13,
+    "overlaps": 0
+  },
+  "A111722": {
+    "name": "Ana Vitoria Costa Rodrigues",
+    "number": "a111722",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A110669": {
+    "name": "Miguel Rodrigues Silva",
+    "number": "a110669",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102506": {
+    "name": "Oliver Favero Teixeira",
+    "number": "a102506",
+    "alocations": 17,
+    "overlaps": 5
+  },
+  "A100113": {
+    "name": "David José Monteiro Andrade Gonçalves",
+    "number": "a100113",
+    "alocations": 14,
+    "overlaps": 1
+  },
+  "A102879": {
+    "name": "Ricardo Machado Vilaça",
+    "number": "a102879",
+    "alocations": 12,
+    "overlaps": 1
+  },
+  "A102505": {
+    "name": "Daniel Monteiro Gomes Pereira",
+    "number": "a102505",
+    "alocations": 12,
+    "overlaps": 2
+  },
+  "A104244": {
+    "name": "Miguel Dinis Páscoa",
+    "number": "a104244",
+    "alocations": 17,
+    "overlaps": 2
+  },
+  "A95675": {
+    "name": "Luís Miguel da Silva Vila",
+    "number": "a95675",
+    "alocations": 14,
+    "overlaps": 1
+  },
+  "A111614": {
+    "name": "Francisco da Mota Freitas Cerqueira de Araujo",
+    "number": "a111614",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A91679": {
+    "name": "Cristiana Tamborino Ribeiro",
+    "number": "a91679",
+    "alocations": 4,
+    "overlaps": 0
+  },
+  "A111634": {
+    "name": "André Filipe Ferreira Marques",
+    "number": "a111634",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A111041": {
+    "name": "João Pedro Silva Ribeiro",
+    "number": "a111041",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A110241": {
+    "name": "Luís Miguel Torres Martins",
+    "number": "a110241",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A100062": {
+    "name": "João Pedro da Silva Faria",
+    "number": "a100062",
+    "alocations": 12,
+    "overlaps": 0
+  },
+  "A105643": {
+    "name": "José Guilherme Ferreira Leite",
+    "number": "a105643",
+    "alocations": 11,
+    "overlaps": 3
+  },
+  "A110326": {
+    "name": "Nuno Rei de Sousa Pinto",
+    "number": "a110326",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A110930": {
+    "name": "Rafael da Silva Rosado",
+    "number": "a110930",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A108401": {
+    "name": "Rodrigo Lavandeira Fernandes",
+    "number": "a108401",
+    "alocations": 15,
+    "overlaps": 4
+  },
+  "A87968": {
+    "name": "Diogo Costa Fernandes",
+    "number": "a87968",
+    "alocations": 8,
+    "overlaps": 0
+  },
+  "A100084": {
+    "name": "Gonçalo Emanuel Ferreira Magalhães",
+    "number": "a100084",
+    "alocations": 12,
+    "overlaps": 1
+  },
+  "A100073": {
+    "name": "Alexandre José Oliveira e Costa",
+    "number": "a100073",
+    "alocations": 6,
+    "overlaps": 0
+  },
+  "A109734": {
+    "name": "Joao Vicente Monteiro Reis",
+    "number": "a109734",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A110086": {
+    "name": "Gastâo Ferreira Vaz",
+    "number": "a110086",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A81820": {
+    "name": "David João Oliveira Gonçalves",
+    "number": "a81820",
+    "alocations": 16,
+    "overlaps": 4
+  },
+  "A100054": {
+    "name": "João Pedro da Silva Barbosa",
+    "number": "a100054",
+    "alocations": 16,
+    "overlaps": 4
+  },
+  "A108395": {
+    "name": "José Pedro Flores Novais",
+    "number": "a108395",
+    "alocations": 13,
+    "overlaps": 0
+  },
+  "A108580": {
+    "name": "André Fidalgo Magalhães",
+    "number": "a108580",
+    "alocations": 14,
+    "overlaps": 1
+  },
+  "A109252": {
+    "name": "Youssef Boubli",
+    "number": "a109252",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A101101": {
+    "name": "Gabriel Veloso Antunes",
+    "number": "a101101",
+    "alocations": 14,
+    "overlaps": 4
+  },
+  "A111470": {
+    "name": "Pedro Nuno Faria Fernandes",
+    "number": "a111470",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A112105": {
+    "name": "Francisca Costa Cardoso",
+    "number": "a112105",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A101250": {
+    "name": "Pedro Miguel Malheiro Gonçalves",
+    "number": "a101250",
+    "alocations": 12,
+    "overlaps": 2
+  },
+  "A112854": {
+    "name": "André Rodrigo Soares Machado",
+    "number": "a112854",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A91637": {
+    "name": "Henrique Pinto Pires Lopes de Faria",
+    "number": "a91637",
+    "alocations": 2,
+    "overlaps": 0
+  },
+  "A108474": {
+    "name": "Inês Ferreira Guimarães",
+    "number": "a108474",
+    "alocations": 17,
+    "overlaps": 2
+  },
+  "A110480": {
+    "name": "Diogo Martins Gonçalves",
+    "number": "a110480",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102515": {
+    "name": "Vitor Costa Pereira",
+    "number": "a102515",
+    "alocations": 16,
+    "overlaps": 2
+  },
+  "A108568": {
+    "name": "Henrique Louro Correia",
+    "number": "a108568",
+    "alocations": 13,
+    "overlaps": 1
+  },
+  "A102490": {
+    "name": "Ana Francisca Antunes Taxa",
+    "number": "a102490",
+    "alocations": 15,
+    "overlaps": 1
+  },
+  "A108570": {
+    "name": "Duarte Sousa Parente",
+    "number": "a108570",
+    "alocations": 18,
+    "overlaps": 5
+  },
+  "A108574": {
+    "name": "Miguel do Paço Cruz",
+    "number": "a108574",
+    "alocations": 16,
+    "overlaps": 2
+  },
+  "A108482": {
+    "name": "Pedro Rodrigues Campos",
+    "number": "a108482",
+    "alocations": 15,
+    "overlaps": 2
+  },
+  "A109929": {
+    "name": "Afonso Dinis Barbosa Machado Costa",
+    "number": "a109929",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A109993": {
+    "name": "Martim Vieira Soares",
+    "number": "a109993",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A111125": {
+    "name": "Hugo Gonçalo Rodrigues Rocha",
+    "number": "a111125",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A111783": {
+    "name": "Gonçalo Simões Pereira",
+    "number": "a111783",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A91664": {
+    "name": "Isabel Pereira Inacio",
+    "number": "a91664",
+    "alocations": 4,
+    "overlaps": 0
+  },
+  "A103626": {
+    "name": "José Alberto Martins Fernandes",
+    "number": "a103626",
+    "alocations": 14,
+    "overlaps": 1
+  },
+  "A108478": {
+    "name": "Miguel Martim Pereira Arieiro Gonçalves",
+    "number": "a108478",
+    "alocations": 15,
+    "overlaps": 3
+  },
+  "A100092": {
+    "name": "Diogo Coelho da Silva",
+    "number": "a100092",
+    "alocations": 20,
+    "overlaps": 4
+  },
+  "A111762": {
+    "name": "Gonçalo Areal João",
+    "number": "a111762",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A111491": {
+    "name": "Catarina Alves Rodrigues",
+    "number": "a111491",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A97020": {
+    "name": "Moisés Edgar Pereira Ferreira",
+    "number": "a97020",
+    "alocations": 20,
+    "overlaps": 6
+  },
+  "A97686": {
+    "name": "Pedro Miguel Ramôa Oliveira",
+    "number": "a97686",
+    "alocations": 20,
+    "overlaps": 5
+  },
+  "A108656": {
+    "name": "João Tomás Peliteiro Marinho",
+    "number": "a108656",
+    "alocations": 18,
+    "overlaps": 3
+  },
+  "A100105": {
+    "name": "José Manuel dos Santos Silva",
+    "number": "a100105",
+    "alocations": 16,
+    "overlaps": 2
+  },
+  "A109361": {
+    "name": "Miguel Henrique Silva Calçado",
+    "number": "a109361",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A109746": {
+    "name": "Fábio Miguel Costa Reis",
+    "number": "a109746",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A109703": {
+    "name": "Milan dos Santos Jevic",
+    "number": "a109703",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A100058": {
+    "name": "Fábio Alexandre Magalhães Ribeiro",
+    "number": "a100058",
+    "alocations": 14,
+    "overlaps": 2
+  },
+  "A95917": {
+    "name": "Eduardo Diogo Costa Soares",
+    "number": "a95917",
+    "alocations": 14,
+    "overlaps": 3
+  },
+  "A108400": {
+    "name": "Rita Beatriz Ribeiro Machado",
+    "number": "a108400",
+    "alocations": 15,
+    "overlaps": 2
+  },
+  "A108659": {
+    "name": "Gonçalo Nuno Machado Monteiro",
+    "number": "a108659",
+    "alocations": 15,
+    "overlaps": 1
+  },
+  "Opção UMinho": {
+    "name": "Unknown",
+    "number": "opção uminho",
+    "alocations": 0,
+    "overlaps": 0
+  },
+  "A109065": {
+    "name": "João Álvaro Oliveira Durães",
+    "number": "a109065",
+    "alocations": 13,
+    "overlaps": 2
+  },
+  "A102489": {
+    "name": "Tiago Rafael Pinheiro Machado",
+    "number": "a102489",
+    "alocations": 14,
+    "overlaps": 0
+  },
+  "A108397": {
+    "name": "Chen Yuqing",
+    "number": "a108397",
+    "alocations": 11,
+    "overlaps": 1
+  },
+  "A110313": {
+    "name": "Tiago Henrique Ribeiro dos Santos",
+    "number": "a110313",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A100108": {
+    "name": "Vasco José Machado Mota",
+    "number": "a100108",
+    "alocations": 2,
+    "overlaps": 0
+  },
+  "A102521": {
+    "name": "Hélder Simão Lima Fernandes Pereira",
+    "number": "a102521",
+    "alocations": 14,
+    "overlaps": 3
+  },
+  "A110879": {
+    "name": "Miguel de Matos Poço Cabral Gonçalves",
+    "number": "a110879",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102932": {
+    "name": "Lucas Dinis Oliveira Vieira",
+    "number": "a102932",
+    "alocations": 13,
+    "overlaps": 3
+  },
+  "A109068": {
+    "name": "Nelson Daniel Araújo Sousa",
+    "number": "a109068",
+    "alocations": 13,
+    "overlaps": 1
+  },
+  "A112272": {
+    "name": "Lúcia Zhou",
+    "number": "a112272",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A72161": {
+    "name": "Miguel António Vaz Pinto Pereira",
+    "number": "a72161",
+    "alocations": 14,
+    "overlaps": 2
+  },
+  "A68702": {
+    "name": "Nuno Alexandre Pereira Machado",
+    "number": "a68702",
+    "alocations": 2,
+    "overlaps": 0
+  },
+  "A108489": {
+    "name": "Isaac Filipe Azevedo Maia",
+    "number": "a108489",
+    "alocations": 13,
+    "overlaps": 1
+  },
+  "A73000": {
+    "name": "Alberto Emanuel Ferreira Pinto",
+    "number": "a73000",
+    "alocations": 2,
+    "overlaps": 0
+  },
+  "A108488": {
+    "name": "Tomás Viana Lima",
+    "number": "a108488",
+    "alocations": 15,
+    "overlaps": 3
+  },
+  "A102877": {
+    "name": "Simão Ribeiro Martins",
+    "number": "a102877",
+    "alocations": 14,
+    "overlaps": 4
+  },
+  "A102936": {
+    "name": "André Dias Rezende de Carvalho",
+    "number": "a102936",
+    "alocations": 14,
+    "overlaps": 2
+  },
+  "A108563": {
+    "name": "Afonso António Rodrigues Morais",
+    "number": "a108563",
+    "alocations": 13,
+    "overlaps": 1
+  },
+  "A100083": {
+    "name": "João Pacheco Mirra",
+    "number": "a100083",
+    "alocations": 14,
+    "overlaps": 3
+  },
+  "A102928": {
+    "name": "José Afonso Nunes Martins",
+    "number": "a102928",
+    "alocations": 15,
+    "overlaps": 1
+  },
+  "A100106": {
+    "name": "Tomás José Pinheiro Ribeiro de Meireles",
+    "number": "a100106",
+    "alocations": 18,
+    "overlaps": 4
+  },
+  "A112106": {
+    "name": "Tiago Daniel Oliveira Leite",
+    "number": "a112106",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A109067": {
+    "name": "Diogo da Silva Araújo",
+    "number": "a109067",
+    "alocations": 10,
+    "overlaps": 1
+  },
+  "A100086": {
+    "name": "Afonso Ferreira Martinho",
+    "number": "a100086",
+    "alocations": 18,
+    "overlaps": 3
+  },
+  "A110492": {
+    "name": "Marta Daniela Magalhães Leite",
+    "number": "a110492",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102514": {
+    "name": "Loren Narrane Leandro Oliveira da Silva",
+    "number": "a102514",
+    "alocations": 18,
+    "overlaps": 5
+  },
+  "A110348": {
+    "name": "Rodrigo Oliveira Magalhães",
+    "number": "a110348",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A111404": {
+    "name": "Simao Arantes Dias Menezes",
+    "number": "a111404",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A100053": {
+    "name": "Paulo Jorge Fernandes Freitas",
+    "number": "a100053",
+    "alocations": 6,
+    "overlaps": 1
+  },
+  "A82232": {
+    "name": "Pedro Daniel Fernandes Abreu",
+    "number": "a82232",
+    "alocations": 2,
+    "overlaps": 0
+  },
+  "A111632": {
+    "name": "Mateus Henrique Azevedo Fernandes",
+    "number": "a111632",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A108575": {
+    "name": "Gustavo da Silva Faria",
+    "number": "a108575",
+    "alocations": 16,
+    "overlaps": 5
+  },
+  "A100057": {
+    "name": "Daniel Francisco Teixeira Andrade",
+    "number": "a100057",
+    "alocations": 8,
+    "overlaps": 0
+  },
+  "A108657": {
+    "name": "Tiago Silva Costa",
+    "number": "a108657",
+    "alocations": 16,
+    "overlaps": 2
+  },
+  "A108559": {
+    "name": "João Pedro da Silva Taveira",
+    "number": "a108559",
+    "alocations": 15,
+    "overlaps": 4
+  },
+  "A108572": {
+    "name": "Joaquim Simão Freitas da Cunha",
+    "number": "a108572",
+    "alocations": 13,
+    "overlaps": 3
+  },
+  "A110812": {
+    "name": "Tiago Filipe Carvalho Moreira",
+    "number": "a110812",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A112137": {
+    "name": "Inês Ferreira Rebelo",
+    "number": "a112137",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A109310": {
+    "name": "Gustavo Amaro dos Reis",
+    "number": "a109310",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A87971": {
+    "name": "João Nuno Rodrigues Fernandes",
+    "number": "a87971",
+    "alocations": 16,
+    "overlaps": 1
+  },
+  "A105728": {
+    "name": "Fábio Mendes Castelhano",
+    "number": "a105728",
+    "alocations": 16,
+    "overlaps": 2
+  },
+  "A98981": {
+    "name": "José Carlos Veloso Antunes",
+    "number": "a98981",
+    "alocations": 4,
+    "overlaps": 0
+  },
+  "A108399": {
+    "name": "Vasco Ferreira Leite",
+    "number": "a108399",
+    "alocations": 16,
+    "overlaps": 0
+  },
+  "A105237": {
+    "name": "Idy Saquina Carlos",
+    "number": "a105237",
+    "alocations": 14,
+    "overlaps": 1
+  },
+  "A108578": {
+    "name": "Marco António Ferreira Abreu",
+    "number": "a108578",
+    "alocations": 13,
+    "overlaps": 1
+  },
+  "A112434": {
+    "name": "Ângelo Francisco Gonçalves Fernandes",
+    "number": "a112434",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A91635": {
+    "name": "Miguel Ângelo Alves de Freitas",
+    "number": "a91635",
+    "alocations": 2,
+    "overlaps": 0
+  },
+  "A105943": {
+    "name": "Gonçalo Afonso Morais Sousa",
+    "number": "a105943",
+    "alocations": 15,
+    "overlaps": 2
+  },
+  "A98979": {
+    "name": "Pedro Domingues Viana",
+    "number": "a98979",
+    "alocations": 16,
+    "overlaps": 3
+  },
+  "A102491": {
+    "name": "Gonçalo Magalhães Pereira",
+    "number": "a102491",
+    "alocations": 15,
+    "overlaps": 1
+  },
+  "A112560": {
+    "name": "Gidion Zed A'Nawacai",
+    "number": "a112560",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102497": {
+    "name": "José Bernardo Moniz Fernandes",
+    "number": "a102497",
+    "alocations": 13,
+    "overlaps": 1
+  },
+  "A82291": {
+    "name": "Nélson Ramos Alves",
+    "number": "a82291",
+    "alocations": 16,
+    "overlaps": 3
+  },
+  "A102927": {
+    "name": "Fábio Gabriel Santos Silva",
+    "number": "a102927",
+    "alocations": 13,
+    "overlaps": 1
+  },
+  "A108647": {
+    "name": "João Francisco Sousa Oliveira",
+    "number": "a108647",
+    "alocations": 13,
+    "overlaps": 1
+  },
+  "A109820": {
+    "name": "Leonor Silva de Sousa",
+    "number": "a109820",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102502": {
+    "name": "Patrícia Daniela Fernandes Bastos",
+    "number": "a102502",
+    "alocations": 13,
+    "overlaps": 1
+  },
+  "A108558": {
+    "name": "Catarina Machado Barbosa",
+    "number": "a108558",
+    "alocations": 15,
+    "overlaps": 1
+  },
+  "A102522": {
+    "name": "Ricardo Sampaio Nunes",
+    "number": "a102522",
+    "alocations": 13,
+    "overlaps": 2
+  },
+  "A100070": {
+    "name": "José Pedro Mendes Castro",
+    "number": "a100070",
+    "alocations": 11,
+    "overlaps": 2
+  },
+  "A108576": {
+    "name": "Diogo Emanuel Oliveira Santos",
+    "number": "a108576",
+    "alocations": 12,
+    "overlaps": 2
+  },
+  "A112235": {
+    "name": "Tiago Du",
+    "number": "a112235",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102946": {
+    "name": "Edgar Eira Araújo",
+    "number": "a102946",
+    "alocations": 12,
+    "overlaps": 0
+  },
+  "A80433": {
+    "name": "Rui Alexandre Dias Neto",
+    "number": "a80433",
+    "alocations": 19,
+    "overlaps": 4
+  },
+  "A87999": {
+    "name": "André Filipe Barbosa de Sousa",
+    "number": "a87999",
+    "alocations": 16,
+    "overlaps": 2
+  },
+  "A111391": {
+    "name": "João Ricardo Carvalho da Silva",
+    "number": "a111391",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A111657": {
+    "name": "João Maria Oliveira Pontes",
+    "number": "a111657",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A112319": {
+    "name": "Francisco Ribeiro Enxuto dos Santos",
+    "number": "a112319",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A111531": {
+    "name": "Dinis Borges Macedo",
+    "number": "a111531",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A97554": {
+    "name": "Marco António Vieira da Silva",
+    "number": "a97554",
+    "alocations": 12,
+    "overlaps": 2
+  },
+  "A109066": {
+    "name": "Jose Miguel Gomes Braga",
+    "number": "a109066",
+    "alocations": 5,
+    "overlaps": 0
+  },
+  "A108658": {
+    "name": "João Almeida Sousa",
+    "number": "a108658",
+    "alocations": 11,
+    "overlaps": 0
+  },
+  "A101122": {
+    "name": "Guilherme Fernandes Duarte",
+    "number": "a101122",
+    "alocations": 15,
+    "overlaps": 5
+  },
+  "A108394": {
+    "name": "Gabriel Pereira Brandão",
+    "number": "a108394",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A100076": {
+    "name": "Nikita Pavlenko",
+    "number": "a100076",
+    "alocations": 12,
+    "overlaps": 1
+  },
+  "A82124": {
+    "name": "Maria Luísa Faria Silva",
+    "number": "a82124",
+    "alocations": 2,
+    "overlaps": 0
+  },
+  "A103619": {
+    "name": "Gonçalo Faria Aldeia",
+    "number": "a103619",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A104872": {
+    "name": "Rodrigo Amaro Melo",
+    "number": "a104872",
+    "alocations": 13,
+    "overlaps": 2
+  },
+  "A109228": {
+    "name": "Goncalo Gomes Correia Sa",
+    "number": "a109228",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A75635": {
+    "name": "Maria Helena Alves Machado Marques Salazar",
+    "number": "a75635",
+    "alocations": 16,
+    "overlaps": 4
+  },
+  "A102503": {
+    "name": "Nuno André Ni",
+    "number": "a102503",
+    "alocations": 20,
+    "overlaps": 4
+  },
+  "A110851": {
+    "name": "Pedro Nobre Morais Ferreira",
+    "number": "a110851",
+    "alocations": 10,
+    "overlaps": 1
+  },
+  "A83783": {
+    "name": "João Pinheiro Vítor",
+    "number": "a83783",
+    "alocations": 16,
+    "overlaps": 2
+  },
+  "A43548": {
+    "name": "Jaerder Nunes Sousa",
+    "number": "a43548",
+    "alocations": 4,
+    "overlaps": 1
+  },
+  "A84875": {
+    "name": "Pedro Daniel Almeida Castro",
+    "number": "a84875",
+    "alocations": 10,
+    "overlaps": 1
+  },
+  "A108470": {
+    "name": "Adriano Miguel Silva Lopes",
+    "number": "a108470",
+    "alocations": 18,
+    "overlaps": 3
+  },
+  "A102513": {
+    "name": "Felipe Siqueira Espinheira",
+    "number": "a102513",
+    "alocations": 16,
+    "overlaps": 3
+  },
+  "A112092": {
+    "name": "Tiago Rodrigues Almeida",
+    "number": "a112092",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A47423": {
+    "name": "Tiago Moreira Correia Tulha",
+    "number": "a47423",
+    "alocations": 0,
+    "overlaps": 0
+  },
+  "A108393": {
+    "name": "Gonçalo Luís Silva Soares",
+    "number": "a108393",
+    "alocations": 13,
+    "overlaps": 1
+  },
+  "A95311": {
+    "name": "Bruno Daniel Rolo Neiva",
+    "number": "a95311",
+    "alocations": 12,
+    "overlaps": 0
+  },
+  "A108579": {
+    "name": "Joao Carlos Teixeira Neiva",
+    "number": "a108579",
+    "alocations": 15,
+    "overlaps": 2
+  },
+  "A108392": {
+    "name": "Luís Miguel Faria Lopes",
+    "number": "a108392",
+    "alocations": 13,
+    "overlaps": 0
+  },
+  "A111115": {
+    "name": "David da Chão Mimoso",
+    "number": "a111115",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A91678": {
+    "name": "Ana Beatriz Ribeiro e Silva",
+    "number": "a91678",
+    "alocations": 16,
+    "overlaps": 2
+  },
+  "A108490": {
+    "name": "Raquel Filipa Marantes Pereira da Silva",
+    "number": "a108490",
+    "alocations": 19,
+    "overlaps": 4
+  },
+  "A102937": {
+    "name": "Maria Inês Barros de Matos",
+    "number": "a102937",
+    "alocations": 21,
+    "overlaps": 4
+  },
+  "A102942": {
+    "name": "Pedro Miguel Ribeiro de Oliveira",
+    "number": "a102942",
+    "alocations": 12,
+    "overlaps": 0
+  },
+  "A96609": {
+    "name": "José Diogo Ferreira Barbosa",
+    "number": "a96609",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A111259": {
+    "name": "Gonçalo Lopes Guimarães",
+    "number": "a111259",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A110410": {
+    "name": "Gonçalo Diogo Lopes Peixoto",
+    "number": "a110410",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102495": {
+    "name": "Alexis Castro Correia",
+    "number": "a102495",
+    "alocations": 16,
+    "overlaps": 2
+  },
+  "A102496": {
+    "name": "Joao Eduardo Pinto Martins",
+    "number": "a102496",
+    "alocations": 15,
+    "overlaps": 3
+  },
+  "A108653": {
+    "name": "João Manuel Pinto Alves",
+    "number": "a108653",
+    "alocations": 16,
+    "overlaps": 4
+  },
+  "A102523": {
+    "name": "Diogo Lopes Araújo",
+    "number": "a102523",
+    "alocations": 19,
+    "overlaps": 2
+  },
+  "A111110": {
+    "name": "Simão Pedro Sousa Cruz",
+    "number": "a111110",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A108560": {
+    "name": "Rui Gustavo Couto Goja",
+    "number": "a108560",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A100091": {
+    "name": "Diana Nuna Machado da Mota",
+    "number": "a100091",
+    "alocations": 12,
+    "overlaps": 3
+  },
+  "A108486": {
+    "name": "Tomás Pinheiro Sampaio",
+    "number": "a108486",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102047": {
+    "name": "Felipe Franklin Benevides Chaves",
+    "number": "a102047",
+    "alocations": 14,
+    "overlaps": 2
+  },
+  "A108650": {
+    "name": "Gabriela Pinto Gomes",
+    "number": "a108650",
+    "alocations": 17,
+    "overlaps": 3
+  },
+  "A110267": {
+    "name": "Ruben Luis Castro Alves",
+    "number": "a110267",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A112561": {
+    "name": "Zennyvia Sanches dos Santos",
+    "number": "a112561",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A81663": {
+    "name": "João Manuel Silva Antunes",
+    "number": "a81663",
+    "alocations": 16,
+    "overlaps": 2
+  },
+  "A97317": {
+    "name": "Ricardo Jose Pacheco Lopes Barbosa",
+    "number": "a97317",
+    "alocations": 13,
+    "overlaps": 2
+  },
+  "A105856": {
+    "name": "Samir Mansour",
+    "number": "a105856",
+    "alocations": 18,
+    "overlaps": 4
+  },
+  "A102931": {
+    "name": "Gonçalo Gonçalves Barroso",
+    "number": "a102931",
+    "alocations": 16,
+    "overlaps": 2
+  },
+  "A108566": {
+    "name": "Dinis da Silva Peixoto",
+    "number": "a108566",
+    "alocations": 15,
+    "overlaps": 1
+  },
+  "A94374": {
+    "name": "Igor Oliveira Rodrigues",
+    "number": "a94374",
+    "alocations": 6,
+    "overlaps": 0
+  },
+  "A102943": {
+    "name": "Diogo José Borges Dias",
+    "number": "a102943",
+    "alocations": 15,
+    "overlaps": 2
+  },
+  "A104942": {
+    "name": "Gonçalo Silva Faria",
+    "number": "a104942",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A101987": {
+    "name": "Renato Pereira Garcia",
+    "number": "a101987",
+    "alocations": 14,
+    "overlaps": 4
+  },
+  "A112305": {
+    "name": "Diana Manuel Arantes Maximiano",
+    "number": "a112305",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A108840": {
+    "name": "Guilherme Dall’Agnol",
+    "number": "a108840",
+    "alocations": 17,
+    "overlaps": 3
+  },
+  "A102507": {
+    "name": "Gabriel Costa Paiva",
+    "number": "a102507",
+    "alocations": 12,
+    "overlaps": 2
+  },
+  "A108469": {
+    "name": "Leonardo Matos Wright",
+    "number": "a108469",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A109887": {
+    "name": "Gabriel Campos Monteiro",
+    "number": "a109887",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102878": {
+    "name": "Ricardo Eusébio Cerqueira",
+    "number": "a102878",
+    "alocations": 15,
+    "overlaps": 4
+  },
+  "A105531": {
+    "name": "Cláudia Rego Faria",
+    "number": "a105531",
+    "alocations": 12,
+    "overlaps": 0
+  },
+  "A102940": {
+    "name": "Afonso Martins Campos Fernandes",
+    "number": "a102940",
+    "alocations": 22,
+    "overlaps": 8
+  },
+  "A102528": {
+    "name": "João Pedro Ribeiro Matos",
+    "number": "a102528",
+    "alocations": 13,
+    "overlaps": 2
+  },
+  "A105808": {
+    "name": "Vinícius Victor Batista Silva",
+    "number": "a105808",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A108652": {
+    "name": "Nuno Daniel Abreu da Silva",
+    "number": "a108652",
+    "alocations": 15,
+    "overlaps": 1
+  },
+  "A109300": {
+    "name": "Fábio Henrique Alves dos Santos",
+    "number": "a109300",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A110901": {
+    "name": "João Carlos Simões Silva",
+    "number": "a110901",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A112256": {
+    "name": "Diana Rafaela Gonçalves Cordeiro",
+    "number": "a112256",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A111156": {
+    "name": "Gonçalo Gomes Ribeiro",
+    "number": "a111156",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102527": {
+    "name": "Rafaela Antunes Pereira",
+    "number": "a102527",
+    "alocations": 22,
+    "overlaps": 5
+  },
+  "A97210": {
+    "name": "José Pedro Oliveira Gomes",
+    "number": "a97210",
+    "alocations": 11,
+    "overlaps": 0
+  },
+  "A108654": {
+    "name": "Diogo de Jesus Moreira Alves",
+    "number": "a108654",
+    "alocations": 7,
+    "overlaps": 0
+  },
+  "A102499": {
+    "name": "Carlos Daniel Silva Fernandes",
+    "number": "a102499",
+    "alocations": 13,
+    "overlaps": 1
+  },
+  "A111179": {
+    "name": "Carolina Francisca Vieira Dias",
+    "number": "a111179",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102526": {
+    "name": "Rafael Cunha Costa",
+    "number": "a102526",
+    "alocations": 16,
+    "overlaps": 4
+  },
+  "A110016": {
+    "name": "Bruno Ricardo Bonifacio de Freitas",
+    "number": "a110016",
+    "alocations": 10,
+    "overlaps": 0
+  },
+  "A102929": {
+    "name": "Pedro Miguel Igreja Gomes",
+    "number": "a102929",
+    "alocations": 16,
+    "overlaps": 1
+  }
+}

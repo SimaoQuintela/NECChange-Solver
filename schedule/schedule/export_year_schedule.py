@@ -93,9 +93,9 @@ def create_schedule(year, semester, schedule_data):
 
 # Load the schedule data from the JSON file
 if os.path.relpath(__file__) == "export_year_schedule.py":
-    data_path = os.path.join(".", "..", "..", "web", "public", "data", "schedule.json")
+    data_path = os.path.join(".", "..", "..", "web", "src", "data", "schedule.json")
 else:
-    data_path = os.path.join(".", "..", "web", "public", "data", "schedule.json")
+    data_path = os.path.join(".", "..", "web", "src", "data", "schedule.json")
 
 # print(data_path)
 

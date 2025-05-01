@@ -1,13 +1,14 @@
 import json
 import os
 
-json_path = os.path.join("..", "..", "web", "public", "data", "dynamicAlocation.json")
+json_path = os.path.join(".", "src", "data", "dynamicAlocation.json")
 
 if os.path.exists(json_path):
     with open(json_path, "r", encoding="utf-8") as file:
         dynamicAlocation = json.load(file)
 
 else:
+    print(f"Current path: {os.getcwd()}")
     print(f"Erro: O arquivo {json_path} não foi encontrado.")
     
 def years_per_student(student, students_data, S, semester):
