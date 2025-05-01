@@ -57,7 +57,13 @@ export default function Schedule({
     null
   );
   const [open, setOpen] = useState(false);
-  const [ucSelected, setUcSelected] = useState("");
+
+  const [ucSelected, setUcSelected] = useState<{
+    uc: string;
+    type: "TP" | "T" | "PL";
+    currentShift: string;
+  }>();
+
   const [events, setEvents] = useState<{
     student: EventCalendarI[];
     ucShifts: EventCalendarI[];
@@ -133,7 +139,11 @@ export default function Schedule({
     // Toast notification Camargo
     if (ucShifts.length === 0) return;
 
-    setUcSelected(uc);
+    setUcSelected({
+      uc,
+      type,
+      currentShift,
+    });
     setViewType("ucShifts");
     setEvents({ ...events, ucShifts: [...events.student, ...ucShifts] });
 
@@ -146,8 +156,8 @@ export default function Schedule({
   const updateJson = async (uc: string, type_class: string, shift: string) => {
     // If user clicks in a shift that is not the selected one, do nothing
     // This is to prevent the user from clicking in a shift that is not the selected one
-    if (ucSelected !== uc) return;
-
+    if (ucSelected?.uc !== uc) return;
+    if (ucSelected.currentShift == shift && ucSelected.type == type_class) return;
 
     setIsLoading(true);
     const shiftTrade = {

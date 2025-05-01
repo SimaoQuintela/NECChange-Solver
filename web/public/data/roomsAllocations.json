@@ -36,7 +36,7 @@
       "capacity": [
         90
       ],
-      "allocations": 56
+      "allocations": 57
     },
     "T1": {
       "rooms": [
@@ -63,7 +63,7 @@
       "capacity": [
         49
       ],
-      "allocations": 33
+      "allocations": 32
     }
   },
   "Sistemas Operativos": {
@@ -121,7 +121,7 @@
       "capacity": [
         49
       ],
-      "allocations": 49
+      "allocations": 50
     },
     "TP1": {
       "rooms": [
@@ -139,7 +139,7 @@
       "capacity": [
         49
       ],
-      "allocations": 34
+      "allocations": 33
     }
   },
   "Computação Gráfica": {
@@ -150,7 +150,7 @@
       "capacity": [
         49
       ],
-      "allocations": 12
+      "allocations": 13
     },
     "T1": {
       "rooms": [
@@ -177,7 +177,7 @@
       "capacity": [
         49
       ],
-      "allocations": 12
+      "allocations": 11
     }
   },
   "Semântica das Linguagens de Programação": {
@@ -237,7 +237,7 @@
       "capacity": [
         49
       ],
-      "allocations": 36
+      "allocations": 35
     },
     "T1": {
       "rooms": [
@@ -255,7 +255,7 @@
       "capacity": [
         44
       ],
-      "allocations": 31
+      "allocations": 32
     }
   },
   "Interação e Concorrência": {
@@ -286,7 +286,7 @@
       "capacity": [
         54
       ],
-      "allocations": 30
+      "allocations": 31
     },
     "T1": {
       "rooms": [
@@ -315,7 +315,7 @@
       "capacity": [
         54
       ],
-      "allocations": 43
+      "allocations": 42
     },
     "PL4": {
       "rooms": [
@@ -346,7 +346,7 @@
       "capacity": [
         55
       ],
-      "allocations": 51
+      "allocations": 52
     },
     "TP1": {
       "rooms": [
@@ -364,7 +364,7 @@
       "capacity": [
         49
       ],
-      "allocations": 59
+      "allocations": 58
     }
   },
   "Autómatos e Linguagens Formais": {
@@ -475,7 +475,7 @@
         49,
         52
       ],
-      "allocations": 55
+      "allocations": 54
     },
     "TP1": {
       "rooms": [
@@ -486,7 +486,7 @@
         55,
         44
       ],
-      "allocations": 46
+      "allocations": 47
     }
   },
   "Geometria": {

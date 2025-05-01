@@ -122,8 +122,16 @@ export async function POST() {
             console.error("Error writing JSON file:", error);
             return NextResponse.json({ error: "Failed to write JSON file." }, { status: 500 });
         }
+}
 
-    return NextResponse.json(outputData, {
-        status: 200,
-    });
+
+export async function GET() {
+    const filePath = path.join(process.cwd(), "public", "data", `students.json`);
+
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+
+    console.log(fileContent)
+
+
+    return NextResponse.json(fileContent);
 }

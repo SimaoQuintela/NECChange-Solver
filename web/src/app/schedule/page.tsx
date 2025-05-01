@@ -480,7 +480,7 @@ const StudentCard = ({
 }) => {
   return (
     <div
-      className="bg-[#1775B9] hover:bg-[#134c75] border border-blue-300 relative rounded-lg shadow-md p-4 font-sans"
+      className="cursor-pointer bg-[#1775B9] hover:bg-[#134c75] border border-blue-300 relative rounded-lg shadow-md p-4 font-sans"
       onClick={() => {
         setStudentNr(studentData.number.toLocaleUpperCase() as StudentsNumberType);
         // getSchedule();
