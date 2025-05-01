@@ -160,7 +160,14 @@ export default function Home() {
             <UploadButton label="Rooms" onFilesSelect={setSelectedFiles3} />
           </div>
         </div>
-
+        <button
+          onClick={() => router.push("/restrictions")}
+          className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white  focus:ring-4 focus:outline-none focus:ring-cyan-200"
+        >
+          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+            Make Restrictions
+          </span>
+        </button>
         <button
           onClick={() => {
             handleUploadClick()
@@ -188,13 +195,6 @@ export default function Home() {
             Generate
           </span>
         </button>
-        <Button
-          variant="contained"
-          onClick={() => router.push("/restrictions")}
-          className="bg-[#1775B9]"
-        >
-          Make Restrictions Dynamic
-        </Button>
 
         {isLoadingGeneration && <Loader />}
       </main>
