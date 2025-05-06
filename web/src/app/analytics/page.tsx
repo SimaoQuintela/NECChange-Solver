@@ -2,14 +2,7 @@
 import Sidebar from "@/components/Sidebar";
 import Head from "next/head";
 import StudentsPerUCChart from "@/components/analytics/StudentsPerUCChart";
-import DashboardCard from "@/components/analytics/DashboardCard";
-import {
-  MenuItem,
-  Select,
-  InputLabel,
-  FormControl,
-
-} from "@mui/material";
+import { MenuItem, Select, InputLabel, FormControl } from "@mui/material";
 import { useState, useEffect } from "react";
 import { UCItem } from "@/types/Types";
 import ShiftPieChart from "@/components/analytics/ShiftPieChart";
@@ -72,6 +65,24 @@ export default function BackofficeAnalytics() {
 
     checkAvailableYears();
   }, [selectedUC]);
+
+  const ucData = [
+    {
+      year: 1,
+      title: "Alunos por Unidade Curricular 1º Ano",
+      color: "rgba(54, 162, 235, 0.6)",
+    },
+    {
+      year: 2,
+      title: "Alunos por Unidade Curricular 2º Ano",
+      color: "rgba(75, 192, 192, 0.6)",
+    },
+    {
+      year: 3,
+      title: "Alunos por Unidade Curricular 3º Ano",
+      color: "rgba(153, 102, 255, 0.6)",
+    },
+  ];
 
   return (
     <main className="h-screen bg-slate-200">
@@ -137,32 +148,16 @@ export default function BackofficeAnalytics() {
           )}
 
           {selectedUC === "General" && (
-            <>
-              {["1", "2", "3"].map((year) => (
-                <DashboardCard
-                  key={`students-${year}`}
-                  title={`Alunos por Unidade Curricular (${year}º Ano)`}
-                >
-                  <StudentsPerUCChart
-                    year={year}
-                    color={
-                      year === "1"
-                        ? "rgba(54, 162, 235, 0.6)"
-                        : year === "2"
-                        ? "rgba(75, 192, 192, 0.6)"
-                        : "rgba(153, 102, 255, 0.6)"
-                    }
-                    borderColor={
-                      year === "1"
-                        ? "rgba(54, 162, 235, 1)"
-                        : year === "2"
-                        ? "rgba(75, 192, 192, 1)"
-                        : "rgba(153, 102, 255, 1)"
-                    }
-                  />
-                </DashboardCard>
+            <div className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between h-full">
+              {ucData.map(({ year, title, color }) => (
+                <div key={year}>
+                  <h2 className="text-md font-semibold mb-10">{title}</h2>
+                  <div>
+                    <StudentsPerUCChart year={year} color={color} />
+                  </div>
+                </div>
               ))}
-            </>
+            </div>
           )}
         </div>
       </div>
@@ -179,22 +174,8 @@ function CombinedChart({
   year?: string;
   chartType: "shift" | "overlap";
 }) {
-  const {
-    chartData: shiftData,
-    loading: shiftLoading,
-    error: shiftError,
-  } = useShiftDistribution(ucName, year || "");
-  const {
-    chartData: overlapData,
-    loading: overlapLoading,
-    error: overlapError,
-  } = useOverlapData(ucName);
-
-  if (shiftLoading || overlapLoading) return <p>Carregando dados do gráfico...</p>;
-
-  if (shiftError || overlapError) {
-    return <p className="text-red-500">{shiftError || overlapError}</p>;
-  }
+  const { chartData: shiftData } = useShiftDistribution(ucName, year || "");
+  const { chartData: overlapData } = useOverlapData(ucName);
 
   return (
     <div className="h-full flex flex-col justify-center items-center">

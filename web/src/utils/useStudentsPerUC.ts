@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { UCSData } from "@/types/Types";
 import data from "@/data/alocation.json";
 
-export function useStudentsPerUC(year: string, ucFilter?: string | null) {
+export function useStudentsPerUC(year: number, ucFilter?: string | null) {
   const [chartData, setChartData] = useState<any | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -15,7 +13,7 @@ export function useStudentsPerUC(year: string, ucFilter?: string | null) {
           const studentUCs = new Set<string>();
 
           studentSchedule.forEach(uc => {
-            if (uc.year === year && (!ucFilter || uc.uc === ucFilter)) {
+            if (Number(uc.year) === year && (!ucFilter || uc.uc === ucFilter)) {
               if (!ucCounts[uc.uc]) {
                 ucCounts[uc.uc] = 0;
               }
@@ -57,5 +55,5 @@ export function useStudentsPerUC(year: string, ucFilter?: string | null) {
     fetchData();
   }, [year, ucFilter]);
 
-  return { chartData, loading, error };
+  return { chartData, loading};
 }
