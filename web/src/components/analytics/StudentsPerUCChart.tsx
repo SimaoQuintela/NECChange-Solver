@@ -26,7 +26,7 @@ export default function StudentsPerUCChart({
         {Array.from({ length: 6 }).map((_, i) => (
           <div key={i} className="flex flex-col gap-2">
             {Array.from({ length: 3 }).map((_, j) => (
-              <div key={j} className="bg-gray-200 h-10 w-44 rounded" />
+              <div key={j} className="bg-gray-200 h-8 w-44 rounded" />
             ))}
           </div>
         ))}
