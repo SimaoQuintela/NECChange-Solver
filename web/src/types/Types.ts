@@ -67,4 +67,23 @@ export interface DashboardCardProps {
   children: React.ReactNode; 
 }
 
+export interface UCItem {
+  id: string;
+  name: string;
+}
+
+export interface UCSData {
+  uc: string; 
+  year: string; 
+  semester: string; 
+  type_class: string; 
+  shift: string; 
+  slots: [string, string, string, string, string, string, boolean][]; 
+}
+
+export interface ShiftCount {
+  shiftLabel: string;
+  count: number;
+}
+
 export type UcSchedule = typeof schedule;
