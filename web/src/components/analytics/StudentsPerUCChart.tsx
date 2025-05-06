@@ -5,12 +5,6 @@ import { useStudentsPerUC } from "@/utils/useStudentsPerUC";
 
 Chart.register(CategoryScale);
 
-interface StudentsBarChartProps {
-  data: any;
-  color: string;
-  borderColor: string;
-}
-
 interface StudentsPerUCChartProps {
   year: string;
   color: string;
@@ -18,24 +12,43 @@ interface StudentsPerUCChartProps {
   ucFilter?: string | null;
 }
 
-function StudentsBarChart({ data, color, borderColor }: StudentsBarChartProps) {
-  if (!data || !data.datasets || data.datasets.length === 0) {
-    return <p>Sem dados para exibir no gráfico.</p>;
+export default function StudentsPerUCChart({
+  year,
+  color,
+  borderColor,
+  ucFilter = null,
+}: StudentsPerUCChartProps) {
+  const { chartData, loading} = useStudentsPerUC(year, ucFilter);
+
+  if (loading) {
+    return (
+      <div className="animate-pulse flex gap-10 justify-between items-end h-full">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div key={i} className="flex flex-col gap-2">
+            {Array.from({ length: 3 }).map((_, j) => (
+              <div key={j} className="bg-gray-200 h-10 w-44 rounded" />
+            ))}
+          </div>
+        ))}
+      </div>
+    );
   }
+
+  const chartConfig = {
+    ...chartData,
+    datasets: [
+      {
+        ...chartData.datasets[0],
+        backgroundColor: color,
+        borderColor: borderColor,
+        borderWidth: 1,
+      },
+    ],
+  };
 
   return (
     <Bar
-      data={{
-        ...data,
-        datasets: [
-          {
-            ...data.datasets[0],
-            backgroundColor: color,
-            borderColor: borderColor,
-            borderWidth: 1,
-          },
-        ],
-      }}
+      data={chartConfig}
       options={{
         maintainAspectRatio: false,
         scales: {
@@ -49,25 +62,5 @@ function StudentsBarChart({ data, color, borderColor }: StudentsBarChartProps) {
         },
       }}
     />
-  );
-}
-
-
-export default function StudentsPerUCChart({
-  year,
-  color,
-  borderColor,
-  ucFilter = null,
-}: StudentsPerUCChartProps) {
-  const { chartData, loading, error } = useStudentsPerUC(year, ucFilter);
-
-  if (loading) return <p>Carregando gráfico...</p>;
-  if (error) return <p>Erro: {error}</p>;
-  if (!chartData) return <p>Nenhum dado encontrado.</p>;
-
-  return (
-    
-      <StudentsBarChart data={chartData} color={color} borderColor={borderColor} />
-    
   );
 }

@@ -3,9 +3,15 @@ import Sidebar from "@/components/Sidebar";
 import Head from "next/head";
 import StudentsPerUCChart from "@/components/analytics/StudentsPerUCChart";
 import DashboardCard from "@/components/analytics/DashboardCard";
-import { MenuItem, Select, InputLabel, FormControl, Button, Box } from "@mui/material";
+import {
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+
+} from "@mui/material";
 import { useState, useEffect } from "react";
-import { UCSData, UCItem } from "@/types/Types";
+import { UCItem } from "@/types/Types";
 import ShiftPieChart from "@/components/analytics/ShiftPieChart";
 import { useShiftDistribution } from "@/utils/UseShiftDistribution";
 import { useOverlapData } from "@/utils/utilsChartPerUC";
@@ -22,20 +28,20 @@ export default function BackofficeAnalytics() {
         // Usar data diretamente do arquivo importado
         const uniqueUCs = new Set<string>();
 
-        Object.values(data).forEach(studentSchedule => {
-          studentSchedule.forEach(uc => {
+        Object.values(data).forEach((studentSchedule) => {
+          studentSchedule.forEach((uc) => {
             uniqueUCs.add(uc.uc);
           });
         });
 
-        const ucItems: UCItem[] = Array.from(uniqueUCs).map(ucName => ({
+        const ucItems: UCItem[] = Array.from(uniqueUCs).map((ucName) => ({
           id: ucName,
-          name: ucName
+          name: ucName,
         }));
 
         setUcList([
           { id: "general", name: "General" },
-          ...ucItems.sort((a, b) => a.name.localeCompare(b.name))
+          ...ucItems.sort((a, b) => a.name.localeCompare(b.name)),
         ]);
       } catch (error) {
         console.error("Erro ao processar dados das UCs:", error);
@@ -51,11 +57,11 @@ export default function BackofficeAnalytics() {
       if (selectedUC === "General") return;
 
       const yearsWithData: string[] = [];
-      
+
       // Usar data diretamente do arquivo importado
       for (const year of ["1", "2", "3"]) {
-        const hasData = Object.values(data).some(schedule =>
-          schedule.some(uc => uc.uc === selectedUC && uc.year === year)
+        const hasData = Object.values(data).some((schedule) =>
+          schedule.some((uc) => uc.uc === selectedUC && uc.year === year)
         );
 
         if (hasData) yearsWithData.push(year);
@@ -75,9 +81,9 @@ export default function BackofficeAnalytics() {
       </Head>
       <Sidebar activeTab="Analytics" />
       <div className="h-full p-8 ml-[75px] pt-[75px] flex flex-col">
-        <div className="bg-white rounded-lg shadow-md py-2 px-4 mb-6 flex justify-between items-center w-full min-h-[50px]">
+        <div className="bg-white rounded-lg shadow-md py-2 px-4 mb-6 flex justify-between items-center w-full">
           <h1 className="text-lg font-bold">Dashboard</h1>
-          <Box sx={{ minWidth: 120 }}>
+          <div className="w-[21%]">
             <FormControl fullWidth>
               <InputLabel id="uc-select-label">Unidade Curricular</InputLabel>
               <Select
@@ -86,7 +92,7 @@ export default function BackofficeAnalytics() {
                 value={selectedUC}
                 onChange={(e) => setSelectedUC(e.target.value)}
                 label="Unidade Curricular"
-                sx={{ maxWidth: 200 }}
+                sx={{ maxWidth: 400 }}
               >
                 {ucList.map((uc) => (
                   <MenuItem key={uc.id} value={uc.name}>
@@ -95,7 +101,7 @@ export default function BackofficeAnalytics() {
                 ))}
               </Select>
             </FormControl>
-          </Box>
+          </div>
         </div>
 
         <div className="flex flex-col flex-grow gap-4">
@@ -109,7 +115,11 @@ export default function BackofficeAnalytics() {
                     Distribuição por Turnos
                   </h2>
                   <div className="flex justify-center items-center w-full h-full">
-                    <CombinedChart ucName={selectedUC} year={availableYears[0]} chartType="shift" />
+                    <CombinedChart
+                      ucName={selectedUC}
+                      year={availableYears[0]}
+                      chartType="shift"
+                    />
                   </div>
                 </div>
 
@@ -128,12 +138,27 @@ export default function BackofficeAnalytics() {
 
           {selectedUC === "General" && (
             <>
-              {["1", "2", "3"].map(year => (
-                <DashboardCard key={`students-${year}`} title={`Alunos por Unidade Curricular (${year}º Ano)`}>
+              {["1", "2", "3"].map((year) => (
+                <DashboardCard
+                  key={`students-${year}`}
+                  title={`Alunos por Unidade Curricular (${year}º Ano)`}
+                >
                   <StudentsPerUCChart
                     year={year}
-                    color={year === "1" ? "rgba(54, 162, 235, 0.6)" : year === "2" ? "rgba(75, 192, 192, 0.6)" : "rgba(153, 102, 255, 0.6)"}
-                    borderColor={year === "1" ? "rgba(54, 162, 235, 1)" : year === "2" ? "rgba(75, 192, 192, 1)" : "rgba(153, 102, 255, 1)"}
+                    color={
+                      year === "1"
+                        ? "rgba(54, 162, 235, 0.6)"
+                        : year === "2"
+                        ? "rgba(75, 192, 192, 0.6)"
+                        : "rgba(153, 102, 255, 0.6)"
+                    }
+                    borderColor={
+                      year === "1"
+                        ? "rgba(54, 162, 235, 1)"
+                        : year === "2"
+                        ? "rgba(75, 192, 192, 1)"
+                        : "rgba(153, 102, 255, 1)"
+                    }
                   />
                 </DashboardCard>
               ))}
@@ -145,10 +170,25 @@ export default function BackofficeAnalytics() {
   );
 }
 
-
-function CombinedChart({ ucName, year, chartType }: { ucName: string, year?: string, chartType: 'shift' | 'overlap' }) {
-  const { chartData: shiftData, loading: shiftLoading, error: shiftError } = useShiftDistribution(ucName, year || "");
-  const { chartData: overlapData, loading: overlapLoading, error: overlapError } = useOverlapData(ucName);
+function CombinedChart({
+  ucName,
+  year,
+  chartType,
+}: {
+  ucName: string;
+  year?: string;
+  chartType: "shift" | "overlap";
+}) {
+  const {
+    chartData: shiftData,
+    loading: shiftLoading,
+    error: shiftError,
+  } = useShiftDistribution(ucName, year || "");
+  const {
+    chartData: overlapData,
+    loading: overlapLoading,
+    error: overlapError,
+  } = useOverlapData(ucName);
 
   if (shiftLoading || overlapLoading) return <p>Carregando dados do gráfico...</p>;
 
@@ -158,10 +198,16 @@ function CombinedChart({ ucName, year, chartType }: { ucName: string, year?: str
 
   return (
     <div className="h-full flex flex-col justify-center items-center">
-      {chartType === 'shift' ? (
-        shiftData ? <ShiftPieChart data={shiftData} /> : <p className="text-center">Sem dados de distribuição por turnos.</p>
+      {chartType === "shift" ? (
+        shiftData ? (
+          <ShiftPieChart data={shiftData} />
+        ) : (
+          <p className="text-center">Sem dados de distribuição por turnos.</p>
+        )
+      ) : overlapData ? (
+        <ShiftPieChart data={overlapData} />
       ) : (
-        overlapData ? <ShiftPieChart data={overlapData} /> : <p className="text-center">Nenhuma sobreposição encontrada.</p>
+        <p className="text-center">Nenhuma sobreposição encontrada.</p>
       )}
     </div>
   );
