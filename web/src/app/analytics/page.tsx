@@ -8,21 +8,40 @@ import { UCItem } from "@/types/Types";
 import ShiftPieChart from "@/components/analytics/ShiftPieChart";
 import { useShiftDistribution } from "@/utils/UseShiftDistribution";
 import { useOverlapData } from "@/utils/utilsChartPerUC";
-import data from "@/data/alocation.json";
+import axios from "axios";
 
 export default function BackofficeAnalytics() {
   const [selectedUC, setSelectedUC] = useState<string>("General");
   const [ucList, setUcList] = useState<UCItem[]>([]);
   const [availableYears, setAvailableYears] = useState<string[]>([]);
+  const [alocationData, setAlocationData] = useState<any>(null);
+  const [statusAlocation, setStatusAlocation] = useState<boolean>(false);
 
   useEffect(() => {
+    axios
+      .get("/api/alocationData")
+      .then((response) => {
+        const { alocation, data } = response.data;
+        if (alocation == true) {
+          setAlocationData(data);
+          setStatusAlocation(true);
+        }
+        console.log("Dados de alocação:", alocationData);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar status:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!alocationData) return;
+
     const loadUCs = () => {
       try {
-        // Usar data diretamente do arquivo importado
         const uniqueUCs = new Set<string>();
 
-        Object.values(data).forEach((studentSchedule) => {
-          studentSchedule.forEach((uc) => {
+        Object.values(alocationData).forEach((studentSchedule: any) => {
+          studentSchedule.forEach((uc: any) => {
             uniqueUCs.add(uc.uc);
           });
         });
@@ -43,18 +62,17 @@ export default function BackofficeAnalytics() {
     };
 
     loadUCs();
-  }, []);
+  }, [alocationData]);
 
   useEffect(() => {
     const checkAvailableYears = () => {
-      if (selectedUC === "General") return;
+      if (selectedUC === "General" || !alocationData) return;
 
       const yearsWithData: string[] = [];
 
-      // Usar data diretamente do arquivo importado
       for (const year of ["1", "2", "3"]) {
-        const hasData = Object.values(data).some((schedule) =>
-          schedule.some((uc) => uc.uc === selectedUC && uc.year === year)
+        const hasData = Object.values(alocationData).some((schedule: any) =>
+          schedule.some((uc: any) => uc.uc === selectedUC && uc.year === year)
         );
 
         if (hasData) yearsWithData.push(year);
@@ -64,7 +82,7 @@ export default function BackofficeAnalytics() {
     };
 
     checkAvailableYears();
-  }, [selectedUC]);
+  }, [selectedUC, alocationData]);
 
   const ucData = [
     {
@@ -114,52 +132,52 @@ export default function BackofficeAnalytics() {
             </FormControl>
           </div>
         </div>
-
-        <div className="flex flex-col flex-grow gap-4">
-          {selectedUC !== "General" && (
-            <div className="flex flex-col items-center w-full gap-8">
-              {/* Linha para Distribuição por Turnos e Sobreposição */}
-              <div className="flex justify-center gap-8 w-full">
-                {/* Container Distribuição por Turnos */}
-                <div className="flex flex-col items-center justify-start bg-white shadow-md rounded-lg w-[600px] h-[400px] p-4">
-                  <h2 className="text-lg font-bold text-center w-full border-b pb-2">
-                    Distribuição por Turnos
-                  </h2>
-                  <div className="flex justify-center items-center w-full h-full">
-                    <CombinedChart
-                      ucName={selectedUC}
-                      year={availableYears[0]}
-                      chartType="shift"
-                    />
+        {!statusAlocation ? (
+          <h1>No data to show, need to generate an allocation first</h1>
+        ) : (
+          <div className="flex flex-col flex-grow gap-4">
+            {selectedUC !== "General" && (
+              <div className="flex flex-col items-center w-full gap-8">
+                <div className="flex justify-center gap-8 w-full">
+                  <div className="flex flex-col items-center justify-start bg-white shadow-md rounded-lg w-[600px] h-[400px] p-4">
+                    <h2 className="text-lg font-bold text-center w-full border-b pb-2">
+                      Distribuição por Turnos
+                    </h2>
+                    <div className="flex justify-center items-center w-full h-full">
+                      <CombinedChart
+                        ucName={selectedUC}
+                        year={availableYears[0]}
+                        chartType="shift"
+                      />
+                    </div>
                   </div>
-                </div>
 
-                {/* Container Sobreposição de Horários */}
-                <div className="flex flex-col items-center justify-start bg-white shadow-md rounded-lg w-[600px] h-[400px] p-4">
-                  <h2 className="text-lg font-bold text-center w-full border-b pb-2">
-                    Sobreposição de Horários
-                  </h2>
-                  <div className="flex justify-center items-center w-full h-full">
-                    <CombinedChart ucName={selectedUC} chartType="overlap" />
+                  <div className="flex flex-col items-center justify-start bg-white shadow-md rounded-lg w-[600px] h-[400px] p-4">
+                    <h2 className="text-lg font-bold text-center w-full border-b pb-2">
+                      Sobreposição de Horários
+                    </h2>
+                    <div className="flex justify-center items-center w-full h-full">
+                      <CombinedChart ucName={selectedUC} chartType="overlap" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {selectedUC === "General" && (
-            <div className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between h-full">
-              {ucData.map(({ year, title, color }) => (
-                <div key={year}>
-                  <h2 className="text-md font-semibold mb-10">{title}</h2>
-                  <div>
-                    <StudentsPerUCChart year={year} color={color} />
+            {selectedUC === "General" && (
+              <div className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between h-full">
+                {ucData.map(({ year, title, color }) => (
+                  <div key={year}>
+                    <h2 className="text-md font-semibold mb-10">{title}</h2>
+                    <div>
+                      <StudentsPerUCChart year={year} color={color} />
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </main>
   );
