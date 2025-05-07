@@ -52,7 +52,7 @@ export function useShiftDistribution(ucName: string, year: string) {
             const generateColor = (index: number) => `hsl(${(index * 137) % 360}, 70%, 60%)`;
 
             setChartData({
-              labels: counts.map(item => `${item.shiftLabel} (${item.count} alunos)`),
+              labels: counts.map(item => `${item.shiftLabel} (${item.count} al.)`),
               datasets: [
                 {
                   data: counts.map(item => item.count),
