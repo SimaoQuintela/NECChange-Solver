@@ -1,4 +1,98 @@
 {
+  "Sistemas de Computação": {
+    "PL1": {
+      "rooms": [
+        "1-2.20"
+      ],
+      "capacity": [
+        50
+      ],
+      "allocations": 33
+    },
+    "T1": {
+      "rooms": [
+        "1-0.04"
+      ],
+      "capacity": [
+        145
+      ],
+      "allocations": 128
+    },
+    "PL2": {
+      "rooms": [
+        "1-2.17"
+      ],
+      "capacity": [
+        45
+      ],
+      "allocations": 38
+    },
+    "PL3": {
+      "rooms": [
+        "1-1.27"
+      ],
+      "capacity": [
+        44
+      ],
+      "allocations": 27
+    },
+    "PL4": {
+      "rooms": [
+        "1-1.27"
+      ],
+      "capacity": [
+        44
+      ],
+      "allocations": 30
+    }
+  },
+  "Programação Imperativa": {
+    "T1": {
+      "rooms": [
+        "1-0.08"
+      ],
+      "capacity": [
+        179
+      ],
+      "allocations": 178
+    },
+    "TP2": {
+      "rooms": [
+        "2-0.03"
+      ],
+      "capacity": [
+        140
+      ],
+      "allocations": 48
+    },
+    "TP4": {
+      "rooms": [
+        "1-1.20"
+      ],
+      "capacity": [
+        49
+      ],
+      "allocations": 56
+    },
+    "TP3": {
+      "rooms": [
+        "1-2.22"
+      ],
+      "capacity": [
+        49
+      ],
+      "allocations": 37
+    },
+    "TP1": {
+      "rooms": [
+        "1-2.21"
+      ],
+      "capacity": [
+        47
+      ],
+      "allocations": 37
+    }
+  },
   "Análise Numérica": {
     "PL1": {
       "rooms": [
@@ -16,7 +110,7 @@
       "capacity": [
         30
       ],
-      "allocations": 46
+      "allocations": 44
     },
     "PL2": {
       "rooms": [
@@ -34,7 +128,7 @@
       "capacity": [
         30
       ],
-      "allocations": 58
+      "allocations": 60
     }
   },
   "Laboratório de Algoritmia II": {
@@ -96,15 +190,6 @@
       ],
       "allocations": 117
     },
-    "TP2": {
-      "rooms": [
-        "2-1.03"
-      ],
-      "capacity": [
-        99
-      ],
-      "allocations": 57
-    },
     "TP1": {
       "rooms": [
         "2-0.03"
@@ -113,6 +198,15 @@
         140
       ],
       "allocations": 60
+    },
+    "TP2": {
+      "rooms": [
+        "2-1.03"
+      ],
+      "capacity": [
+        99
+      ],
+      "allocations": 57
     }
   },
   "Programação Orientada aos Objetos": {
@@ -123,7 +217,7 @@
       "capacity": [
         49
       ],
-      "allocations": 57
+      "allocations": 61
     },
     "T1": {
       "rooms": [
@@ -134,15 +228,6 @@
       ],
       "allocations": 118
     },
-    "PL3": {
-      "rooms": [
-        "1-1.17"
-      ],
-      "capacity": [
-        49
-      ],
-      "allocations": 29
-    },
     "PL1": {
       "rooms": [
         "7-0.07"
@@ -150,7 +235,16 @@
       "capacity": [
         40
       ],
-      "allocations": 32
+      "allocations": 29
+    },
+    "PL3": {
+      "rooms": [
+        "1-1.17"
+      ],
+      "capacity": [
+        49
+      ],
+      "allocations": 28
     }
   },
   "Sistemas Operativos": {
@@ -161,7 +255,7 @@
       "capacity": [
         44
       ],
-      "allocations": 50
+      "allocations": 52
     },
     "T1": {
       "rooms": [
@@ -179,7 +273,7 @@
       "capacity": [
         47
       ],
-      "allocations": 25
+      "allocations": 23
     },
     "PL2": {
       "rooms": [
@@ -201,6 +295,15 @@
       ],
       "allocations": 139
     },
+    "TP3": {
+      "rooms": [
+        "1-1.19"
+      ],
+      "capacity": [
+        55
+      ],
+      "allocations": 40
+    },
     "TP1": {
       "rooms": [
         "1-1.05"
@@ -210,15 +313,6 @@
       ],
       "allocations": 51
     },
-    "TP3": {
-      "rooms": [
-        "1-1.19"
-      ],
-      "capacity": [
-        55
-      ],
-      "allocations": 41
-    },
     "TP2": {
       "rooms": [
         "1-2.18"
@@ -226,95 +320,10 @@
       "capacity": [
         55
       ],
-      "allocations": 47
+      "allocations": 48
     }
   },
-  "Programação Imperativa": {
-    "T1": {
-      "rooms": [
-        "1-0.08"
-      ],
-      "capacity": [
-        179
-      ],
-      "allocations": 178
-    },
-    "TP2": {
-      "rooms": [
-        "2-0.03"
-      ],
-      "capacity": [
-        140
-      ],
-      "allocations": 56
-    },
-    "TP4": {
-      "rooms": [
-        "1-1.20"
-      ],
-      "capacity": [
-        49
-      ],
-      "allocations": 44
-    },
-    "TP3": {
-      "rooms": [
-        "1-2.22"
-      ],
-      "capacity": [
-        49
-      ],
-      "allocations": 36
-    },
-    "TP1": {
-      "rooms": [
-        "1-2.21"
-      ],
-      "capacity": [
-        47
-      ],
-      "allocations": 42
-    }
-  },
-  "Laboratório de Algoritmia I": {
-    "PL3": {
-      "rooms": [
-        "1-1.05"
-      ],
-      "capacity": [
-        77
-      ],
-      "allocations": 30
-    },
-    "PL2": {
-      "rooms": [
-        "1-1.40"
-      ],
-      "capacity": [
-        60
-      ],
-      "allocations": 62
-    },
-    "PL1": {
-      "rooms": [
-        "1-2.11"
-      ],
-      "capacity": [
-        47
-      ],
-      "allocations": 29
-    }
-  },
-  "Sistemas de Computação": {
-    "PL1": {
-      "rooms": [
-        "1-2.20"
-      ],
-      "capacity": [
-        50
-      ],
-      "allocations": 27
-    },
+  "Geometria": {
     "T1": {
       "rooms": [
         "1-0.04"
@@ -322,34 +331,54 @@
       "capacity": [
         145
       ],
-      "allocations": 128
+      "allocations": 98
     },
-    "PL2": {
+    "TP1": {
       "rooms": [
-        "1-2.17"
+        "1-0.17"
       ],
       "capacity": [
-        45
+        60
       ],
-      "allocations": 30
+      "allocations": 42
     },
-    "PL4": {
+    "TP2": {
       "rooms": [
-        "1-1.27"
+        "1-0.17"
       ],
       "capacity": [
-        44
+        60
       ],
-      "allocations": 35
-    },
-    "PL3": {
+      "allocations": 56
+    }
+  },
+  "Matemática Discreta": {
+    "T1": {
       "rooms": [
-        "1-1.27"
+        "1-0.04"
       ],
       "capacity": [
-        44
+        145
       ],
-      "allocations": 36
+      "allocations": 115
+    },
+    "TP1": {
+      "rooms": [
+        "1-1.21"
+      ],
+      "capacity": [
+        54
+      ],
+      "allocations": 53
+    },
+    "TP2": {
+      "rooms": [
+        "1-0.18"
+      ],
+      "capacity": [
+        60
+      ],
+      "allocations": 62
     }
   },
   "Análise": {
@@ -376,62 +405,33 @@
       "allocations": 60
     }
   },
-  "Geometria": {
-    "T1": {
+  "Laboratório de Algoritmia I": {
+    "PL1": {
       "rooms": [
-        "1-0.04"
+        "1-2.11"
       ],
       "capacity": [
-        145
+        47
       ],
-      "allocations": 98
+      "allocations": 28
     },
-    "TP1": {
+    "PL3": {
       "rooms": [
-        "1-0.17"
+        "1-1.05"
+      ],
+      "capacity": [
+        77
+      ],
+      "allocations": 31
+    },
+    "PL2": {
+      "rooms": [
+        "1-1.40"
       ],
       "capacity": [
         60
       ],
-      "allocations": 40
-    },
-    "TP2": {
-      "rooms": [
-        "1-0.17"
-      ],
-      "capacity": [
-        60
-      ],
-      "allocations": 58
-    }
-  },
-  "Matemática Discreta": {
-    "T1": {
-      "rooms": [
-        "1-0.04"
-      ],
-      "capacity": [
-        145
-      ],
-      "allocations": 115
-    },
-    "TP1": {
-      "rooms": [
-        "1-1.21"
-      ],
-      "capacity": [
-        54
-      ],
-      "allocations": 54
-    },
-    "TP2": {
-      "rooms": [
-        "1-0.18"
-      ],
-      "capacity": [
-        60
-      ],
-      "allocations": 61
+      "allocations": 62
     }
   },
   "Probabilidades e Aplicações": {
@@ -442,7 +442,7 @@
       "capacity": [
         30
       ],
-      "allocations": 37
+      "allocations": 40
     },
     "TP2": {
       "rooms": [
@@ -451,7 +451,7 @@
       "capacity": [
         30
       ],
-      "allocations": 38
+      "allocations": 40
     },
     "PL1": {
       "rooms": [
@@ -460,7 +460,7 @@
       "capacity": [
         30
       ],
-      "allocations": 37
+      "allocations": 34
     },
     "TP1": {
       "rooms": [
@@ -469,7 +469,45 @@
       "capacity": [
         30
       ],
-      "allocations": 36
+      "allocations": 34
+    }
+  },
+  "Computação Gráfica": {
+    "PL2": {
+      "rooms": [
+        "1-2.14"
+      ],
+      "capacity": [
+        49
+      ],
+      "allocations": 24
+    },
+    "T1": {
+      "rooms": [
+        "1-1.25"
+      ],
+      "capacity": [
+        41
+      ],
+      "allocations": 61
+    },
+    "PL1": {
+      "rooms": [
+        "1-2.21"
+      ],
+      "capacity": [
+        47
+      ],
+      "allocations": 23
+    },
+    "PL3": {
+      "rooms": [
+        "1-2.22"
+      ],
+      "capacity": [
+        49
+      ],
+      "allocations": 14
     }
   },
   "Teoria de Números Computacional": {
@@ -489,7 +527,7 @@
       "capacity": [
         110
       ],
-      "allocations": 38
+      "allocations": 35
     },
     "TP1": {
       "rooms": [
@@ -498,7 +536,36 @@
       "capacity": [
         30
       ],
-      "allocations": 28
+      "allocations": 31
+    }
+  },
+  "Programação Concorrente": {
+    "PL1": {
+      "rooms": [
+        "1-2.20"
+      ],
+      "capacity": [
+        50
+      ],
+      "allocations": 31
+    },
+    "T1": {
+      "rooms": [
+        "1-0.20"
+      ],
+      "capacity": [
+        145
+      ],
+      "allocations": 69
+    },
+    "PL2": {
+      "rooms": [
+        "1-1.21"
+      ],
+      "capacity": [
+        54
+      ],
+      "allocations": 38
     }
   },
   "Interação e Concorrência": {
@@ -539,73 +606,6 @@
         41
       ],
       "allocations": 72
-    }
-  },
-  "Computação Gráfica": {
-    "PL1": {
-      "rooms": [
-        "1-2.21"
-      ],
-      "capacity": [
-        47
-      ],
-      "allocations": 21
-    },
-    "T1": {
-      "rooms": [
-        "1-1.25"
-      ],
-      "capacity": [
-        41
-      ],
-      "allocations": 61
-    },
-    "PL2": {
-      "rooms": [
-        "1-2.14"
-      ],
-      "capacity": [
-        49
-      ],
-      "allocations": 26
-    },
-    "PL3": {
-      "rooms": [
-        "1-2.22"
-      ],
-      "capacity": [
-        49
-      ],
-      "allocations": 14
-    }
-  },
-  "Programação Concorrente": {
-    "PL1": {
-      "rooms": [
-        "1-2.20"
-      ],
-      "capacity": [
-        50
-      ],
-      "allocations": 33
-    },
-    "T1": {
-      "rooms": [
-        "1-0.20"
-      ],
-      "capacity": [
-        145
-      ],
-      "allocations": 69
-    },
-    "PL2": {
-      "rooms": [
-        "1-1.21"
-      ],
-      "capacity": [
-        54
-      ],
-      "allocations": 36
     }
   }
 }
