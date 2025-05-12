@@ -9,6 +9,8 @@ import ShiftPieChart from "@/components/analytics/ShiftPieChart";
 import { useShiftDistribution } from "@/utils/UseShiftDistribution";
 import { useOverlapData } from "@/utils/utilsChartPerUC";
 import axios from "axios";
+import Modal from "@/components/analytics/Modal";
+import { useRef} from "react";
 
 export default function BackofficeAnalytics() {
   const [selectedUC, setSelectedUC] = useState<string>("General");
@@ -195,19 +197,34 @@ function CombinedChart({
   const { chartData: shiftData } = useShiftDistribution(ucName, year || "");
   const { chartData: overlapData } = useOverlapData(ucName);
 
+  const [showModal, setShowModal] = useState(false);
+  const [students, setStudents] = useState<string[]>([]);
+
+  const handlePieClick = (index: number) => {
+    if (!overlapData) return;
+    const studentsArr = overlapData.datasets[0].studentsPerClass[index] || [];
+    setStudents(studentsArr);
+    setShowModal(true);
+  };
+
   return (
-    <div className="h-full flex flex-col justify-center items-center">
+    <>
       {chartType === "shift" ? (
         shiftData ? (
-          <ShiftPieChart data={shiftData} />
+<ShiftPieChart data={shiftData} width={350} height={350} />
         ) : (
-          <p className="text-center">Sem dados de distribuição por turnos.</p>
+          <div>Sem dados de distribuição por turnos.</div>
         )
       ) : overlapData ? (
-        <ShiftPieChart data={overlapData} />
+        <>
+          <ShiftPieChart data={overlapData} onElementClick={handlePieClick} width={350} height={350} />
+
+          <Modal show={showModal} close={() => setShowModal(false)} students={students} />
+        </>
       ) : (
-        <p className="text-center">Nenhuma sobreposição encontrada.</p>
+        <div>Nenhuma sobreposição encontrada.</div>
       )}
-    </div>
+    </>
   );
 }
+

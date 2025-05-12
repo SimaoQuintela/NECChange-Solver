@@ -1,32 +1,55 @@
 import { Pie } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { useRef } from "react";
 
-export default function ShiftPieChart({ data }: { data: any }) {
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+export default function ShiftPieChart({
+  data,
+  onElementClick,
+  width = 350,
+  height = 350,
+}: {
+  data: any;
+  onElementClick?: (index: number) => void;
+  width?: number;
+  height?: number;
+}) {
+  const chartRef = useRef<any>(null);
+
+  const handleClick = (event: any) => {
+    if (!chartRef.current || !onElementClick) return;
+    const points = chartRef.current.getElementsAtEventForMode(
+      event.nativeEvent,
+      "nearest",
+      { intersect: true },
+      true
+    );
+    if (points.length > 0) {
+      onElementClick(points[0].index);
+    }
+  };
+
   return (
-    <div className="flex-grow">
-      <Pie 
-        data={data} 
+    <div
+      style={{
+        width: width,
+        height: height,
+        margin: "0 auto",
+        position: "relative",
+      }}
+    >
+      <Pie
+        ref={chartRef}
+        data={data}
         options={{
-          responsive: true,
+          ...data.options,
           maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'right',
-              labels: { boxWidth: 15, padding: 15 }
-            },
-            tooltip: {
-              callbacks: {
-                label: function(context) {
-                  const label = context.label || '';
-                  const value = context.parsed || 0;
-                  const total = context.dataset.data.reduce((acc: number, val: number) => acc + val, 0);
-                  const percentage = ((value / total) * 100).toFixed(1); // 1 casa decimal
-
-                  return `${label}: ${value} alunos (${percentage}%)`;
-                }
-              }
-            }
-          }
+          responsive: false,
         }}
+        width={width}
+        height={height}
+        onClick={handleClick}
       />
     </div>
   );
