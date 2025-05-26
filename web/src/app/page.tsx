@@ -53,10 +53,6 @@ export default function Home() {
           // Error handling for file upload
           if (response.data.message === "No file uploaded.") {
             toast.error("No file uploaded. Please select a file.");
-          } else if (response.data.message === "File uploaded successfully.") {
-            toast.success("Upload successful!");
-          } else {
-            toast.error("An error occurred during upload.");
           }
         }
       }
@@ -78,24 +74,12 @@ export default function Home() {
             .post("api/generate_shift_allocation")
             .then((response) => {
               if (response.status === 200) {
-                toast.success("Shift allocation generated successfully!");
-
-                axios
-                  .post("/api/students")
-                  .then((response) => {
-                    if (response.status === 200) {
-                      toast.success("Students JSON file created successfully!");
-                    }
-                    if (response.status === 500) {
-                      toast.error("Failed to create students JSON file.");
-                    }
-                  })
-                  .catch((error) => {
-                    console.error(error);
-                    toast.error(
-                      "An error occurred during students JSON file creation."
-                    );
-                  });
+                axios.post("/api/students").catch((error) => {
+                  console.error(error);
+                  toast.error(
+                    "An error occurred during students JSON file creation."
+                  );
+                });
               } else {
                 toast.error("Shift allocation generation failed!");
               }
