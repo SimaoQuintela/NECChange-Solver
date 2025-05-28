@@ -151,7 +151,6 @@ pyparsing==3.1.1
 pyrsistent==0.20.0
 pyserial==3.5
 PySMT==0.9.6
-python-apt==2.7.7+ubuntu3
 python-dateutil==2.8.2
 python-debian==0.1.49+ubuntu2
 pytz==2024.1
